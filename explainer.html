@@ -209,6 +209,16 @@
       color: var(--gold);
       font-weight: 700;
     }
+    .card .audience-list li::before { content: '•'; }
+    .card p {
+      font-size: 14px;
+      color: var(--near-black);
+      margin-bottom: 10px;
+    }
+    .card p:last-child { margin-bottom: 0; }
+    .card .dash-list { margin: 8px 0 12px; }
+    .card .dash-list li { font-size: 14px; }
+    .card .card-tagline { font-size: 14px; font-weight: 600; margin-top: 12px; margin-bottom: 0; }
 
     @media (max-width: 900px) {
       .cards-grid {
@@ -288,78 +298,51 @@
       <div class="cards-grid">
         <div class="card">
           <div class="card-header">WHO IT'S FOR</div>
-          <ul>
+          <p>Designed exclusively for attorneys who specialize in:</p>
+          <ul class="audience-list">
             <li>Personal Injury</li>
             <li>Workers' Compensation</li>
             <li>Disability Litigation</li>
           </ul>
         </div>
         <div class="card">
-          <div class="card-header">WHY IT MATTERS</div>
-          <ul>
-            <li>Protects case strength</li>
-            <li>Reduces sequencing risk</li>
-            <li>Improves negotiation leverage</li>
+          <div class="card-header">WHY THIS MATTERS</div>
+          <p>Personal injury, workers' compensation, and disability cases weaken when care is:</p>
+          <ul class="dash-list">
+            <li>Poorly sequenced</li>
+            <li>Improperly escalated</li>
+            <li>Weakly documented</li>
+            <li>Lacking treatment authority</li>
+            <li>Misaligned with recognized standards</li>
           </ul>
+          <p>It identifies sequencing gaps, documentation vulnerabilities, escalation risks, and treatment misalignment that weaken the structural foundation of care.</p>
+          <p>When care falls outside recognized payer and guideline expectations, defensible case positioning is compromised.</p>
         </div>
         <div class="card">
           <div class="card-header">WHAT IT EVALUATES</div>
-          <ul>
-            <li>Treatment progression</li>
-            <li>Escalation timing</li>
+          <p>The C.A.R.E. Clinical Sequencing Auditor assesses:</p>
+          <ul class="audience-list">
+            <li>Treatment sequencing progression</li>
+            <li>Escalation timing and clinical justification</li>
             <li>Documentation sufficiency</li>
-            <li>Treatment alignment</li>
+            <li>Alignment with recognized payer and treatment expectations</li>
+            <li>Structural vulnerabilities in case presentation</li>
           </ul>
+          <p>This is not care delivery.</p>
+          <p>This is structured clinical sequencing analysis for litigation strength.</p>
         </div>
         <div class="card">
           <div class="card-header">WHAT YOU RECEIVE</div>
-          <ul>
-            <li>Sequencing risk profile</li>
-            <li>Structural findings</li>
-            <li>Case positioning insight</li>
+          <p>After completion, the Auditor provides:</p>
+          <ul class="audience-list">
+            <li>A sequencing risk profile</li>
+            <li>Identified documentation vulnerabilities</li>
+            <li>Areas of treatment misalignment</li>
+            <li>Strategic insight into defensible case positioning</li>
           </ul>
+          <p class="card-tagline">Clear. Structured. Defensible.</p>
         </div>
       </div>
-
-      <div class="divider-gold"></div>
-
-      <h2 class="section-heading">WHY THIS MATTERS</h2>
-      <p class="explainer-p">Personal injury, workers' compensation, and disability cases weaken when care is:</p>
-      <ul class="dash-list">
-        <li>Poorly sequenced</li>
-        <li>Improperly escalated</li>
-        <li>Weakly documented</li>
-        <li>Lacking treatment authority</li>
-        <li>Misaligned with recognized standards</li>
-      </ul>
-      <p class="explainer-p">It identifies sequencing gaps, documentation vulnerabilities, escalation risks, and treatment misalignment that weaken the structural foundation of care.</p>
-      <p class="explainer-p">When care falls outside recognized payer and guideline expectations, defensible case positioning is compromised.</p>
-
-      <div class="divider-gold"></div>
-
-      <h2 class="section-heading">WHAT THE AUDITOR EVALUATES</h2>
-      <p class="explainer-p" style="margin-bottom: 8px;">The C.A.R.E. Clinical Sequencing Auditor assesses:</p>
-      <ul class="audience-list">
-        <li>Treatment sequencing progression</li>
-        <li>Escalation timing and clinical justification</li>
-        <li>Documentation sufficiency</li>
-        <li>Alignment with recognized payer and treatment expectations</li>
-        <li>Structural vulnerabilities in case presentation</li>
-      </ul>
-      <p class="explainer-p">This is not care delivery.</p>
-      <p class="explainer-p">This is structured clinical sequencing analysis for litigation strength.</p>
-
-      <div class="divider-gold"></div>
-
-      <h2 class="section-heading">WHAT YOU RECEIVE</h2>
-      <p class="explainer-p" style="margin-bottom: 8px;">After completion, the Auditor provides:</p>
-      <ul class="audience-list">
-        <li>A sequencing risk profile</li>
-        <li>Identified documentation vulnerabilities</li>
-        <li>Areas of treatment misalignment</li>
-        <li>Strategic insight into defensible case positioning</li>
-      </ul>
-      <p class="tagline-three">Clear. Structured. Defensible.</p>
 
       <div class="divider-gold"></div>
 
