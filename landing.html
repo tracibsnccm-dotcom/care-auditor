@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C.A.R.E. Clinical Sequencing Auditor™</title>
+    <!-- Professional font: Inter (clean and modern) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f6f3ec; /* off-white */
+            color: #0a2540; /* navy */
+            line-height: 1.5;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2rem;
+            box-shadow: 0 20px 40px -10px rgba(10, 37, 64, 0.15);
+            padding: 3rem 2.5rem;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #0a2540;
+            margin-bottom: 0.5rem;
+        }
+
+        h1 .tm {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #b09837;
+            margin-left: 0.25rem;
+        }
+
+        .subhead {
+            font-size: 1.2rem;
+            color: #0a2540;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            border-left: 4px solid #b09837;
+            padding-left: 1.5rem;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #0a2540;
+            margin: 2.5rem 0 1rem 0;
+            letter-spacing: -0.01em;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #b09837;
+            border-bottom: 2px solid #b09837;
+            padding-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Card grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.8rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 8px 20px -6px rgba(10, 37, 64, 0.08);
+            border: 1px solid rgba(176, 152, 55, 0.15);
+            transition: all 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -8px rgba(10, 37, 64, 0.15);
+            border-color: #b09837;
+        }
+
+        .card-header {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #0a2540;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #b09837;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .card-list {
+            list-style: none;
+            margin: 0 0 0.75rem 0;
+        }
+
+        .card-list li {
+            font-size: 0.95rem;
+            color: #0a2540;
+            margin-bottom: 0.5rem;
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        .card-list li::before {
+            content: "▹";
+            color: #b09837;
+            font-weight: 700;
+            position: absolute;
+            left: 0;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #0a2540;
+            margin: 0.75rem 0 0 0;
+        }
+
+        /* Gold emphasis */
+        .gold-accent {
+            color: #b09837;
+            font-weight: 600;
+        }
+
+        /* Image placeholders */
+        .image-placeholder {
+            background-color: #e5ddd0;
+            border: 2px dashed #b09837;
+            border-radius: 1rem;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0a2540;
+            font-weight: 500;
+            margin: 2rem 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="%23b09837" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><path d="M7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 17h5M17 7h5"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center 30%;
+            background-size: 40px;
+            padding-top: 50px;
+            text-align: center;
+        }
+
+        .image-placeholder span {
+            background: #f6f3ec;
+            padding: 0.3rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* Form section */
+        .form-section {
+            background: #f6f3ec; /* off-white */
+            border-radius: 2rem;
+            padding: 2.5rem;
+            margin: 3rem 0 1.5rem 0;
+            border: 1px solid rgba(176, 152, 55, 0.3);
+        }
+
+        .form-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #0a2540;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-sub {
+            color: #0a2540;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            flex: 1 1 200px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #0a2540;
+            margin-bottom: 0.25rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #d1c4b5;
+            border-radius: 0.75rem;
+            font-family: inherit;
+            font-size: 1rem;
+            background: white;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #b09837;
+            box-shadow: 0 0 0 3px rgba(176, 152, 55, 0.2);
+        }
+
+        .note {
+            font-size: 0.85rem;
+            color: #0a2540;
+            opacity: 0.7;
+            margin: 1rem 0 1.5rem 0;
+        }
+
+        .btn {
+            background: #0a2540;
+            color: white;
+            border: none;
+            border-radius: 3rem;
+            padding: 1rem 2.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid #b09837;
+            box-shadow: 0 8px 16px -6px rgba(10, 37, 64, 0.2);
+        }
+
+        .btn:hover {
+            background: #163a5c;
+            transform: scale(1.02);
+            border-color: #b09837;
+            box-shadow: 0 12px 20px -8px #0a2540;
+        }
+
+        .footer {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #b09837;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            color: #0a2540;
+        }
+
+        .established {
+            font-weight: 600;
+            background: #b09837;
+            color: #0a2540;
+            padding: 0.4rem 1.2rem;
+            border-radius: 3rem;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .container {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .form-row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <h1>C.A.R.E. Clinical Sequencing Auditor<span class="tm">™</span></h1>
+        <div class="subhead">A structured clinical methodology for injury care sequencing and defensible case strategy.</div>
+
+        <!-- Image Placeholder 1 (you can replace this with your first image) -->
+        <div class="image-placeholder"><span>Image 1 place here</span></div>
+
+        <!-- Forensic Care Management section -->
+        <span class="section-tag">FORENSIC CARE MANAGEMENT™ IN ACTION</span>
+        <p style="font-size: 1.1rem; margin: 1rem 0 1.5rem 0; max-width: 80%;">
+            Designed exclusively for attorneys who specialize in: <strong>Personal Injury · Workers' Compensation · Disability Litigation</strong>
+        </p>
+        <p style="margin-bottom: 1rem;">
+            The C.A.R.E. Clinical Sequencing Auditor applies structured clinical review methods within a legal-clinical framework to assess how injury care is sequenced, documented, and positioned.
+        </p>
+        <p>
+            It identifies sequencing gaps, documentation vulnerabilities, escalation risks, and treatment misalignment that weaken the structural foundation of care. When care falls outside recognized payer and guideline expectations, defensible case positioning is compromised.
+        </p>
+
+        <!-- 4 Cards with full content from images -->
+        <h2 style="margin-top: 3rem;">At a glance</h2>
+        <div class="card-grid">
+            <!-- WHO IT'S FOR -->
+            <div class="card">
+                <div class="card-header">WHO IT'S FOR</div>
+                <ul class="card-list">
+                    <li>Personal Injury</li>
+                    <li>Workers' Compensation</li>
+                    <li>Disability Litigation</li>
+                </ul>
+                <p>The C.A.R.E. Clinical Sequencing Auditor applies structured clinical review methods within a legal–clinical framework to assess how injury care is sequenced, documented, and positioned.</p>
+            </div>
+
+            <!-- WHY THIS MATTERS -->
+            <div class="card">
+                <div class="card-header">WHY THIS MATTERS</div>
+                <ul class="card-list">
+                    <li>Poorly sequenced</li>
+                    <li>Improperly escalated</li>
+                    <li>Weakly documented</li>
+                    <li>Lacking treatment authority</li>
+                    <li>Misaligned with recognized standards</li>
+                </ul>
+                <p>It identifies sequencing gaps, documentation vulnerabilities, escalation risks, and treatment misalignment that weaken the structural foundation of care. When care falls outside recognized payer and guideline expectations, defensible case positioning is compromised.</p>
+            </div>
+
+            <!-- WHAT IT EVALUATES -->
+            <div class="card">
+                <div class="card-header">WHAT IT EVALUATES</div>
+                <ul class="card-list">
+                    <li>Treatment sequencing progression</li>
+                    <li>Escalation timing & clinical justification</li>
+                    <li>Documentation sufficiency</li>
+                    <li>Alignment with recognized payer and treatment expectations</li>
+                    <li>Structural vulnerabilities in case presentation</li>
+                </ul>
+                <p><span class="gold-accent">This is not care delivery.</span> This is structured clinical sequencing analysis for litigation strength.</p>
+            </div>
+
+            <!-- WHAT YOU RECEIVE -->
+            <div class="card">
+                <div class="card-header">WHAT YOU RECEIVE</div>
+                <ul class="card-list">
+                    <li>A sequencing risk profile</li>
+                    <li>Identified documentation vulnerabilities</li>
+                    <li>Areas of treatment misalignment</li>
+                    <li>Strategic insight into defensible case positioning</li>
+                </ul>
+                <p><span class="gold-accent">Clear. Structured. Defensible.</span></p>
+            </div>
+        </div>
+
+        <!-- Image Placeholder 2 (replace with your second image) -->
+        <div class="image-placeholder"><span>Image 2 place here</span></div>
+
+        <!-- Audit Tool Form Section (exactly as in your image) -->
+        <div class="form-section">
+            <div class="form-title">Run a Clinical Sequencing Audit on Your Case</div>
+            <div class="form-sub">In less than 5 minutes, identify whether your case contains structural clinical vulnerabilities that could reduce settlement leverage or create exposure during deposition.<br>Your <strong>Clinical Sequencing Profile™</strong> will be generated instantly.</div>
+
+            <form>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>FIRST NAME *</label>
+                        <input type="text" value="Jane" placeholder="Jane">
+                    </div>
+                    <div class="form-group">
+                        <label>LAST NAME *</label>
+                        <input type="text" value="Doe" placeholder="Doe">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>LAW FIRM *</label>
+                        <input type="text" value="Doe & Associates" placeholder="Doe & Associates">
+                    </div>
+                    <div class="form-group">
+                        <label>BUSINESS EMAIL ADDRESS *</label>
+                        <input type="email" value="jane@doelaw.com" placeholder="jane@doelaw.com">
+                    </div>
+                </div>
+                <div class="note">
+                    Note: A business email address is required. Personal email domains (Gmail, Yahoo, Hotmail, iCloud, etc.) will not be accepted. Your information is used solely to generate your Clinical Sequencing Profile™ and will not be shared.
+                </div>
+                <button type="submit" class="btn">Begin the Clinical Sequencing Audit →</button>
+            </form>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="established">ESTABLISHED 2009 – 25+ YEARS CLINICAL EXPERIENCE</div>
+            <div style="font-size:0.9rem;">LITIGATION-FOCUSED CARE ANALYSIS</div>
+        </div>
+    </div>
+</body>
+</html>
