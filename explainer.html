@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C.A.R.E. Clinical Sequencing Auditor™ | Educational Overview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0d2240;
+      --navy-hover: #163566;
+      --gold: #b09837;
+      --gold-subtle: rgba(176, 152, 55, 0.25);
+      --off-white: #f8f7f4;
+      --near-black: #1a1a1a;
+      --text-muted: #4a4a4a;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--off-white);
+      color: var(--near-black);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Header band ── */
+    .header-band {
+      background: var(--navy);
+      padding: 32px 0 40px;
+    }
+    .header-band .container {
+      position: relative;
+    }
+    .title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 3.5vw, 32px);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .title .tm { font-size: 10px; vertical-align: super; opacity: 0.9; }
+    .subtitle {
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 400;
+      max-width: 560px;
+    }
+    .header-divider {
+      width: 100%;
+      max-width: 960px;
+      height: 2px;
+      background: var(--gold);
+      margin-top: 24px;
+      opacity: 0.9;
+    }
+
+    /* ── Main content ── */
+    main { padding: 40px 0 56px; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-variant: small-caps;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px, 2.5vw, 22px);
+      font-weight: 700;
+      color: var(--near-black);
+      margin-bottom: 16px;
+    }
+    .section-title .tm { font-size: 9px; vertical-align: super; color: var(--gold); }
+    .audience-list {
+      list-style: none;
+      margin-bottom: 28px;
+    }
+    .audience-list li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 6px;
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+    .audience-list li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .divider-gold {
+      width: 100%;
+      height: 1px;
+      background: var(--gold);
+      margin: 32px 0;
+      opacity: 0.6;
+    }
+
+    .explainer-p {
+      font-size: 16px;
+      color: var(--near-black);
+      margin-bottom: 16px;
+      max-width: 720px;
+    }
+    .locked-block {
+      margin: 20px 0 28px;
+      padding-left: 16px;
+      border-left: 3px solid var(--gold-subtle);
+    }
+    .locked-block p {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .locked-block p:last-child { margin-bottom: 0; }
+
+    /* ── Cards ── */
+    .cards-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px, 2.2vw, 20px);
+      font-weight: 700;
+      color: var(--near-black);
+      margin-bottom: 20px;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .card {
+      background: var(--white);
+      border: 1px solid var(--gold-subtle);
+      border-radius: 8px;
+      padding: 20px 18px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+    .card-header {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--gold-subtle);
+    }
+    .card ul {
+      list-style: none;
+    }
+    .card li {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      padding-left: 14px;
+      position: relative;
+    }
+    .card li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 520px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── Credibility strip & CTA ── */
+    .credibility-strip {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-variant: small-caps;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+    .credibility-strip .sep { color: var(--gold); margin: 0 0.4em; }
+    .cta-wrap {
+      text-align: center;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .cta-btn:hover {
+      background: var(--navy-hover);
+    }
+  </style>
+</head>
+<body>
+  <header class="header-band">
+    <div class="container">
+      <h1 class="title">C.A.R.E. Clinical Sequencing Auditor<span class="tm">™</span></h1>
+      <p class="subtitle">A structured clinical methodology for injury care sequencing and defensible case strategy.</p>
+    </div>
+    <div class="header-divider"></div>
+  </header>
+
+  <main>
+    <div class="container">
+      <p class="section-label">Forensic Care Management<span class="tm">™</span> in action</p>
+      <h2 class="section-title">Designed exclusively for attorneys who specialize in:</h2>
+      <ul class="audience-list">
+        <li>Personal Injury</li>
+        <li>Workers' Compensation</li>
+        <li>Disability Litigation</li>
+      </ul>
+
+      <div class="divider-gold"></div>
+
+      <p class="explainer-p">The C.A.R.E. Clinical Sequencing Auditor applies structured clinical review methods within a legal-clinical framework to assess how injury care is sequenced, documented, and positioned.</p>
+      <div class="locked-block">
+        <p>It identifies sequencing gaps, documentation vulnerabilities, escalation risks, and treatment misalignment that weaken the structural foundation of care.</p>
+        <p>When care falls outside recognized payer and guideline expectations, defensible case positioning is compromised.</p>
+      </div>
+
+      <div class="divider-gold"></div>
+
+      <h2 class="cards-title">At a glance</h2>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-header">Who it's for</div>
+          <ul>
+            <li>Personal Injury</li>
+            <li>Workers' Compensation</li>
+            <li>Disability Litigation</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-header">Why it matters</div>
+          <ul>
+            <li>Protects case strength</li>
+            <li>Reduces sequencing risk</li>
+            <li>Improves negotiation leverage</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-header">What it evaluates</div>
+          <ul>
+            <li>Treatment progression</li>
+            <li>Escalation timing</li>
+            <li>Documentation sufficiency</li>
+            <li>Treatment alignment</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-header">What you receive</div>
+          <ul>
+            <li>Sequencing risk profile</li>
+            <li>Structural findings</li>
+            <li>Case positioning insight</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="divider-gold"></div>
+
+      <p class="credibility-strip">Established 2009<span class="sep">•</span>25+ years clinical experience<span class="sep">•</span>Litigation-focused care analysis</p>
+      <div class="cta-wrap">
+        <a href="./index.html" class="cta-btn">Begin the C.A.R.E. Clinical Sequencing Audit</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
