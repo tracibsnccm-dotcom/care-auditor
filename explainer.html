@@ -76,7 +76,7 @@
       margin-bottom: 12px;
     }
 
-    /* Attorney list (• bullets) – consistent 14px everywhere */
+    /* Attorney list (• bullets) – regular weight */
     .attorney-list {
       list-style: none;
       margin-bottom: 8px;
@@ -87,16 +87,17 @@
       margin-bottom: 4px;
       color: var(--text-muted);
       font-size: 14px;
+      font-weight: 400;
     }
     .attorney-list li::before {
       content: '•';
       position: absolute;
       left: 0;
       color: var(--gold);
-      font-weight: 700;
+      font-weight: 400;
     }
 
-    /* Dash list (— bullets) for WHY THIS MATTERS */
+    /* Dash list (— bullets) for WHY THIS MATTERS – regular weight */
     .dash-list {
       list-style: none;
       margin: 8px 0 12px;
@@ -107,15 +108,17 @@
       margin-bottom: 4px;
       font-size: 14px;
       color: var(--near-black);
+      font-weight: 400;
     }
     .dash-list li::before {
       content: '—';
       position: absolute;
       left: 0;
       color: var(--gold);
+      font-weight: 400;
     }
 
-    /* Standard bullet list (•) for other cards */
+    /* Standard bullet list (•) for other cards – regular weight */
     .bullet-list {
       list-style: none;
       margin: 8px 0 12px;
@@ -126,13 +129,14 @@
       margin-bottom: 4px;
       font-size: 14px;
       color: var(--near-black);
+      font-weight: 400;
     }
     .bullet-list li::before {
       content: '•';
       position: absolute;
       left: 0;
       color: var(--gold);
-      font-weight: 700;
+      font-weight: 400;
     }
 
     .explainer-p {
@@ -150,7 +154,7 @@
       opacity: 0.6;
     }
 
-    /* ── Cards (shorter, wider, consistent font sizes) ── */
+    /* ── Cards (shorter, wider, consistent 14px regular text) ── */
     .cards-title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(18px, 2.2vw, 20px);
@@ -161,14 +165,14 @@
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 16px;                     /* reduced for tighter, wider look */
+      gap: 16px;
       margin-bottom: 40px;
     }
     .card {
       background: var(--white);
       border: 1px solid #e5dfcf;
       border-radius: 20px;
-      padding: 1.25rem 1.5rem;       /* less height */
+      padding: 1.25rem 1.5rem;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
       transition: all 0.25s ease;
     }
@@ -188,9 +192,10 @@
       border-bottom: 1.5px solid var(--gold);
     }
     .card p {
-      font-size: 14px;               /* consistent */
+      font-size: 14px;
+      font-weight: 400;          /* regular */
       color: var(--near-black);
-      margin-bottom: 8px;             /* reduced spacing */
+      margin-bottom: 8px;
       line-height: 1.6;
     }
     .card p:last-child { margin-bottom: 0; }
@@ -202,9 +207,9 @@
     }
     .card .card-tagline {
       font-size: 14px;
-      font-weight: 600;               /* bold as original */
+      font-weight: 400;          /* regular, not bold */
       color: var(--near-black);
-      margin-top: 8px;                 /* reduced */
+      margin-top: 8px;
       letter-spacing: 0.01em;
     }
 
