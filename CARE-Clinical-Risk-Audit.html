@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C.A.R.E. Clinical Risk Audit™ | Reconcile Care Management Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d2240;
+    --navy-mid: #163566;
+    --navy-light: #1e4a8c;
+    --amber: #d4820a;
+    --amber-light: #f0a030;
+    --amber-pale: #fef3dc;
+    --gray-dark: #3a3f4a;
+    --gray-mid: #6b7280;
+    --gray-light: #f4f5f7;
+    --white: #ffffff;
+    --danger: #c0392b;
+    --danger-bg: #fdf0ef;
+    --warning: #e67e22;
+    --warning-bg: #fef8ec;
+    --good: #2980b9;
+    --excellent: #27ae60;
+    --not-sure: #7c3aed;
+    --not-sure-bg: #f5f3ff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--gray-light);
+    color: var(--gray-dark);
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  header {
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: var(--amber);
+    opacity: 0.07;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -50px; left: 25%;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: var(--navy-light);
+    opacity: 0.4;
+  }
+  .header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px 36px;
+    position: relative;
+    z-index: 1;
+  }
+  .logo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 6px;
+    padding: 7px 16px 7px 10px;
+    margin-bottom: 24px;
+  }
+  .logo-icon {
+    width: 34px; height: 34px;
+    background: var(--amber);
+    border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; color: var(--navy);
+    letter-spacing: -0.5px;
+    flex-shrink: 0;
+  }
+  .logo-text { color: var(--white); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; line-height: 1.4; }
+  .logo-text span { display: block; color: rgba(255,255,255,0.55); font-size: 10px; font-weight: 400; letter-spacing: 0.06em; margin-top: 1px; }
+
+  .header-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--amber-light);
+    margin-bottom: 10px;
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 4.5vw, 40px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 6px;
+  }
+  h1 em { color: var(--amber-light); font-style: normal; }
+  .tm { font-size: 11px; vertical-align: super; color: var(--amber-light); }
+  .header-divider {
+    width: 48px; height: 3px;
+    background: var(--amber);
+    border-radius: 2px;
+    margin: 18px 0;
+  }
+  .header-body {
+    max-width: 600px;
+  }
+  .header-p {
+    color: rgba(255,255,255,0.82);
+    font-size: 15px;
+    line-height: 1.75;
+    margin-bottom: 12px;
+  }
+  .header-p:last-child { margin-bottom: 0; }
+  .header-p strong { color: var(--amber-light); font-weight: 600; }
+
+  /* ── Progress ── */
+  .progress-wrap {
+    background: var(--white);
+    border-bottom: 1px solid #e5e7eb;
+    padding: 14px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    display: none;
+  }
+  .progress-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+  .progress-label { font-size: 11px; font-weight: 700; color: var(--gray-mid); white-space: nowrap; text-transform: uppercase; letter-spacing: 0.07em; }
+  .progress-bar-bg { flex: 1; height: 6px; background: var(--gray-light); border-radius: 99px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--navy-light), var(--amber)); border-radius: 99px; width: 0%; transition: width 0.4s ease; }
+  .progress-count { font-size: 12px; font-weight: 700; color: var(--navy); white-space: nowrap; }
+
+  /* ── Main ── */
+  main { max-width: 900px; margin: 0 auto; padding: 36px 24px 64px; }
+
+  /* ── Cards shared ── */
+  .card {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .card-body { padding: 28px 32px; }
+  @media (max-width: 600px) { .card-body { padding: 20px; } }
+
+  /* ── Lead capture ── */
+  .lead-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .lead-sub { font-size: 13px; color: var(--gray-mid); margin-bottom: 22px; line-height: 1.6; }
+  .lead-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 8px; }
+  @media (max-width: 560px) { .lead-grid { grid-template-columns: 1fr; } }
+  .field-group { display: flex; flex-direction: column; gap: 5px; }
+  .field-label { font-size: 11px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.06em; }
+  .field-input {
+    border: 1.5px solid #d1d5db;
+    border-radius: 7px;
+    padding: 11px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--gray-dark);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .field-input:focus { border-color: var(--navy-light); }
+  .field-input.error { border-color: var(--danger); }
+  .field-error { font-size: 11px; color: var(--danger); margin-top: 3px; display: none; }
+  .field-error.visible { display: block; }
+  .lead-note { font-size: 11px; color: var(--gray-mid); margin-bottom: 20px; line-height: 1.6; padding: 10px 14px; background: var(--gray-light); border-radius: 6px; }
+  .lead-note strong { color: var(--navy); }
+
+  /* ── Instruction banner ── */
+  .instruction-banner {
+    background: var(--navy);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 20px;
+    display: none;
+  }
+  .instruction-banner p {
+    color: rgba(255,255,255,0.88);
+    font-size: 13.5px;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .instruction-banner p:last-child { margin-bottom: 0; }
+  .instruction-banner p.if-line {
+    color: var(--amber-light);
+    font-weight: 500;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+
+  /* ── Right cards ── */
+  .right-card {
+    background: var(--white);
+    border-radius: 12px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+    border-left: 4px solid transparent;
+  }
+  .right-card:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.10); }
+  .right-card.fully-answered { border-left-color: var(--amber); }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 22px 24px 18px;
+    border-bottom: 2px solid var(--gray-light);
+  }
+  .right-number {
+    min-width: 48px; height: 48px;
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    flex-shrink: 0;
+    transition: background 0.3s;
+  }
+  .right-card.fully-answered .right-number { background: var(--amber); color: var(--navy); }
+  .card-title-wrap { flex: 1; min-width: 0; }
+  .right-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--amber); margin-bottom: 3px; }
+  .right-title { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--navy); font-weight: 700; margin-bottom: 4px; }
+  .right-desc { font-size: 13px; color: var(--gray-mid); line-height: 1.65; }
+  .completion-pill {
+    font-size: 11px; font-weight: 700;
+    padding: 4px 11px; border-radius: 20px;
+    background: var(--gray-light); color: var(--gray-mid);
+    white-space: nowrap; flex-shrink: 0;
+    align-self: flex-start; margin-top: 4px;
+    transition: all 0.3s;
+  }
+  .completion-pill.done { background: #edfaf4; color: #1a5c3a; }
+
+  /* ── Sub-questions ── */
+  .sub-questions { padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 12px; }
+
+  .sub-q {
+    border: 1.5px solid #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .sub-q.answered-yes      { border-color: var(--excellent); }
+  .sub-q.answered-not-sure { border-color: var(--not-sure); }
+  .sub-q.answered-no       { border-color: var(--danger); }
+
+  .sub-q-text {
+    padding: 12px 16px;
+    font-size: 13.5px; font-weight: 500;
+    color: var(--gray-dark);
+    line-height: 1.65;
+    background: #fafafa;
+    border-bottom: 1px solid #efefef;
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .sub-q-num {
+    min-width: 22px; height: 22px;
+    background: var(--navy); color: white;
+    border-radius: 50%;
+    font-size: 10px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+
+  .sub-q-options { display: flex; }
+  .sub-opt {
+    flex: 1; padding: 11px 6px;
+    border: none; background: var(--white);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 500;
+    color: var(--gray-mid);
+    border-right: 1px solid #efefef;
+    transition: all 0.15s;
+    display: flex; align-items: center; justify-content: center; gap: 5px;
+  }
+  .sub-opt:last-child { border-right: none; }
+  .sub-opt:hover { background: var(--gray-light); color: var(--gray-dark); }
+  .sub-opt.active-yes      { background: #edfaf4; color: #1a5c3a; font-weight: 700; }
+  .sub-opt.active-not-sure { background: var(--not-sure-bg); color: var(--not-sure); font-weight: 700; }
+  .sub-opt.active-no       { background: var(--danger-bg); color: var(--danger); font-weight: 700; }
+
+  /* ── Clinical flag ── */
+  .clinical-flag {
+    display: none;
+    padding: 14px 16px;
+    background: #fff5f5;
+    border-top: 1px solid #f5c2c2;
+  }
+  .clinical-flag.visible { display: flex; gap: 12px; align-items: flex-start; }
+  .flag-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .flag-body { flex: 1; }
+  .flag-title { font-size: 13px; font-weight: 700; color: var(--danger); margin-bottom: 5px; }
+  .flag-text { font-size: 12.5px; color: #7a2020; line-height: 1.65; }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    background: var(--navy); color: var(--white); border: none;
+    padding: 15px 40px; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s; letter-spacing: 0.01em;
+  }
+  .btn-primary:hover { background: var(--navy-light); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(13,34,64,0.28); }
+  .btn-secondary {
+    background: transparent; color: var(--navy); border: 2px solid var(--navy);
+    padding: 11px 22px; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .btn-secondary:hover { background: var(--navy); color: var(--white); }
+  .btn-amber {
+    background: var(--amber); color: var(--navy); border: none;
+    padding: 13px 28px; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .btn-amber:hover { background: var(--amber-light); }
+  .btn-ghost {
+    background: transparent; color: rgba(255,255,255,0.7); border: 1.5px solid rgba(255,255,255,0.3);
+    padding: 11px 22px; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .btn-ghost:hover { color: white; border-color: rgba(255,255,255,0.6); }
+
+  .submit-wrap {
+    display: none;
+    text-align: center;
+    padding: 32px;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    margin-top: 8px;
+    border-top: 3px solid var(--amber);
+  }
+  .submit-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--navy); margin-bottom: 8px; }
+  .submit-sub { font-size: 13px; color: var(--gray-mid); margin-bottom: 22px; line-height: 1.6; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+  /* ── Results ── */
+  #results-section { display: none; }
+  .action-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 22px; }
+
+  /* Report header */
+  .report-header {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 24px 32px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    border-top: 4px solid var(--navy);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .report-header-left { flex: 1; }
+  .report-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--amber); margin-bottom: 4px; }
+  .report-title { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--navy); font-weight: 700; margin-bottom: 10px; }
+  .report-meta { display: flex; flex-direction: column; gap: 3px; }
+  .report-meta-row { font-size: 12px; color: var(--gray-mid); }
+  .report-meta-row strong { color: var(--gray-dark); font-weight: 600; }
+  .report-header-right { text-align: right; flex-shrink: 0; }
+  .report-logo { font-size: 11px; color: var(--gray-mid); line-height: 1.6; }
+  .report-logo strong { color: var(--navy); font-size: 13px; display: block; margin-bottom: 2px; }
+
+  /* Score hero */
+  .result-hero {
+    border-radius: 14px; padding: 40px 32px; margin-bottom: 24px;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .result-hero::before {
+    content: ''; position: absolute; inset: 0; opacity: 0.04;
+    background-image: radial-gradient(circle, white 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .result-hero.critical  { background: linear-gradient(135deg, #6b1414, var(--danger)); }
+  .result-hero.moderate  { background: linear-gradient(135deg, #6b3800, var(--warning)); }
+  .result-hero.good      { background: linear-gradient(135deg, #14406b, var(--good)); }
+  .result-hero.excellent { background: linear-gradient(135deg, #145228, var(--excellent)); }
+
+  .score-ring {
+    width: 110px; height: 110px; border-radius: 50%;
+    background: rgba(255,255,255,0.15); border: 4px solid rgba(255,255,255,0.35);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 22px; flex-direction: column;
+  }
+  .score-number { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 900; color: white; line-height: 1; }
+  .score-of { font-size: 12px; color: rgba(255,255,255,0.65); font-weight: 500; margin-top: 2px; }
+  .result-level { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; color: white; margin-bottom: 14px; position: relative; }
+  .result-message { color: rgba(255,255,255,0.88); font-size: 14.5px; line-height: 1.75; max-width: 560px; margin: 0 auto; position: relative; }
+
+  /* Score legend — shown only in results */
+  .score-legend {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 20px 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .legend-title { font-size: 12px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.07em; white-space: nowrap; }
+  .legend-items { display: flex; gap: 18px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--gray-mid); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .legend-dot.yes { background: var(--excellent); }
+  .legend-dot.ns  { background: var(--not-sure); }
+  .legend-dot.no  { background: var(--danger); }
+
+  /* Breakdown */
+  .results-breakdown { background: var(--white); border-radius: 12px; padding: 28px; margin-bottom: 20px; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+  .results-breakdown h3 { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--navy); margin-bottom: 18px; padding-bottom: 12px; border-bottom: 2px solid var(--gray-light); }
+
+  .breakdown-right { margin-bottom: 18px; border: 1.5px solid #e5e7eb; border-radius: 10px; overflow: hidden; }
+  .breakdown-right:last-child { margin-bottom: 0; }
+  .breakdown-right-header { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: var(--gray-light); border-bottom: 1px solid #e5e7eb; }
+  .bdr-title { font-weight: 700; font-size: 14px; color: var(--navy); flex: 1; }
+  .score-pill { font-size: 12px; font-weight: 700; padding: 3px 12px; border-radius: 20px; white-space: nowrap; }
+  .score-pill.high { background: #edfaf4; color: #1a5c3a; }
+  .score-pill.mid  { background: var(--not-sure-bg); color: var(--not-sure); }
+  .score-pill.low  { background: var(--warning-bg); color: #7a4100; }
+  .score-pill.zero { background: var(--danger-bg); color: var(--danger); }
+
+  .bdr-sub-row { display: flex; align-items: flex-start; gap: 12px; padding: 10px 16px; border-bottom: 1px solid #f3f4f6; font-size: 13px; }
+  .bdr-sub-row:last-child { border-bottom: none; }
+  .bsr-icon { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .bsr-icon.yes      { background: #edfaf4; color: #1a5c3a; }
+  .bsr-icon.not-sure { background: var(--not-sure-bg); color: var(--not-sure); }
+  .bsr-icon.no       { background: var(--danger-bg); color: var(--danger); }
+  .bsr-text { flex: 1; color: var(--gray-dark); line-height: 1.55; }
+  .bsr-badge { font-size: 11px; font-weight: 600; white-space: nowrap; flex-shrink: 0; align-self: flex-start; margin-top: 2px; }
+  .bsr-badge.yes      { color: #1a5c3a; }
+  .bsr-badge.not-sure { color: var(--not-sure); }
+  .bsr-badge.no       { color: var(--danger); }
+
+  /* CTA */
+  .cta-card {
+    background: var(--navy); border-radius: 12px; padding: 32px 32px 32px;
+    margin-bottom: 20px; color: white; position: relative; overflow: hidden;
+  }
+  .cta-card::after { content: '⚖'; position: absolute; right: 28px; bottom: -8px; font-size: 88px; opacity: 0.06; pointer-events: none; }
+  .cta-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--amber); margin-bottom: 8px; }
+  .cta-card h3 { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 10px; color: white; line-height: 1.2; }
+  .cta-card p { font-size: 14px; color: rgba(255,255,255,0.78); line-height: 1.75; margin-bottom: 24px; max-width: 520px; }
+  .cta-buttons { display: flex; gap: 12px; flex-wrap: wrap; position: relative; }
+
+  /* ── Footer ── */
+  footer { background: var(--navy); text-align: center; padding: 28px 24px; color: rgba(255,255,255,0.45); font-size: 11.5px; line-height: 1.9; border-top: 1px solid rgba(255,255,255,0.08); }
+  footer strong { color: var(--amber-light); }
+
+  /* ── Animations ── */
+  @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  .animate-in { animation: fadeSlideUp 0.4s ease forwards; opacity: 0; }
+
+  /* ── Print ── */
+  @media print {
+    header, .progress-wrap, .action-bar, .cta-card, #lead-section, #checker-section, .instruction-banner, footer { display: none !important; }
+    #results-section { display: block !important; }
+    .result-hero, .report-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { background: white; }
+    main { padding: 0; }
+    .card { box-shadow: none; border: 1px solid #e5e7eb; }
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 640px) {
+    .card-header { padding: 16px; flex-wrap: wrap; }
+    .sub-questions { padding: 12px 14px 18px; }
+    main { padding: 20px 14px 52px; }
+    .sub-opt { font-size: 12px; padding: 10px 4px; }
+    .right-number { min-width: 42px; height: 42px; font-size: 19px; }
+    .report-header { flex-direction: column; }
+    .report-header-right { text-align: left; }
+    .score-legend { flex-direction: column; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     HEADER
+════════════════════════════════════════════════════ -->
+<header>
+  <div class="header-inner">
+    <div class="logo-badge">
+      <div class="logo-icon">RC</div>
+      <div class="logo-text">
+        Reconcile Care Management Services
+        <span>Clinical · Legal · Care Coordination</span>
+      </div>
+    </div>
+    <div class="header-eyebrow">Powered by the 7 Rights of Injury Management™</div>
+    <h1>C.A.R.E. Clinical<br><em>Risk Audit</em><span class="tm">™</span></h1>
+    <div class="header-divider"></div>
+    <div class="header-body">
+      <p class="header-p">Most injury cases lose leverage long before mediation — not because of liability, but because of clinical misalignment.</p>
+      <p class="header-p">The C.A.R.E. Clinical Risk Audit™ identifies documentation gaps, treatment inconsistencies, and guideline deviations that can weaken settlement value and deposition defensibility.</p>
+      <p class="header-p">This audit is powered by the <strong>7 Rights of Injury Management™</strong> — the same structured clinical framework used inside the <strong>Reconcile C.A.R.E. Platform™</strong> by RN Care Managers overseeing active PI and Workers' Compensation cases.</p>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════
+     PROGRESS BAR
+════════════════════════════════════════════════════ -->
+<div class="progress-wrap" id="progress-wrap">
+  <div class="progress-inner">
+    <span class="progress-label">Assessment Progress</span>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progress-fill"></div>
+    </div>
+    <span class="progress-count" id="progress-count">0 of 7 Rights complete</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     MAIN
+════════════════════════════════════════════════════ -->
+<main>
+
+  <!-- Lead Capture -->
+  <div class="card" id="lead-section">
+    <div class="card-body">
+      <div class="lead-title">Run a Clinical Risk Audit on Your Case</div>
+      <p class="lead-sub">In less than 5 minutes, identify whether your case contains hidden clinical vulnerabilities that could reduce settlement leverage or create challenges during deposition.</p>
+      <p class="lead-sub" style="margin-top:6px;">Your <strong>Clinical Risk Profile™</strong> will be generated instantly.</p>
+      <div class="lead-grid">
+        <div class="field-group">
+          <label class="field-label" for="fname">First Name *</label>
+          <input class="field-input" type="text" id="fname" placeholder="Jane">
+          <span class="field-error" id="err-fname">Please enter your first name.</span>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="lname">Last Name *</label>
+          <input class="field-input" type="text" id="lname" placeholder="Doe">
+          <span class="field-error" id="err-lname">Please enter your last name.</span>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="firm">Law Firm *</label>
+          <input class="field-input" type="text" id="firm" placeholder="Doe & Associates">
+          <span class="field-error" id="err-firm">Please enter your law firm name.</span>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="email">Business Email Address *</label>
+          <input class="field-input" type="email" id="email" placeholder="jane@doelaw.com">
+          <span class="field-error" id="err-email">Please enter a valid business email address. Personal email addresses (Gmail, Yahoo, etc.) are not accepted.</span>
+        </div>
+      </div>
+      <div class="lead-note"><strong>Note:</strong> A business email address is required. Personal email domains (Gmail, Yahoo, Hotmail, iCloud, etc.) will not be accepted. Your information is used solely to deliver your Clinical Injury Analysis Report™ and will not be shared.</div>
+      <button class="btn-primary" onclick="submitLead()">Access the Assessment →</button>
+    </div>
+  </div>
+
+  <!-- Instruction Banner -->
+  <div class="instruction-banner" id="instruction-banner">
+    <p>Answer each question based <strong style="color:white;">strictly on what is documented in the medical record</strong> — not assumptions.</p>
+    <p style="margin-top:10px;">This audit evaluates clinical alignment, guideline adherence, and documentation defensibility.</p>
+    <p class="if-line">If treatment is early or ongoing, use this as a strategic roadmap to prevent preventable weaknesses before they are exposed in litigation.</p>
+  </div>
+
+  <!-- Checker -->
+  <div id="checker-section" style="display:none;">
+    <div id="cards-container"></div>
+    <div class="submit-wrap" id="submit-wrap">
+      <div class="submit-title">Assessment Complete</div>
+      <p class="submit-sub">All 7 Rights have been evaluated. Click below to generate your Clinical Injury Analysis Report™ and receive your full risk score and breakdown.</p>
+      <button class="btn-primary" onclick="showResults()">Generate My Clinical Injury Analysis Report™ →</button>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div id="results-section">
+
+    <div class="action-bar">
+      <button class="btn-secondary" onclick="window.print()">🖨 Print Report</button>
+      <button class="btn-secondary" onclick="downloadReport()">⬇ Download PDF</button>
+      <button class="btn-secondary" onclick="resetTool()">↩ Start New Assessment</button>
+    </div>
+
+    <!-- Report Header -->
+    <div class="report-header" id="report-header">
+      <div class="report-header-left">
+        <div class="report-label">Clinical Injury Analysis Report™</div>
+        <div class="report-title">C.A.R.E. Clinical Risk Audit™</div>
+        <div class="report-meta" id="report-meta"></div>
+      </div>
+      <div class="report-header-right">
+        <div class="report-logo">
+          <strong>Reconcile Care Management Services</strong>
+          Reconcile C.A.R.E. Platform™<br>
+          Clinical Assessment and Resource Evaluation<br>
+          <span id="report-date"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Score Hero -->
+    <div class="result-hero" id="result-hero">
+      <div class="score-ring">
+        <span class="score-number" id="score-number">0</span>
+        <span class="score-of" id="score-of-label">of 0 pts</span>
+      </div>
+      <div class="result-level" id="result-level">—</div>
+      <p class="result-message" id="result-message"></p>
+    </div>
+
+    <!-- Score Legend — revealed only after results -->
+    <div class="score-legend">
+      <span class="legend-title">Scoring Key</span>
+      <div class="legend-items">
+        <div class="legend-item"><div class="legend-dot yes"></div> Yes = 1 point — criterion is met and documented</div>
+        <div class="legend-item"><div class="legend-dot ns"></div> Not Sure = 0.5 points — gap exists that requires investigation</div>
+        <div class="legend-item"><div class="legend-dot no"></div> No = 0 points — criterion is missing or not in place</div>
+      </div>
+    </div>
+
+    <!-- Breakdown -->
+    <div class="results-breakdown">
+      <h3>Detailed Breakdown by Right</h3>
+      <div id="breakdown-rows"></div>
+    </div>
+
+    <!-- Single CTA -->
+    <div class="cta-card">
+      <div class="cta-eyebrow">Next Step</div>
+      <h3 id="cta-headline">Ready to Address These Clinical Gaps?</h3>
+      <p id="cta-body">A Reconcile C.A.R.E. RN Care Manager can step in at any stage to identify gaps, coordinate providers, and generate defensible documentation that supports medical necessity and protects case value.</p>
+      <div class="cta-buttons">
+        <button class="btn-amber" onclick="alert('Contact form — placeholder URL to be added.')">Schedule a CARE Clinical Oversight Briefing</button>
+        <button class="btn-ghost" onclick="window.open('https://reconcilecare.com','_blank')">Learn About Reconcile C.A.R.E.</button>
+      </div>
+    </div>
+
+  </div><!-- /results -->
+
+</main>
+
+<footer>
+  <strong>Reconcile Care Management Services</strong> &nbsp;|&nbsp; Reconcile C.A.R.E. Platform™<br>
+  The 7 Rights of Injury Management™ and C.A.R.E. Clinical Risk Audit™ are proprietary clinical frameworks.<br>
+  © 2025 Reconcile Care Management Services. All rights reserved. For informational purposes only. Not a substitute for legal or medical advice.<br>
+  Unauthorized reproduction or redistribution of this tool or its output is prohibited.
+</footer>
+
+<script>
+// ─────────────────────────────────────────────────────────────────────────────
+// PERSONAL EMAIL DOMAIN BLOCKLIST
+// ─────────────────────────────────────────────────────────────────────────────
+const PERSONAL_DOMAINS = [
+  'gmail.com','yahoo.com','hotmail.com','outlook.com','live.com','icloud.com',
+  'me.com','mac.com','aol.com','msn.com','ymail.com','googlemail.com',
+  'protonmail.com','proton.me','mail.com','inbox.com','zoho.com'
+];
+
+function isPersonalEmail(email) {
+  const domain = email.split('@')[1];
+  return domain ? PERSONAL_DOMAINS.includes(domain.toLowerCase()) : false;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 7 RIGHTS DATA
+// ─────────────────────────────────────────────────────────────────────────────
+const RIGHTS = [
+  {
+    number: "1", label: "Right #1", title: "Right Provider",
+    desc: "The correct type of medical provider must be treating each specific injury — credentialed, in-scope, and practicing within their documented area of expertise.",
+    questions: [
+      { text: "Has a specialist been identified that matches each documented injury (e.g., orthopedist for musculoskeletal, neurologist for TBI, pain management for chronic pain)?" },
+      { text: "Has the client actually been seen by the specialist — not just received a referral that has not been followed through?" },
+      { text: "Has the specialist established or updated the diagnosis specific to their scope of practice — not carried over vague language like 'pain' or 'injury' from the referring provider?" },
+      {
+        text: "Is the client's primary treating provider a licensed physician (MD or DO) — not a chiropractor?",
+        flag: {
+          triggerOn: ["no", "not-sure"],
+          title: "⚠ Clinical Alert: Chiropractor as Primary Treating Provider",
+          body: "Chiropractors do not hold prescriptive authority and cannot diagnose conditions, order advanced imaging, or prescribe medication. When a chiropractor serves as the first or sole treating provider, it creates critical gaps in diagnosis, medication management, and medical necessity documentation — all of which can significantly weaken case value and defensibility."
+        }
+      }
+    ]
+  },
+  {
+    number: "2", label: "Right #2", title: "Right Diagnosis",
+    desc: "Every documented injury must have its own specific, named diagnosis — accurate, supported by clinical findings, and consistent across all treating providers.",
+    questions: [
+      { text: "Does each documented injury have its own specific, named diagnosis in the medical record — not a single global label of 'pain' or 'injury' covering multiple conditions?" },
+      { text: "Does each diagnosis align with the mechanism of injury (how the accident happened) and the client's reported symptoms?" },
+      { text: "Are imaging or clinical findings documented in the record that directly support each diagnosis?" },
+      { text: "Are diagnoses consistent across all treating providers, with no conflicting or contradictory findings that need to be reconciled before resolution?" }
+    ]
+  },
+  {
+    number: "3", label: "Right #3", title: "Right Evidence-Based Guidelines",
+    desc: "An evidence-based clinical guideline must be identified for each diagnosis — it drives everything that follows: testing, treatment, timing, and documentation.",
+    questions: [
+      { text: "Has a recognized evidence-based guideline been identified for each diagnosis — such as ODG (Official Disability Guidelines), MCG, InterQual, or the applicable state-specific workers' compensation guideline?" },
+      { text: "Does the treating provider have documented awareness of the specific guideline that governs this injury and diagnosis?" },
+      { text: "Is the treatment plan — including type of care, frequency, and duration — consistent with what the applicable guideline recommends for this diagnosis?" },
+      { text: "If treatment has deviated from the guideline, is there documented clinical justification from the treating provider explaining why?" }
+    ]
+  },
+  {
+    number: "4", label: "Right #4", title: "Right Testing",
+    desc: "Appropriate diagnostic tests must be ordered and completed in alignment with the evidence-based guideline — specific to each diagnosis, not ordered generically.",
+    questions: [
+      { text: "Has appropriate imaging been ordered and completed (X-ray, MRI, CT scan) consistent with what the evidence-based guideline recommends for this specific diagnosis?" },
+      { text: "Is the testing that has been ordered directly tied to the specific diagnoses on record — not ordered generically or without a documented clinical reason?" },
+      { text: "Are all test results documented in the medical chart and referenced within the active treatment plan?" }
+    ]
+  },
+  {
+    number: "5", label: "Right #5", title: "Right Treatment",
+    desc: "Treatment must follow the evidence-based guideline for the confirmed diagnosis — specific, escalated appropriately, and without gaps that can be used against the case.",
+    questions: [
+      { text: "Is the client's treatment plan based on the evidence-based guideline identified for their specific diagnosis — not a generic or one-size-fits-all approach?" },
+      { text: "Is the client actively participating in treatment — attending appointments, completing physical therapy, and following through on specialist referrals?" },
+      { text: "Has treatment been appropriately escalated when conservative care is not producing results — such as a referral to pain management or a surgical consult?" },
+      { text: "Are there any unexplained gaps in treatment that opposing counsel could use to argue the injury is not serious or ongoing?" }
+    ]
+  },
+  {
+    number: "6", label: "Right #6", title: "Right Timing",
+    desc: "Care must occur at the right time — prompt initiation, continuous follow-through at guideline-recommended frequency, and no unexplained gaps that undermine the case narrative.",
+    questions: [
+      { text: "Did the client seek medical treatment within a reasonable timeframe after the injury — ideally within 72 hours?" },
+      { text: "Have specialist referrals been followed through within a clinically appropriate window — no 30 to 60+ day gaps between referral and appointment?" },
+      { text: "Is the frequency of treatment consistent with what the applicable evidence-based guideline recommends — not undertreated or overtreated relative to the standard?" },
+      { text: "Has the client been monitored for plateau or maximum medical improvement (MMI) timing in relation to the case resolution strategy?" }
+    ]
+  },
+  {
+    number: "7", label: "Right #7", title: "Right Documentation",
+    desc: "Symptoms, functional limitations, and treatment progress must be documented consistently across all providers and visits — accurate, specific, and legally defensible.",
+    questions: [
+      { text: "Are the client's subjective complaints — pain, functional limitations, and impact on daily life — consistently recorded at each provider visit?" },
+      { text: "Does the documentation include specific functional limitations — not just pain scores, but what the client cannot do in their daily life?" },
+      { text: "Is medical necessity language present in the records that supports each level of care rendered and ties back to the applicable evidence-based guideline?" },
+      { text: "Has a narrative summary or causation letter been requested from the treating physician linking each injury directly to the accident?" }
+    ]
+  }
+];
+
+const LEVELS = {
+  critical:  {
+    label: "⚠ Critical Risk",
+    cls: "critical",
+    message: "Multiple Clinical Rights are compromised. These categories — provider alignment, diagnostic clarity, guideline adherence, timing, and documentation consistency — are the same areas frequently challenged in deposition, independent medical review, and settlement negotiation. Left uncorrected, these gaps can reduce case leverage and weaken medical necessity arguments. Immediate structured clinical oversight is recommended.",
+    ctaHeadline: "Structured Clinical Oversight Closes These Gaps",
+    ctaBody: "The 7 Rights framework was developed from decades of RN case management experience reviewing complex injury cases across both PI and Workers' Compensation environments. A Reconcile C.A.R.E. RN Care Manager can step in immediately to coordinate care, close clinical gaps, and build the defensible documentation your case requires."
+  },
+  moderate:  {
+    label: "⚡ Moderate Risk",
+    cls: "moderate",
+    message: "Several clinical rights show gaps or areas of uncertainty. While this case is not in immediate crisis, unresolved issues could create significant challenges during settlement or litigation. Proactive care coordination is strongly recommended to shore up documentation and ensure treatment is aligned with evidence-based standards.",
+    ctaHeadline: "Structured Clinical Oversight Closes These Gaps",
+    ctaBody: "The 7 Rights framework was developed from decades of RN case management experience reviewing complex injury cases across both PI and Workers' Compensation environments. A Reconcile C.A.R.E. RN Care Manager can identify what needs attention and help you get ahead of it before it becomes a problem."
+  },
+  good:      {
+    label: "✓ Good Standing",
+    cls: "good",
+    message: "Most clinical rights are well-established, with some gaps or uncertainties remaining. This case has a solid foundation, but there is still room to strengthen the medical record and confirm outstanding items before resolution. Confirming these items now prevents opposing counsel from identifying them later.",
+    ctaHeadline: "Structured Clinical Oversight Closes These Gaps",
+    ctaBody: "The 7 Rights framework was developed from decades of RN case management experience reviewing complex injury cases across both PI and Workers' Compensation environments. A Reconcile C.A.R.E. RN Care Manager can review the outstanding items and ensure nothing weakens your position at the settlement table."
+  },
+  excellent: {
+    label: "✦ Excellent",
+    cls: "excellent",
+    message: "All 7 Clinical Rights are well-established. Your client's care is well-coordinated, properly documented, and aligned with evidence-based standards. This is a strong clinical foundation for case resolution. Continue monitoring to ensure nothing changes before settlement or trial.",
+    ctaHeadline: "Structured Clinical Oversight Closes These Gaps",
+    ctaBody: "The 7 Rights framework was developed from decades of RN case management experience reviewing complex injury cases across both PI and Workers' Compensation environments. Reconcile C.A.R.E. can provide ongoing monitoring to ensure your case maintains this standard all the way through resolution."
+  }
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────────────────────────────────────
+let answers = {};
+let userInfo = {};
+const totalQuestions = RIGHTS.reduce((s, r) => s + r.questions.length, 0);
+const maxScore = totalQuestions;
+
+function countAnswered()  { return Object.values(answers).reduce((s, qs) => s + Object.keys(qs).length, 0); }
+function rightDone(ri)    { return answers[ri] && Object.keys(answers[ri]).length === RIGHTS[ri].questions.length; }
+function allDone()        { return countAnswered() === totalQuestions; }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LEAD FORM
+// ─────────────────────────────────────────────────────────────────────────────
+function submitLead() {
+  const fname = document.getElementById('fname').value.trim();
+  const lname = document.getElementById('lname').value.trim();
+  const firm  = document.getElementById('firm').value.trim();
+  const email = document.getElementById('email').value.trim();
+  let valid = true;
+
+  // Reset errors
+  ['fname','lname','firm','email'].forEach(id => {
+    document.getElementById(id).classList.remove('error');
+    document.getElementById(`err-${id}`).classList.remove('visible');
+  });
+
+  if (!fname) { showFieldError('fname'); valid = false; }
+  if (!lname) { showFieldError('lname'); valid = false; }
+  if (!firm)  { showFieldError('firm');  valid = false; }
+
+  if (!email || !email.includes('@')) {
+    showFieldError('email'); valid = false;
+  } else if (isPersonalEmail(email)) {
+    showFieldError('email'); valid = false;
+  }
+
+  if (!valid) return;
+
+  userInfo = { fname, lname, firm, email };
+
+  document.getElementById('lead-section').style.display = 'none';
+  document.getElementById('instruction-banner').style.display = 'block';
+  document.getElementById('checker-section').style.display = 'block';
+  document.getElementById('progress-wrap').style.display = 'block';
+  buildCards();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showFieldError(id) {
+  document.getElementById(id).classList.add('error');
+  document.getElementById(`err-${id}`).classList.add('visible');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// BUILD CARDS
+// ─────────────────────────────────────────────────────────────────────────────
+function buildCards() {
+  const container = document.getElementById('cards-container');
+  container.innerHTML = '';
+  RIGHTS.forEach((right, ri) => {
+    answers[ri] = {};
+    const card = document.createElement('div');
+    card.className = 'right-card animate-in';
+    card.id = `card-${ri}`;
+    card.style.animationDelay = `${ri * 0.055}s`;
+
+    const sqsHTML = right.questions.map((q, qi) => {
+      const flagHTML = q.flag ? `
+        <div class="clinical-flag" id="flag-${ri}-${qi}">
+          <div class="flag-icon">🚨</div>
+          <div class="flag-body">
+            <div class="flag-title">${q.flag.title}</div>
+            <div class="flag-text">${q.flag.body}</div>
+          </div>
+        </div>` : '';
+      return `
+        <div class="sub-q" id="subq-${ri}-${qi}">
+          <div class="sub-q-text">
+            <span class="sub-q-num">${qi + 1}</span>
+            <span>${q.text}</span>
+          </div>
+          <div class="sub-q-options">
+            <button class="sub-opt" id="opt-${ri}-${qi}-yes"      onclick="selectSub(${ri},${qi},'yes',1)">✓ Yes</button>
+            <button class="sub-opt" id="opt-${ri}-${qi}-not-sure" onclick="selectSub(${ri},${qi},'not-sure',0.5)">Not Sure?</button>
+            <button class="sub-opt" id="opt-${ri}-${qi}-no"       onclick="selectSub(${ri},${qi},'no',0)">✗ No</button>
+          </div>
+          ${flagHTML}
+        </div>`;
+    }).join('');
+
+    card.innerHTML = `
+      <div class="card-header">
+        <div class="right-number" id="num-${ri}">${right.number}</div>
+        <div class="card-title-wrap">
+          <div class="right-label">${right.label}</div>
+          <div class="right-title">The ${right.title}</div>
+          <div class="right-desc">${right.desc}</div>
+        </div>
+        <div class="completion-pill" id="pill-${ri}">0 / ${right.questions.length}</div>
+      </div>
+      <div class="sub-questions">${sqsHTML}</div>`;
+
+    container.appendChild(card);
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// INTERACTION
+// ─────────────────────────────────────────────────────────────────────────────
+function selectSub(ri, qi, value, score) {
+  answers[ri][qi] = { value, score };
+
+  ['yes','not-sure','no'].forEach(v => {
+    document.getElementById(`opt-${ri}-${qi}-${v}`).classList.remove('active-yes','active-not-sure','active-no');
+  });
+  document.getElementById(`opt-${ri}-${qi}-${value}`).classList.add(`active-${value}`);
+
+  const subq = document.getElementById(`subq-${ri}-${qi}`);
+  subq.classList.remove('answered-yes','answered-not-sure','answered-no');
+  subq.classList.add(`answered-${value}`);
+
+  // Flag logic — supports array of trigger values
+  const flag = document.getElementById(`flag-${ri}-${qi}`);
+  if (flag) {
+    const triggers = RIGHTS[ri].questions[qi].flag.triggerOn;
+    const shouldShow = Array.isArray(triggers) ? triggers.includes(value) : value === triggers;
+    flag.classList.toggle('visible', shouldShow);
+  }
+
+  const done  = Object.keys(answers[ri]).length;
+  const total = RIGHTS[ri].questions.length;
+  const pill  = document.getElementById(`pill-${ri}`);
+  pill.textContent = `${done} / ${total}`;
+  const cardEl = document.getElementById(`card-${ri}`);
+  if (done === total) {
+    pill.classList.add('done');
+    cardEl.classList.add('fully-answered');
+  } else {
+    pill.classList.remove('done');
+    cardEl.classList.remove('fully-answered');
+  }
+
+  updateProgress();
+}
+
+function updateProgress() {
+  const done = countAnswered();
+  const rightsComplete = RIGHTS.filter((_, ri) => rightDone(ri)).length;
+  document.getElementById('progress-fill').style.width = `${(done / totalQuestions) * 100}%`;
+  document.getElementById('progress-count').textContent = `${rightsComplete} of 7 Rights complete`;
+
+  if (allDone()) {
+    const sw = document.getElementById('submit-wrap');
+    sw.style.display = 'block';
+    setTimeout(() => sw.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 200);
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// RESULTS
+// ─────────────────────────────────────────────────────────────────────────────
+function showResults() {
+  let total = 0;
+  Object.values(answers).forEach(qs => Object.values(qs).forEach(a => total += a.score));
+
+  const pct = total / maxScore;
+  const level = pct < 0.4 ? 'critical' : pct < 0.65 ? 'moderate' : pct < 0.92 ? 'good' : 'excellent';
+  const lvl = LEVELS[level];
+
+  // Report header
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  document.getElementById('report-date').textContent = dateStr;
+  const meta = document.getElementById('report-meta');
+  if (userInfo.fname) {
+    meta.innerHTML = `
+      <div class="report-meta-row"><strong>Attorney:</strong> ${userInfo.fname} ${userInfo.lname}</div>
+      <div class="report-meta-row"><strong>Firm:</strong> ${userInfo.firm}</div>
+      <div class="report-meta-row"><strong>Email:</strong> ${userInfo.email}</div>
+      <div class="report-meta-row"><strong>Assessment Date:</strong> ${dateStr}</div>`;
+  }
+
+  // Score hero
+  const hero = document.getElementById('result-hero');
+  hero.className = `result-hero ${lvl.cls}`;
+  document.getElementById('score-number').textContent = total % 1 === 0 ? total : total.toFixed(1);
+  document.getElementById('score-of-label').textContent = `of ${maxScore} pts`;
+  document.getElementById('result-level').textContent = lvl.label;
+  document.getElementById('result-message').textContent = lvl.message;
+
+  // CTA
+  document.getElementById('cta-headline').textContent = lvl.ctaHeadline;
+  document.getElementById('cta-body').textContent = lvl.ctaBody;
+
+  // Breakdown
+  const bwrap = document.getElementById('breakdown-rows');
+  bwrap.innerHTML = '';
+  const iconMap  = { yes: '✓', 'not-sure': '?', no: '✗' };
+  const labelMap = { yes: 'Yes', 'not-sure': 'Not Sure', no: 'No' };
+
+  RIGHTS.forEach((right, ri) => {
+    let rightScore = 0;
+    Object.values(answers[ri]).forEach(a => rightScore += a.score);
+    const rightMax = right.questions.length;
+    const p = rightScore / rightMax;
+    const pillCls = p >= 0.9 ? 'high' : p >= 0.6 ? 'mid' : p >= 0.3 ? 'low' : 'zero';
+    const displayScore = rightScore % 1 === 0 ? rightScore : rightScore.toFixed(1);
+
+    const subRows = right.questions.map((q, qi) => {
+      const a = answers[ri][qi];
+      return `
+        <div class="bdr-sub-row">
+          <div class="bsr-icon ${a.value}">${iconMap[a.value]}</div>
+          <div class="bsr-text">${q.text}</div>
+          <span class="bsr-badge ${a.value}">${labelMap[a.value]}</span>
+        </div>`;
+    }).join('');
+
+    bwrap.innerHTML += `
+      <div class="breakdown-right">
+        <div class="breakdown-right-header">
+          <div class="bdr-title">Right #${ri + 1} — The ${right.title}</div>
+          <span class="score-pill ${pillCls}">${displayScore} / ${rightMax} pts</span>
+        </div>
+        ${subRows}
+      </div>`;
+  });
+
+  // Switch views
+  document.getElementById('checker-section').style.display = 'none';
+  document.getElementById('submit-wrap').style.display = 'none';
+  document.getElementById('instruction-banner').style.display = 'none';
+  document.getElementById('results-section').style.display = 'block';
+  document.getElementById('progress-wrap').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PDF DOWNLOAD
+// ─────────────────────────────────────────────────────────────────────────────
+function downloadReport() {
+  // Uses browser print to PDF — clean and reliable cross-browser
+  const originalTitle = document.title;
+  const name = userInfo.fname ? `${userInfo.lname}-` : '';
+  document.title = `CARE-Clinical-Injury-Analysis-Report-${name}${new Date().toISOString().slice(0,10)}`;
+  window.print();
+  document.title = originalTitle;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// RESET
+// ─────────────────────────────────────────────────────────────────────────────
+function resetTool() {
+  answers = {};
+  userInfo = {};
+  ['fname','lname','firm','email'].forEach(id => {
+    document.getElementById(id).value = '';
+    document.getElementById(id).classList.remove('error');
+    document.getElementById(`err-${id}`).classList.remove('visible');
+  });
+  document.getElementById('results-section').style.display = 'none';
+  document.getElementById('checker-section').style.display = 'none';
+  document.getElementById('instruction-banner').style.display = 'none';
+  document.getElementById('lead-section').style.display = 'block';
+  document.getElementById('progress-wrap').style.display = 'none';
+  document.getElementById('progress-fill').style.width = '0%';
+  document.getElementById('progress-count').textContent = '0 of 7 Rights complete';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
