@@ -117,76 +117,37 @@
       margin-bottom: 16px;
       max-width: 720px;
     }
-    .locked-block {
-      margin: 20px 0 28px;
-      padding-left: 16px;
-      border-left: 3px solid var(--gold-subtle);
-    }
-    .locked-block p {
-      font-size: 15px;
-      color: var(--text-muted);
-      margin-bottom: 12px;
-    }
-    .locked-block p:last-child { margin-bottom: 0; }
-
-    /* ── Cards ── */
-    .cards-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(18px, 2.2vw, 20px);
-      font-weight: 700;
-      color: var(--near-black);
-      margin-bottom: 20px;
-    }
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      margin-bottom: 40px;
-    }
-    .card {
-      background: var(--white);
-      border: 1px solid var(--gold-subtle);
-      border-radius: 8px;
-      padding: 20px 18px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
-    .card-header {
+    .section-heading {
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--navy);
-      margin-bottom: 12px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--gold-subtle);
+      margin-bottom: 16px;
     }
-    .card ul {
+    .dash-list {
       list-style: none;
+      margin: 12px 0 20px;
     }
-    .card li {
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-      padding-left: 14px;
+    .dash-list li {
       position: relative;
+      padding-left: 1.2em;
+      margin-bottom: 6px;
+      font-size: 16px;
+      color: var(--near-black);
     }
-    .card li::before {
-      content: '·';
+    .dash-list li::before {
+      content: '—';
       position: absolute;
       left: 0;
       color: var(--gold);
-      font-weight: 700;
     }
-
-    @media (max-width: 900px) {
-      .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (max-width: 520px) {
-      .cards-grid {
-        grid-template-columns: 1fr;
-      }
+    .tagline-three {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--near-black);
+      margin-top: 16px;
+      letter-spacing: 0.02em;
     }
 
     /* ── Credibility strip & CTA ── */
@@ -235,64 +196,59 @@
 
   <main>
     <div class="container">
-      <p class="section-label">Forensic Care Management<span class="tm">™</span> in action</p>
-      <h2 class="section-title">Designed exclusively for attorneys who specialize in:</h2>
+      <p class="section-label">FORENSIC CARE MANAGEMENT<span class="tm">™</span> IN ACTION</p>
+      <p class="explainer-p" style="margin-bottom: 8px;">Designed exclusively for attorneys who specialize in:</p>
       <ul class="audience-list">
         <li>Personal Injury</li>
         <li>Workers' Compensation</li>
         <li>Disability Litigation</li>
       </ul>
 
-      <div class="divider-gold"></div>
-
       <p class="explainer-p">The C.A.R.E. Clinical Sequencing Auditor applies structured clinical review methods within a legal-clinical framework to assess how injury care is sequenced, documented, and positioned.</p>
-      <div class="locked-block">
-        <p>It identifies sequencing gaps, documentation vulnerabilities, escalation risks, and treatment misalignment that weaken the structural foundation of care.</p>
-        <p>When care falls outside recognized payer and guideline expectations, defensible case positioning is compromised.</p>
-      </div>
 
       <div class="divider-gold"></div>
 
-      <h2 class="cards-title">At a glance</h2>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-header">Who it's for</div>
-          <ul>
-            <li>Personal Injury</li>
-            <li>Workers' Compensation</li>
-            <li>Disability Litigation</li>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="card-header">Why it matters</div>
-          <ul>
-            <li>Protects case strength</li>
-            <li>Reduces sequencing risk</li>
-            <li>Improves negotiation leverage</li>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="card-header">What it evaluates</div>
-          <ul>
-            <li>Treatment progression</li>
-            <li>Escalation timing</li>
-            <li>Documentation sufficiency</li>
-            <li>Treatment alignment</li>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="card-header">What you receive</div>
-          <ul>
-            <li>Sequencing risk profile</li>
-            <li>Structural findings</li>
-            <li>Case positioning insight</li>
-          </ul>
-        </div>
-      </div>
+      <h2 class="section-heading">WHY THIS MATTERS</h2>
+      <p class="explainer-p">Personal injury, workers' compensation, and disability cases weaken when care is:</p>
+      <ul class="dash-list">
+        <li>Poorly sequenced</li>
+        <li>Improperly escalated</li>
+        <li>Weakly documented</li>
+        <li>Lacking treatment authority</li>
+        <li>Misaligned with recognized standards</li>
+      </ul>
+      <p class="explainer-p">It identifies sequencing gaps, documentation vulnerabilities, escalation risks, and treatment misalignment that weaken the structural foundation of care.</p>
+      <p class="explainer-p">When care falls outside recognized payer and guideline expectations, defensible case positioning is compromised.</p>
 
       <div class="divider-gold"></div>
 
-      <p class="credibility-strip">Established 2009<span class="sep">•</span>25+ years clinical experience<span class="sep">•</span>Litigation-focused care analysis</p>
+      <h2 class="section-heading">WHAT THE AUDITOR EVALUATES</h2>
+      <p class="explainer-p" style="margin-bottom: 8px;">The C.A.R.E. Clinical Sequencing Auditor assesses:</p>
+      <ul class="audience-list">
+        <li>Treatment sequencing progression</li>
+        <li>Escalation timing and clinical justification</li>
+        <li>Documentation sufficiency</li>
+        <li>Alignment with recognized payer and treatment expectations</li>
+        <li>Structural vulnerabilities in case presentation</li>
+      </ul>
+      <p class="explainer-p">This is not care delivery.</p>
+      <p class="explainer-p">This is structured clinical sequencing analysis for litigation strength.</p>
+
+      <div class="divider-gold"></div>
+
+      <h2 class="section-heading">WHAT YOU RECEIVE</h2>
+      <p class="explainer-p" style="margin-bottom: 8px;">After completion, the Auditor provides:</p>
+      <ul class="audience-list">
+        <li>A sequencing risk profile</li>
+        <li>Identified documentation vulnerabilities</li>
+        <li>Areas of treatment misalignment</li>
+        <li>Strategic insight into defensible case positioning</li>
+      </ul>
+      <p class="tagline-three">Clear. Structured. Defensible.</p>
+
+      <div class="divider-gold"></div>
+
+      <p class="credibility-strip">ESTABLISHED 2009<span class="sep">•</span>25+ YEARS CLINICAL EXPERIENCE<span class="sep">•</span>LITIGATION-FOCUSED CARE ANALYSIS</p>
       <div class="cta-wrap">
         <a href="./index.html" class="cta-btn">Begin the C.A.R.E. Clinical Sequencing Audit</a>
       </div>
