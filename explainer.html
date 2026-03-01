@@ -75,26 +75,20 @@
       color: var(--gold);
       margin-bottom: 12px;
     }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(18px, 2.5vw, 22px);
-      font-weight: 700;
-      color: var(--near-black);
-      margin-bottom: 16px;
-    }
-    .section-title .tm { font-size: 9px; vertical-align: super; color: var(--gold); }
-    .audience-list {
+
+    /* Hero attorney list (• bullets) */
+    .attorney-list {
       list-style: none;
       margin-bottom: 28px;
     }
-    .audience-list li {
+    .attorney-list li {
       position: relative;
       padding-left: 18px;
       margin-bottom: 6px;
       color: var(--text-muted);
       font-size: 15px;
     }
-    .audience-list li::before {
+    .attorney-list li::before {
       content: '•';
       position: absolute;
       left: 0;
@@ -102,39 +96,7 @@
       font-weight: 700;
     }
 
-    .divider-gold {
-      width: 100%;
-      height: 1px;
-      background: var(--gold);
-      margin: 32px 0;
-      opacity: 0.6;
-    }
-
-    .explainer-p {
-      font-size: 16px;
-      color: var(--near-black);
-      margin-bottom: 16px;
-      max-width: 720px;
-    }
-    .locked-block {
-      margin: 20px 0 28px;
-      padding-left: 16px;
-      border-left: 3px solid var(--gold-subtle);
-    }
-    .locked-block p {
-      font-size: 15px;
-      color: var(--near-black);
-      margin-bottom: 12px;
-    }
-    .locked-block p:last-child { margin-bottom: 0; }
-    .section-heading {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--navy);
-      margin-bottom: 16px;
-    }
+    /* Dash list (— bullets) for "WHY THIS MATTERS" */
     .dash-list {
       list-style: none;
       margin: 12px 0 20px;
@@ -152,12 +114,40 @@
       left: 0;
       color: var(--gold);
     }
-    .tagline-three {
+
+    /* Standard bullet list (•) for other cards */
+    .bullet-list {
+      list-style: none;
+      margin: 12px 0 20px;
+    }
+    .bullet-list li {
+      position: relative;
+      padding-left: 1.2em;
+      margin-bottom: 6px;
       font-size: 16px;
-      font-weight: 600;
       color: var(--near-black);
-      margin-top: 16px;
-      letter-spacing: 0.02em;
+    }
+    .bullet-list li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .explainer-p {
+      font-size: 16px;
+      color: var(--near-black);
+      margin-bottom: 16px;
+      max-width: 720px;
+    }
+
+    .divider-gold {
+      width: 100%;
+      height: 1px;
+      background: var(--gold);
+      margin: 32px 0;
+      opacity: 0.6;
     }
 
     /* ── Cards ── */
@@ -170,56 +160,49 @@
     }
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);  /* three cards now */
       gap: 20px;
       margin-bottom: 40px;
     }
     .card {
       background: var(--white);
       border: 1px solid #e5dfcf;
-      border-radius: 18px;
+      border-radius: 20px;
       padding: 1.75rem;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      transition: all 0.25s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(10, 37, 64, 0.12);
+      border-color: var(--gold);
     }
     .card-header {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--navy);
       margin-bottom: 12px;
       padding-bottom: 10px;
-      border-bottom: 1px solid var(--gold-subtle);
+      border-bottom: 1.5px solid var(--gold);
     }
-    .card ul {
-      list-style: none;
-    }
-    .card li {
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-      padding-left: 14px;
-      position: relative;
-    }
-    .card li::before {
-      content: '·';
-      position: absolute;
-      left: 0;
-      color: var(--gold);
-      font-weight: 700;
-    }
-    .card .audience-list li::before { content: '•'; }
     .card p {
       font-size: 14px;
       color: var(--near-black);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      line-height: 1.5;
     }
     .card p:last-child { margin-bottom: 0; }
-    .card .dash-list { margin: 8px 0 12px; }
-    .card .dash-list li { font-size: 14px; }
-    .card .card-tagline { font-size: 14px; font-weight: 600; margin-top: 12px; margin-bottom: 0; }
+    .card .card-tagline {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--navy);
+      margin-top: 16px;
+      letter-spacing: 0.01em;
+    }
 
-    @media (max-width: 900px) {
+    @media (max-width: 800px) {
       .cards-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -276,35 +259,19 @@
 
   <main>
     <div class="container">
+      <!-- SECTION 1 — HERO (including forensic care and attorney list) -->
       <p class="section-label">FORENSIC CARE MANAGEMENT<span class="tm">™</span> IN ACTION</p>
       <p class="explainer-p" style="margin-bottom: 8px;">Designed exclusively for attorneys who specialize in:</p>
-      <ul class="audience-list">
+      <ul class="attorney-list">
         <li>Personal Injury</li>
         <li>Workers' Compensation</li>
         <li>Disability Litigation</li>
       </ul>
 
-      <p class="explainer-p">The C.A.R.E. Clinical Sequencing Auditor applies structured clinical review methods within a legal-clinical framework to assess how injury care is sequenced, documented, and positioned.</p>
-
-      <div class="locked-block">
-        <p>It identifies sequencing gaps, documentation vulnerabilities, escalation risks, and treatment misalignment that weaken the structural foundation of care.</p>
-        <p>When care falls outside recognized payer and guideline expectations, defensible case positioning is compromised.</p>
-      </div>
-
-      <div class="divider-gold"></div>
-
+      <!-- Cards title -->
       <h2 class="cards-title">At a glance</h2>
       <div class="cards-grid">
-        <div class="card">
-          <div class="card-header">WHO IT'S FOR</div>
-          <p>Designed exclusively for attorneys who specialize in:</p>
-          <ul class="audience-list">
-            <li>Personal Injury</li>
-            <li>Workers' Compensation</li>
-            <li>Disability Litigation</li>
-          </ul>
-          <p>The C.A.R.E. Clinical Sequencing Auditor applies structured clinical review methods within a legal-clinical framework to assess how injury care is sequenced, documented, and positioned.</p>
-        </div>
+        <!-- CARD 1: WHY THIS MATTERS (dash bullets) -->
         <div class="card">
           <div class="card-header">WHY THIS MATTERS</div>
           <p>Personal injury, workers' compensation, and disability cases weaken when care is:</p>
@@ -315,13 +282,15 @@
             <li>Lacking treatment authority</li>
             <li>Misaligned with recognized standards</li>
           </ul>
-          <p>It identifies sequencing gaps, documentation vulnerabilities, escalation risks, and treatment misalignment that weaken the structural foundation of care.</p>
+          <p>The C.A.R.E. Auditor identifies sequencing gaps, documentation vulnerabilities, escalation risks, and treatment misalignment that weaken the structural foundation of care.</p>
           <p>When care falls outside recognized payer and guideline expectations, defensible case positioning is compromised.</p>
         </div>
+
+        <!-- CARD 2: WHAT THE AUDITOR EVALUATES (• bullets) -->
         <div class="card">
-          <div class="card-header">WHAT IT EVALUATES</div>
+          <div class="card-header">WHAT THE AUDITOR EVALUATES</div>
           <p>The C.A.R.E. Clinical Sequencing Auditor assesses:</p>
-          <ul class="audience-list">
+          <ul class="bullet-list">
             <li>Treatment sequencing progression</li>
             <li>Escalation timing and clinical justification</li>
             <li>Documentation sufficiency</li>
@@ -331,10 +300,12 @@
           <p>This is not care delivery.</p>
           <p>This is structured clinical sequencing analysis for litigation strength.</p>
         </div>
+
+        <!-- CARD 3: WHAT YOU RECEIVE (• bullets) -->
         <div class="card">
           <div class="card-header">WHAT YOU RECEIVE</div>
           <p>After completion, the Auditor provides:</p>
-          <ul class="audience-list">
+          <ul class="bullet-list">
             <li>A sequencing risk profile</li>
             <li>Identified documentation vulnerabilities</li>
             <li>Areas of treatment misalignment</li>
@@ -346,7 +317,10 @@
 
       <div class="divider-gold"></div>
 
+      <!-- SECTION 5 — CREDIBILITY STRIP -->
       <p class="credibility-strip">ESTABLISHED 2009<span class="sep">•</span>25+ YEARS CLINICAL EXPERIENCE<span class="sep">•</span>LITIGATION-FOCUSED CARE ANALYSIS</p>
+
+      <!-- SECTION 6 — FINAL CTA -->
       <div class="cta-wrap">
         <a href="./index.html" class="cta-btn">Begin the C.A.R.E. Clinical Sequencing Audit</a>
       </div>
