@@ -1084,6 +1084,7 @@
 <main>
 
   <!-- Lead Capture -->
+  <div id="landingSection">
   <div class="card" id="lead-section">
     <div class="card-body">
       <div class="lead-title">Run a Clinical Sequencing Audit on Your Case</div>
@@ -1112,12 +1113,14 @@
         </div>
       </div>
       <div class="lead-note"><strong>Note:</strong> A business email address is required. Personal email domains (Gmail, Yahoo, Hotmail, iCloud, etc.) will not be accepted. Your information is used solely to generate your Clinical Sequencing Profile™ and will not be shared.</div>
-      <button class="btn-primary" onclick="submitLead()">Begin the Clinical Sequencing Audit →</button>
+      <button class="btn-primary" id="beginAuditBtn" type="button">Begin the Clinical Sequencing Audit →</button>
     </div>
+  </div>
   </div>
 
   <!-- Before You Begin -->
-  <div id="before-you-begin" style="display:none;">
+  <div id="auditSection" style="display:none;">
+  <div id="before-you-begin">
 
     <div class="byb-card animate-in">
       <div class="byb-header">
@@ -1166,15 +1169,16 @@
 
         <div class="byb-start-row">
           <label class="byb-acknowledge">
-            <input type="checkbox" id="byb-checkbox" onchange="toggleBeginBtn()">
+            <input type="checkbox" id="byb-checkbox">
             <span>I understand this assessment reflects documented file content only and does not constitute legal advice or clinical direction.</span>
           </label>
-          <button class="btn-primary" id="begin-audit-btn" onclick="startAudit()" disabled style="opacity:0.45; cursor:not-allowed;">I Have Reviewed the Protocol — Begin the Audit →</button>
+          <button class="btn-primary" id="begin-audit-btn" type="button" disabled style="opacity:0.45; cursor:not-allowed;">I Have Reviewed the Protocol — Begin the Audit →</button>
         </div>
 
       </div>
     </div>
 
+  </div>
   </div>
 
   <!-- Instruction Banner -->
@@ -1185,7 +1189,7 @@
   </div>
 
   <!-- Floating Reference Button -->
-  <div class="float-ref-btn" id="float-ref-btn" style="display:none;" onclick="toggleRefPanel()">
+  <div class="float-ref-btn" id="float-ref-btn" style="display:none;" role="button" tabindex="0">
     <span>📋</span> Terms &amp; Rights Reference
   </div>
 
@@ -1193,7 +1197,7 @@
   <div class="ref-panel" id="ref-panel">
     <div class="ref-panel-header">
       <div class="ref-panel-title">Clinical Terms &amp; Rights Reference</div>
-      <button class="ref-panel-close" onclick="toggleRefPanel()">✕ Close</button>
+      <button class="ref-panel-close" type="button">✕ Close</button>
     </div>
     <div class="ref-panel-body">
       <div class="ref-section-title">Clinical Definitions</div>
@@ -1213,7 +1217,7 @@
     <div class="submit-wrap" id="submit-wrap">
       <div class="submit-title">Assessment Complete</div>
       <p class="submit-sub">All 7 Clinical Rights have been evaluated for alignment, documentation strength, and guideline adherence. Generate your Clinical Sequencing Profile™ to view your full score and strategic breakdown.</p>
-      <button class="btn-primary" onclick="showResults()">Generate Structural Alignment Summary →</button>
+      <button class="btn-primary" id="show-results-btn" type="button">Generate Structural Alignment Summary →</button>
     </div>
   </div>
 
@@ -1222,10 +1226,10 @@
 
     <div class="action-bar" id="action-bar">
       <!-- FULL ONLY: print/PDF button — hidden in preview -->
-      <button class="btn-secondary full-only" id="btn-print" onclick="downloadReport()">🖨 Print / Save as PDF</button>
+      <button class="btn-secondary full-only" id="btn-print" type="button">🖨 Print / Save as PDF</button>
       <!-- Always visible -->
-      <button class="btn-secondary" onclick="emailReport()">✉ Email This Report</button>
-      <button class="btn-secondary" onclick="resetTool()">↩ Start New Assessment</button>
+      <button class="btn-secondary" id="btn-email-report" type="button">✉ Email This Report</button>
+      <button class="btn-secondary" id="btn-reset" type="button">↩ Start New Assessment</button>
     </div>
 
     <!-- Report Header -->
@@ -1320,7 +1324,7 @@
       <div class="preview-gate-eyebrow">Preview Report — Full Access Required</div>
       <div class="preview-gate-title">Unlock Your Full Forensic Alignment Report</div>
       <p class="preview-gate-body">Your preview includes overall status, right-by-right status badges, and driver summaries. The full report includes detailed question-level breakdown, complete clinical interpretation, full flag explanations, and a printable professional PDF.</p>
-      <button class="btn-unlock" onclick="initiateStripeCheckout()">🔓 Unlock Full Sequencing Alignment Report</button>
+      <button class="btn-unlock" id="btn-unlock" type="button">🔓 Unlock Full Sequencing Alignment Report</button>
     </div>
 
     <!-- ════════════════════════════════════════════════════
@@ -1338,8 +1342,8 @@
       <h3 id="cta-headline">Institutional Clinical Oversight for Injury Litigation Firms</h3>
       <p id="cta-body">Reconcile C.A.R.E. provides structured RN clinical oversight that aligns providers, reinforces evidence-based standards, and ensures documentation supports both medical necessity and litigation strategy.</p>
       <div class="cta-buttons">
-        <button class="btn-amber" onclick="showBriefingForm()">Request a Clinical Sequencing Strategy Briefing</button>
-        <button class="btn-ghost" onclick="window.open('https://reconcilecare.com','_blank')">Learn About Reconcile C.A.R.E.</button>
+        <button class="btn-amber" id="btn-briefing" type="button">Request a Clinical Sequencing Strategy Briefing</button>
+        <button class="btn-ghost" id="btn-learn-more" type="button">Learn About Reconcile C.A.R.E.</button>
       </div>
     </div>
 
@@ -1387,14 +1391,14 @@
 
         <div class="briefing-field">
           <label class="briefing-acknowledge-check">
-            <input type="checkbox" id="briefing-checkbox" onchange="toggleBriefingCheckbox()">
+            <input type="checkbox" id="briefing-checkbox">
             <span>I understand this briefing is a strategic discussion and not legal advice.</span>
           </label>
         </div>
 
         <div class="briefing-submit-row">
-          <button class="btn-primary" id="briefing-submit-btn" onclick="submitBriefing()" disabled style="opacity:0.45; cursor:not-allowed;">Submit Briefing Request →</button>
-          <button class="briefing-cancel" onclick="hideBriefingForm()">Cancel</button>
+          <button class="btn-primary" id="briefing-submit-btn" type="button" disabled style="opacity:0.45; cursor:not-allowed;">Submit Briefing Request →</button>
+          <button class="briefing-cancel" id="briefing-cancel-btn" type="button">Cancel</button>
         </div>
 
       </div>
@@ -1411,7 +1415,7 @@
         <p>We appreciate your commitment to disciplined injury management.</p>
       </div>
       <p class="confirm-sub">In the meantime, download or print your Structural Alignment Summary above for reference.</p>
-      <button class="briefing-dismiss-btn" onclick="dismissBriefingConfirm()">↑ Return to Summary</button>
+      <button class="briefing-dismiss-btn" id="briefing-dismiss-btn" type="button">↑ Return to Summary</button>
     </div>
 
   </div><!-- /results -->
@@ -1477,8 +1481,13 @@ function submitLead() {
 
   userInfo = { fname, lname, firm, email };
 
-  document.getElementById('lead-section').style.display = 'none';
-  document.getElementById('before-you-begin').style.display = 'block';
+  const landing = document.getElementById('landingSection');
+  const audit = document.getElementById('auditSection');
+  if (landing) landing.style.display = 'none';
+  if (audit) {
+    audit.style.display = 'block';
+    audit.scrollIntoView({ behavior: 'smooth' });
+  }
   buildAccordion();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -1503,7 +1512,8 @@ function showFieldError(id) {
 }
 
 function startAudit() {
-  document.getElementById('before-you-begin').style.display = 'none';
+  const audit = document.getElementById('auditSection');
+  if (audit) audit.style.display = 'none';
   document.getElementById('instruction-banner').style.display = 'block';
   document.getElementById('checker-section').style.display = 'block';
   document.getElementById('progress-wrap').style.display = 'block';
@@ -2508,8 +2518,10 @@ function resetTool() {
   document.getElementById('results-section').style.display = 'none';
   document.getElementById('checker-section').style.display = 'none';
   document.getElementById('instruction-banner').style.display = 'none';
-  document.getElementById('before-you-begin').style.display = 'none';
-  document.getElementById('lead-section').style.display = 'block';
+  const audit = document.getElementById('auditSection');
+  if (audit) audit.style.display = 'none';
+  const landing = document.getElementById('landingSection');
+  if (landing) landing.style.display = 'block';
   document.getElementById('progress-wrap').style.display = 'none';
   document.getElementById('float-ref-btn').style.display = 'none';
   const rp = document.getElementById('ref-panel');
@@ -2517,6 +2529,8 @@ function resetTool() {
   document.getElementById('progress-fill').style.width = '0%';
   document.getElementById('progress-count').textContent = '0 of 7 Rights evaluated';
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // BRIEFING FORM
 // ─────────────────────────────────────────────────────────────────────────────
@@ -2572,5 +2586,6 @@ function submitBriefing() {
   setTimeout(() => confirm.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
 }
 </script>
+<script src="./app.js"></script>
 </body>
 </html>
