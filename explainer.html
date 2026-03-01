@@ -76,10 +76,10 @@
       margin-bottom: 12px;
     }
 
-    /* Hero attorney list (• bullets) */
+    /* Attorney list (• bullets) – used in hero and in WHO IT'S FOR card */
     .attorney-list {
       list-style: none;
-      margin-bottom: 28px;
+      margin-bottom: 12px;
     }
     .attorney-list li {
       position: relative;
@@ -160,7 +160,7 @@
     }
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);  /* three cards now */
+      grid-template-columns: repeat(4, 1fr);  /* FOUR cards restored */
       gap: 20px;
       margin-bottom: 40px;
     }
@@ -202,7 +202,7 @@
       letter-spacing: 0.01em;
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 900px) {
       .cards-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -259,7 +259,7 @@
 
   <main>
     <div class="container">
-      <!-- SECTION 1 — HERO (including forensic care and attorney list) -->
+      <!-- SECTION 1 — HERO (forensic care + attorney list) -->
       <p class="section-label">FORENSIC CARE MANAGEMENT<span class="tm">™</span> IN ACTION</p>
       <p class="explainer-p" style="margin-bottom: 8px;">Designed exclusively for attorneys who specialize in:</p>
       <ul class="attorney-list">
@@ -271,7 +271,19 @@
       <!-- Cards title -->
       <h2 class="cards-title">At a glance</h2>
       <div class="cards-grid">
-        <!-- CARD 1: WHY THIS MATTERS (dash bullets) -->
+        <!-- CARD 1: WHO IT'S FOR (restored) -->
+        <div class="card">
+          <div class="card-header">WHO IT'S FOR</div>
+          <p>Designed exclusively for attorneys who specialize in:</p>
+          <ul class="attorney-list">
+            <li>Personal Injury</li>
+            <li>Workers' Compensation</li>
+            <li>Disability Litigation</li>
+          </ul>
+          <p>The C.A.R.E. Clinical Sequencing Auditor applies structured clinical review methods within a legal-clinical framework to assess how injury care is sequenced, documented, and positioned.</p>
+        </div>
+
+        <!-- CARD 2: WHY THIS MATTERS (dash bullets) -->
         <div class="card">
           <div class="card-header">WHY THIS MATTERS</div>
           <p>Personal injury, workers' compensation, and disability cases weaken when care is:</p>
@@ -286,7 +298,7 @@
           <p>When care falls outside recognized payer and guideline expectations, defensible case positioning is compromised.</p>
         </div>
 
-        <!-- CARD 2: WHAT THE AUDITOR EVALUATES (• bullets) -->
+        <!-- CARD 3: WHAT THE AUDITOR EVALUATES (• bullets) -->
         <div class="card">
           <div class="card-header">WHAT THE AUDITOR EVALUATES</div>
           <p>The C.A.R.E. Clinical Sequencing Auditor assesses:</p>
@@ -301,7 +313,7 @@
           <p>This is structured clinical sequencing analysis for litigation strength.</p>
         </div>
 
-        <!-- CARD 3: WHAT YOU RECEIVE (• bullets) -->
+        <!-- CARD 4: WHAT YOU RECEIVE (• bullets) -->
         <div class="card">
           <div class="card-header">WHAT YOU RECEIVE</div>
           <p>After completion, the Auditor provides:</p>
@@ -317,10 +329,10 @@
 
       <div class="divider-gold"></div>
 
-      <!-- SECTION 5 — CREDIBILITY STRIP -->
+      <!-- CREDIBILITY STRIP -->
       <p class="credibility-strip">ESTABLISHED 2009<span class="sep">•</span>25+ YEARS CLINICAL EXPERIENCE<span class="sep">•</span>LITIGATION-FOCUSED CARE ANALYSIS</p>
 
-      <!-- SECTION 6 — FINAL CTA -->
+      <!-- FINAL CTA -->
       <div class="cta-wrap">
         <a href="./index.html" class="cta-btn">Begin the C.A.R.E. Clinical Sequencing Audit</a>
       </div>
