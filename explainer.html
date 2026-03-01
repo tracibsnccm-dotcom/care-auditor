@@ -76,17 +76,17 @@
       margin-bottom: 12px;
     }
 
-    /* Attorney list (• bullets) – used in hero and in WHO IT'S FOR card */
+    /* Attorney list (• bullets) – consistent 14px everywhere */
     .attorney-list {
       list-style: none;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
     .attorney-list li {
       position: relative;
       padding-left: 18px;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       color: var(--text-muted);
-      font-size: 15px;
+      font-size: 14px;
     }
     .attorney-list li::before {
       content: '•';
@@ -96,16 +96,16 @@
       font-weight: 700;
     }
 
-    /* Dash list (— bullets) for "WHY THIS MATTERS" */
+    /* Dash list (— bullets) for WHY THIS MATTERS */
     .dash-list {
       list-style: none;
-      margin: 12px 0 20px;
+      margin: 8px 0 12px;
     }
     .dash-list li {
       position: relative;
       padding-left: 1.2em;
-      margin-bottom: 6px;
-      font-size: 16px;
+      margin-bottom: 4px;
+      font-size: 14px;
       color: var(--near-black);
     }
     .dash-list li::before {
@@ -118,13 +118,13 @@
     /* Standard bullet list (•) for other cards */
     .bullet-list {
       list-style: none;
-      margin: 12px 0 20px;
+      margin: 8px 0 12px;
     }
     .bullet-list li {
       position: relative;
       padding-left: 1.2em;
-      margin-bottom: 6px;
-      font-size: 16px;
+      margin-bottom: 4px;
+      font-size: 14px;
       color: var(--near-black);
     }
     .bullet-list li::before {
@@ -150,7 +150,7 @@
       opacity: 0.6;
     }
 
-    /* ── Cards ── */
+    /* ── Cards (shorter, wider, consistent font sizes) ── */
     .cards-title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(18px, 2.2vw, 20px);
@@ -160,15 +160,15 @@
     }
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);  /* FOUR cards restored */
-      gap: 20px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;                     /* reduced for tighter, wider look */
       margin-bottom: 40px;
     }
     .card {
       background: var(--white);
       border: 1px solid #e5dfcf;
       border-radius: 20px;
-      padding: 1.75rem;
+      padding: 1.25rem 1.5rem;       /* less height */
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
       transition: all 0.25s ease;
     }
@@ -183,22 +183,28 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--navy);
-      margin-bottom: 12px;
-      padding-bottom: 10px;
+      margin-bottom: 8px;
+      padding-bottom: 8px;
       border-bottom: 1.5px solid var(--gold);
     }
     .card p {
-      font-size: 14px;
+      font-size: 14px;               /* consistent */
       color: var(--near-black);
-      margin-bottom: 12px;
-      line-height: 1.5;
+      margin-bottom: 8px;             /* reduced spacing */
+      line-height: 1.6;
     }
     .card p:last-child { margin-bottom: 0; }
+    .card ul {
+      margin-bottom: 8px;
+    }
+    .card ul:last-child {
+      margin-bottom: 0;
+    }
     .card .card-tagline {
       font-size: 14px;
-      font-weight: 500;
-      color: var(--navy);
-      margin-top: 16px;
+      font-weight: 600;               /* bold as original */
+      color: var(--near-black);
+      margin-top: 8px;                 /* reduced */
       letter-spacing: 0.01em;
     }
 
@@ -259,7 +265,7 @@
 
   <main>
     <div class="container">
-      <!-- SECTION 1 — HERO (forensic care + attorney list) -->
+      <!-- HERO: FORENSIC CARE MANAGEMENT + attorney list -->
       <p class="section-label">FORENSIC CARE MANAGEMENT<span class="tm">™</span> IN ACTION</p>
       <p class="explainer-p" style="margin-bottom: 8px;">Designed exclusively for attorneys who specialize in:</p>
       <ul class="attorney-list">
@@ -271,7 +277,7 @@
       <!-- Cards title -->
       <h2 class="cards-title">At a glance</h2>
       <div class="cards-grid">
-        <!-- CARD 1: WHO IT'S FOR (restored) -->
+        <!-- CARD 1: WHO IT'S FOR -->
         <div class="card">
           <div class="card-header">WHO IT'S FOR</div>
           <p>Designed exclusively for attorneys who specialize in:</p>
@@ -283,7 +289,7 @@
           <p>The C.A.R.E. Clinical Sequencing Auditor applies structured clinical review methods within a legal-clinical framework to assess how injury care is sequenced, documented, and positioned.</p>
         </div>
 
-        <!-- CARD 2: WHY THIS MATTERS (dash bullets) -->
+        <!-- CARD 2: WHY THIS MATTERS -->
         <div class="card">
           <div class="card-header">WHY THIS MATTERS</div>
           <p>Personal injury, workers' compensation, and disability cases weaken when care is:</p>
@@ -298,7 +304,7 @@
           <p>When care falls outside recognized payer and guideline expectations, defensible case positioning is compromised.</p>
         </div>
 
-        <!-- CARD 3: WHAT THE AUDITOR EVALUATES (• bullets) -->
+        <!-- CARD 3: WHAT THE AUDITOR EVALUATES -->
         <div class="card">
           <div class="card-header">WHAT THE AUDITOR EVALUATES</div>
           <p>The C.A.R.E. Clinical Sequencing Auditor assesses:</p>
@@ -313,7 +319,7 @@
           <p>This is structured clinical sequencing analysis for litigation strength.</p>
         </div>
 
-        <!-- CARD 4: WHAT YOU RECEIVE (• bullets) -->
+        <!-- CARD 4: WHAT YOU RECEIVE -->
         <div class="card">
           <div class="card-header">WHAT YOU RECEIVE</div>
           <p>After completion, the Auditor provides:</p>
