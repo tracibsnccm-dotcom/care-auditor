@@ -2219,10 +2219,12 @@ function renderDetailedBreakdown(rightStatuses) {
 // UNLOCK FULL ACCESS
 // ─────────────────────────────────────────────────────────────────────────────
 // SUPABASE EDGE FUNCTION ENDPOINTS
-// Replace <PROJECT_REF> with your actual Supabase project reference.
-// Found in: Supabase Dashboard → Project Settings → General → Reference ID
+// Uses create-checkout-session and verify-session. No secrets in frontend.
+// Full URL used explicitly to avoid wrong base (e.g. functions.supabase.co).
 // ─────────────────────────────────────────────────────────────────────────────
-const SUPABASE_FUNCTION_BASE = 'https://<PROJECT_REF>.functions.supabase.co'; // ← UPDATE BEFORE LAUNCH
+const CHECKOUT_SESSION_URL = 'https://zmjxyspizdqhrtdcgkwk.supabase.co/functions/v1/create-checkout-session';
+const VERIFY_SESSION_BASE   = 'https://zmjxyspizdqhrtdcgkwk.supabase.co/functions/v1';
+const SUPABASE_ANON_KEY     = ''; // Set project anon key if Edge Functions require auth
 
 // Return URL: where Stripe redirects after checkout (this same page).
 // Stripe appends ?session_id={CHECKOUT_SESSION_ID} on success,
@@ -2291,29 +2293,42 @@ async function initiateStripeCheckout() {
   try {
     if (btn) {
       btn.disabled = true;
-      btn.innerHTML = '⏳ Preparing secure checkout…';
+      btn.innerHTML = '⏳ Redirecting to checkout…';
     }
 
     // Save answers and userInfo before leaving the page
     saveAuditState();
 
     const auditRef = getOrCreateAuditRef();
+    // success_url/cancel_url so Stripe (or Edge Function) can redirect back to this app
+    const successUrl = RETURN_URL + '?session_id={CHECKOUT_SESSION_ID}';
+    const cancelUrl = RETURN_URL + '?canceled=1';
 
-    const response = await fetch(`${SUPABASE_FUNCTION_BASE}/create-checkout-session`, {
+    const headers = {
+      'Content-Type': 'application/json',
+      ...(SUPABASE_ANON_KEY && { apikey: SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY })
+    };
+    const response = await fetch(CHECKOUT_SESSION_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers,
       body: JSON.stringify({
-        audit_ref:  auditRef,
-        return_url: RETURN_URL
+        audit_ref:   auditRef,
+        return_url:  RETURN_URL,
+        success_url: successUrl,
+        cancel_url:  cancelUrl
       })
     });
 
     if (!response.ok) {
       const err = await response.json().catch(() => ({}));
-      throw new Error(err.error || 'Server error — please try again.');
+      throw new Error(err.error || err.message || 'Server error — please try again.');
     }
 
-    const { url } = await response.json();
+    const data = await response.json().catch(() => ({}));
+    const url = data.url ?? data.session?.url;
+    if (!url || typeof url !== 'string') {
+      throw new Error('Checkout session did not return a redirect URL. Please try again.');
+    }
     window.location.href = url;
 
   } catch (err) {
@@ -2362,7 +2377,8 @@ async function handleStripeReturn() {
 
     try {
       const response = await fetch(
-        `${SUPABASE_FUNCTION_BASE}/verify-session?session_id=${encodeURIComponent(sessionId)}`
+        `${VERIFY_SESSION_BASE}/verify-session?session_id=${encodeURIComponent(sessionId)}`,
+        { headers: SUPABASE_ANON_KEY ? { apikey: SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY } : {} }
       );
 
       // Always clean URL before acting on result
