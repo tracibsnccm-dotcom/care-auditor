@@ -795,86 +795,6 @@
   .bsr-icon.partial { color: #7a4a00; background: #fff8e6; }
   .bsr-icon.misaligned { color: #7a1a1a; background: #fdf0f0; }
 
-  /* ── Comprehensive Report Sections (FULL only) ───────────────────────────── */
-  .report-sublabel {
-    font-size: 11px; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.1em; color: var(--gray-mid); margin-top: 2px; margin-bottom: 6px;
-  }
-  .comp-section {
-    background: var(--white); border: 1px solid #e2e6ea;
-    border-radius: 10px; padding: 24px 28px; margin-bottom: 18px;
-  }
-  .comp-section-title {
-    font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 900;
-    color: var(--navy); margin-bottom: 14px; padding-bottom: 10px;
-    border-bottom: 2px solid var(--navy); text-transform: uppercase; letter-spacing: 0.05em;
-  }
-  .comp-section p { font-size: 13.5px; line-height: 1.8; color: var(--gray-dark); margin-bottom: 12px; }
-  .comp-section p:last-child { margin-bottom: 0; }
-  .comp-governance-list { list-style: none; padding: 0; margin: 10px 0 14px 0; }
-  .comp-governance-list li {
-    font-size: 13px; color: var(--gray-dark); padding: 6px 0 6px 20px;
-    position: relative; line-height: 1.6; border-bottom: 1px solid #f0f2f5;
-  }
-  .comp-governance-list li:last-child { border-bottom: none; }
-  .comp-governance-list li::before {
-    content: '\25B8'; position: absolute; left: 0;
-    color: var(--navy-light); font-size: 11px; top: 8px;
-  }
-  .comp-determination-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
-  @media (max-width: 600px) { .comp-determination-grid { grid-template-columns: 1fr; } }
-  .comp-det-item { background: var(--gray-light); border-radius: 8px; padding: 14px 16px; }
-  .comp-det-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-mid); margin-bottom: 5px; }
-  .comp-det-value { font-size: 14px; font-weight: 700; color: var(--navy); line-height: 1.3; }
-  .comp-det-item.status-misaligned { background: #fdf0f0; border-left: 3px solid var(--danger); }
-  .comp-det-item.status-misaligned .comp-det-value { color: #7a1a1a; }
-  .comp-det-item.status-partial { background: #fff8e6; border-left: 3px solid var(--amber-light); }
-  .comp-det-item.status-partial .comp-det-value { color: #7a4a00; }
-  .comp-det-item.status-aligned { background: #edfaf4; border-left: 3px solid #2ecc71; }
-  .comp-det-item.status-aligned .comp-det-value { color: #1a5c3a; }
-  .comp-provider-override { background: #fff5f0; border: 2px solid var(--danger); border-radius: 8px; padding: 16px 18px; margin-top: 14px; }
-  .comp-provider-override-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #7a1a1a; margin-bottom: 7px; }
-  .comp-provider-override p { font-size: 13px; color: #5a1a1a; line-height: 1.7; margin-bottom: 0; }
-  .comp-driver-list { list-style: none; padding: 0; margin: 10px 0 0 0; counter-reset: driver-counter; }
-  .comp-driver-list li {
-    counter-increment: driver-counter; padding: 10px 12px 10px 42px; position: relative;
-    border-left: 3px solid var(--navy-light); background: #f7f9fc;
-    border-radius: 0 6px 6px 0; margin-bottom: 8px;
-    font-size: 13.5px; color: var(--gray-dark); line-height: 1.65;
-  }
-  .comp-driver-list li::before {
-    content: counter(driver-counter); position: absolute; left: 12px; top: 50%;
-    transform: translateY(-50%); font-size: 13px; font-weight: 700; color: var(--navy-light); width: 20px; text-align: center;
-  }
-  .comp-driver-list li.driver-misaligned { border-left-color: var(--danger); background: #fdf5f5; }
-  .comp-driver-list li.driver-misaligned::before { color: var(--danger); }
-  .comp-driver-list li.driver-partial { border-left-color: var(--amber); background: #fffbf0; }
-  .comp-driver-list li.driver-partial::before { color: var(--amber); }
-  .comp-action-list { list-style: none; padding: 0; margin: 10px 0 0 0; }
-  .comp-action-list li {
-    padding: 11px 14px 11px 44px; position: relative; background: var(--gray-light);
-    border-radius: 7px; margin-bottom: 8px; font-size: 13.5px;
-    color: var(--gray-dark); line-height: 1.65; border-left: 3px solid var(--navy);
-  }
-  .comp-action-list li::before { content: '\2192'; position: absolute; left: 14px; top: 13px; font-size: 14px; font-weight: 700; color: var(--navy); }
-  .comp-action-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px !important; padding-left: 16px !important; border-left: 3px solid var(--navy) !important; }
-  .comp-action-item::before { display: none !important; }
-  .comp-action-num { flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; background: var(--navy); color: white; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
-  .comp-action-text { font-size: 13px; line-height: 1.75; color: var(--gray-dark); }
-  .comp-det-row { display: flex; gap: 16px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid #e8edf3; }
-  .comp-det-row:last-child { border-bottom: none; }
-  .comp-det-row .comp-det-label { flex-shrink: 0; width: 180px; }
-  .comp-det-row .comp-det-value { flex: 1; }
-  .driver-aligned { border-left-color: #27ae60 !important; background: #f2fbf6 !important; }
-  .comp-integrity-note {
-    font-size: 11.5px; color: var(--gray-mid); line-height: 1.65;
-    padding: 12px 16px; background: #f7f9fc; border-radius: 6px;
-    border-left: 3px solid #c8d2de; margin-top: 14px;
-  }
-  .comp-exec-paragraph { font-size: 13.5px; line-height: 1.85; color: var(--gray-dark); margin-bottom: 14px; }
-  .comp-report-sections { display: none; }
-  body.tier-full .comp-report-sections { display: block; }
-
   .briefing-form-wrap {
     background: var(--white);
     border-radius: 12px;
@@ -1117,6 +1037,200 @@
   body.tier-full .full-only { display: inline-flex; }
   body.tier-preview .full-only { display: none !important; }
 
+
+  /* ── Comprehensive Report Sections (FULL only) ───────────────────────────── */
+  .report-sublabel {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--gray-mid); margin-top: 2px; margin-bottom: 6px;
+  }
+
+  /* Comp Header Band */
+  .comp-header-band {
+    background: var(--navy); border-radius: 10px; padding: 28px 32px;
+    margin-bottom: 18px; text-align: center;
+  }
+  .comp-header-eyebrow {
+    font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em;
+    color: var(--amber); margin-bottom: 10px;
+  }
+  .comp-header-title {
+    font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900;
+    color: white; margin-bottom: 8px; line-height: 1.2;
+  }
+  .comp-header-sub { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.6; max-width: 540px; margin: 0 auto; }
+
+  /* Comp Sections */
+  .comp-section {
+    background: var(--white); border: 1px solid #e2e6ea;
+    border-radius: 10px; padding: 24px 28px; margin-bottom: 18px;
+  }
+  .comp-section-title {
+    font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 900;
+    color: var(--navy); margin-bottom: 8px; padding-bottom: 10px;
+    border-bottom: 2px solid var(--navy); text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .comp-section-intro { font-size: 12.5px; color: var(--gray-mid); margin-bottom: 14px; line-height: 1.6; }
+  .comp-section p { font-size: 13.5px; line-height: 1.8; color: var(--gray-dark); margin-bottom: 12px; }
+  .comp-section p:last-child { margin-bottom: 0; }
+
+  /* Governance list */
+  .comp-governance-list { list-style: none; padding: 0; margin: 10px 0 14px 0; }
+  .comp-governance-list li {
+    font-size: 13px; color: var(--gray-dark); padding: 7px 0 7px 22px;
+    position: relative; line-height: 1.6; border-bottom: 1px solid #f0f2f5;
+  }
+  .comp-governance-list li:last-child { border-bottom: none; }
+  .comp-governance-list li::before {
+    content: '▸'; position: absolute; left: 0;
+    color: var(--navy-light); font-size: 11px; top: 9px;
+  }
+
+  /* Determination grid */
+  .comp-det-table { width: 100%; border-collapse: collapse; margin-top: 14px; }
+  .comp-det-table tr { border-bottom: 1px solid #edf0f3; }
+  .comp-det-table tr:last-child { border-bottom: none; }
+  .comp-det-table td { padding: 10px 12px; font-size: 13px; vertical-align: top; }
+  .comp-det-table td:first-child {
+    width: 200px; font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--gray-mid); padding-right: 16px;
+  }
+  .comp-det-table td:last-child { font-weight: 600; color: var(--navy); }
+  .comp-det-secondary-list { margin: 4px 0 0 0; padding-left: 16px; }
+  .comp-det-secondary-list li { font-size: 12.5px; font-weight: 500; color: var(--gray-dark); margin-bottom: 3px; }
+
+  /* Provider override */
+  .comp-provider-override { background: #fff0f0; border: 2px solid var(--danger); border-radius: 8px; padding: 16px 18px; margin-top: 14px; }
+  .comp-provider-override-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #7a1a1a; margin-bottom: 7px; }
+  .comp-provider-override p { font-size: 13px; color: #5a1a1a; line-height: 1.7; margin-bottom: 0; }
+
+  /* RAG Driver cards */
+  .comp-driver-card {
+    display: flex; align-items: flex-start; gap: 14px;
+    border-radius: 8px; padding: 14px 16px; margin-bottom: 10px;
+    border-left: 5px solid transparent;
+  }
+  .comp-driver-card.rag-red { background: #fdf0f0; border-left-color: #c0392b; }
+  .comp-driver-card.rag-amber { background: #fffbf0; border-left-color: #e67e22; }
+  .comp-driver-card.rag-green { background: #f2fbf6; border-left-color: #27ae60; }
+  .comp-driver-badge {
+    flex-shrink: 0; min-width: 72px; text-align: center;
+    border-radius: 5px; padding: 4px 8px; font-size: 10px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.07em;
+  }
+  .rag-red .comp-driver-badge { background: #c0392b; color: white; }
+  .rag-amber .comp-driver-badge { background: #e67e22; color: white; }
+  .rag-green .comp-driver-badge { background: #27ae60; color: white; }
+  .comp-driver-content { flex: 1; }
+  .comp-driver-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 3px; }
+  .rag-red .comp-driver-label { color: #7a1a1a; }
+  .rag-amber .comp-driver-label { color: #7a4a00; }
+  .rag-green .comp-driver-label { color: #1a5c3a; }
+  .comp-driver-text { font-size: 13px; line-height: 1.7; color: var(--gray-dark); }
+
+  /* RAG Action cards */
+  .comp-action-card {
+    display: flex; align-items: flex-start; gap: 14px;
+    border-radius: 8px; padding: 14px 16px; margin-bottom: 10px;
+    border-left: 5px solid transparent; background: #f7f9fc;
+  }
+  .comp-action-card.priority-1 { border-left-color: #c0392b; background: #fdf8f8; }
+  .comp-action-card.priority-2 { border-left-color: #e67e22; background: #fffdf8; }
+  .comp-action-card.priority-3 { border-left-color: #2980b9; background: #f5f8fc; }
+  .comp-action-num {
+    flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+    font-size: 12px; font-weight: 800; display: flex; align-items: center;
+    justify-content: center; color: white; margin-top: 1px;
+  }
+  .priority-1 .comp-action-num { background: #c0392b; }
+  .priority-2 .comp-action-num { background: #e67e22; }
+  .priority-3 .comp-action-num { background: #2980b9; }
+  .comp-action-content { flex: 1; }
+  .comp-action-priority-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+  .priority-1 .comp-action-priority-label { color: #c0392b; }
+  .priority-2 .comp-action-priority-label { color: #e67e22; }
+  .priority-3 .comp-action-priority-label { color: #2980b9; }
+  .comp-action-text { font-size: 13px; line-height: 1.75; color: var(--gray-dark); }
+
+  /* Right-by-Right Analysis */
+  .comp-right-block { border-radius: 8px; margin-bottom: 12px; overflow: hidden; border: 1px solid #e2e6ea; }
+  .comp-right-block.status-aligned { border-color: #b8e8cc; opacity: 0.75; }
+  .comp-right-block.status-partial { border-color: #f5d78e; }
+  .comp-right-block.status-misaligned { border-color: #f0b0a8; }
+  .comp-right-header {
+    display: flex; align-items: center; gap: 12px; padding: 13px 16px;
+    justify-content: space-between;
+  }
+  .status-aligned .comp-right-header { background: #f2fbf6; }
+  .status-partial .comp-right-header { background: #fffbf0; }
+  .status-misaligned .comp-right-header { background: #fdf3f3; }
+  .comp-right-header-left { display: flex; align-items: center; gap: 10px; }
+  .comp-right-rag-dot {
+    width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0;
+  }
+  .status-aligned .comp-right-rag-dot { background: #27ae60; }
+  .status-partial .comp-right-rag-dot { background: #e67e22; }
+  .status-misaligned .comp-right-rag-dot { background: #c0392b; }
+  .comp-right-number { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-mid); }
+  .comp-right-title { font-size: 13.5px; font-weight: 700; color: var(--navy); }
+  .comp-right-status-badge {
+    font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em;
+    padding: 3px 10px; border-radius: 20px; white-space: nowrap;
+  }
+  .status-aligned .comp-right-status-badge { background: #d4f5e2; color: #1a5c3a; }
+  .status-partial .comp-right-status-badge { background: #fde8c0; color: #7a4a00; }
+  .status-misaligned .comp-right-status-badge { background: #fdd8d4; color: #7a1a1a; }
+  .comp-right-urgency {
+    font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 2px 8px; border-radius: 3px; margin-left: 6px;
+  }
+  .status-aligned .comp-right-urgency { background: #edfaf4; color: #27ae60; }
+  .status-partial .comp-right-urgency { background: #fff3d6; color: #e67e22; }
+  .status-misaligned .comp-right-urgency { display: none; }
+  .comp-right-body { padding: 14px 16px; border-top: 1px solid #e2e6ea; }
+  .comp-right-definition {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 12px; color: var(--gray-mid); line-height: 1.65;
+    background: #f7f9fc; border-radius: 6px; padding: 10px 12px; margin-bottom: 10px;
+  }
+  .comp-right-definition-icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+  .comp-right-narrative { font-size: 13px; line-height: 1.8; color: var(--gray-dark); }
+  .comp-right-narrative.aligned-narrative { color: var(--gray-mid); font-style: italic; }
+  .comp-right-flag {
+    margin-top: 10px; padding: 10px 12px; background: #fff5f5;
+    border-left: 3px solid var(--danger); border-radius: 0 6px 6px 0;
+  }
+  .comp-right-flag-title { font-size: 11px; font-weight: 700; color: var(--danger); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .comp-right-flag-body { font-size: 12px; color: #7a2020; line-height: 1.65; }
+
+  /* Closing section */
+  .comp-closing-section { background: var(--navy); border-radius: 10px; padding: 32px; margin-bottom: 18px; }
+  .comp-closing-status-wrap { text-align: center; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.15); }
+  .comp-closing-eyebrow { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--amber); margin-bottom: 10px; }
+  .comp-closing-badge { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; color: white; margin-bottom: 12px; }
+  .comp-closing-meaning { font-size: 13px; color: rgba(255,255,255,0.78); line-height: 1.75; max-width: 560px; margin: 0 auto; }
+  .comp-closing-disclaimer { font-size: 11px; color: rgba(255,255,255,0.45); line-height: 1.65; text-align: center; margin-bottom: 24px; padding: 0 20px; }
+  .comp-closing-ctas { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 600px) { .comp-closing-ctas { grid-template-columns: 1fr; } }
+  .comp-cta-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 20px; }
+  .comp-cta-icon { font-size: 22px; margin-bottom: 8px; }
+  .comp-cta-title { font-size: 14px; font-weight: 700; color: white; margin-bottom: 8px; line-height: 1.3; }
+  .comp-cta-body { font-size: 12.5px; color: rgba(255,255,255,0.65); line-height: 1.7; margin-bottom: 16px; }
+  .comp-cta-btn { width: 100%; padding: 10px 16px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; border: none; transition: all 0.2s; }
+  .comp-cta-btn-amber { background: var(--amber); color: var(--navy); }
+  .comp-cta-btn-amber:hover { background: var(--amber-light); }
+  .comp-cta-btn-ghost { background: transparent; color: white; border: 1.5px solid rgba(255,255,255,0.4); }
+  .comp-cta-btn-ghost:hover { border-color: white; background: rgba(255,255,255,0.08); }
+
+  /* Integrity note */
+  .comp-integrity-note {
+    font-size: 11.5px; color: var(--gray-mid); line-height: 1.65;
+    padding: 12px 16px; background: #f7f9fc; border-radius: 6px;
+    border-left: 3px solid #c8d2de; margin-top: 14px;
+  }
+  .comp-exec-paragraph { font-size: 13.5px; line-height: 1.85; color: var(--gray-dark); margin-bottom: 14px; }
+  .comp-report-sections { display: none; }
+  body.tier-full .comp-report-sections { display: block; }
+
 </style>
 </head>
 <body>
@@ -1306,18 +1420,18 @@
 
     <div class="action-bar" id="action-bar">
       <!-- FULL ONLY: print/PDF button — hidden in preview -->
-      <button class="btn-secondary full-only" id="btn-print" type="button">🖨 Print / Save as PDF</button>
+      <button class="btn-secondary full-only" id="btn-print" onclick="downloadReport()">🖨 Print / Save as PDF</button>
       <!-- Always visible -->
-      <button class="btn-secondary" id="btn-email-report" type="button">✉ Email This Report</button>
-      <button class="btn-secondary" id="btn-reset" type="button">↩ Start New Assessment</button>
+      <button class="btn-secondary" onclick="emailReport()">✉ Email This Report</button>
+      <button class="btn-secondary" onclick="resetTool()">↩ Start New Assessment</button>
     </div>
 
     <!-- Report Header -->
     <div class="report-header" id="report-header">
       <div class="report-header-left">
-        <div class="report-title">C.A.R.E. Clinical Sequencing Auditor™</div>
-        <div class="report-label">Clinical Sequencing Profile™</div>
-        <div class="report-framework-line">A Structural Evaluation Under the 7 Rights of Injury Management™ Framework</div>
+        <div class="report-title" id="report-title-text">C.A.R.E. Clinical Sequencing Auditor™</div>
+        <div class="report-label" id="report-label-text">Clinical Sequencing Profile™</div>
+        <div class="report-framework-line" id="report-sublabel-text">A Structural Evaluation Under the 7 Rights of Injury Management™ Framework</div>
         <div class="report-meta" id="report-meta"></div>
       </div>
       <div class="report-header-right">
@@ -1404,7 +1518,7 @@
       <div class="preview-gate-eyebrow">Preview Report — Full Access Required</div>
       <div class="preview-gate-title">Unlock Your Full Forensic Alignment Report</div>
       <p class="preview-gate-body">Your preview includes overall status, right-by-right status badges, and driver summaries. The full report includes detailed question-level breakdown, complete clinical interpretation, full flag explanations, and a printable professional PDF.</p>
-      <button class="btn-unlock" id="btn-unlock" type="button">🔓 Unlock Full Sequencing Alignment Report</button>
+      <button class="btn-unlock" onclick="initiateStripeCheckout()">🔓 Unlock Full Sequencing Alignment Report</button>
     </div>
 
     <!-- ════════════════════════════════════════════════════
@@ -1422,7 +1536,14 @@
     ═══════════════════════════════════════════════════════ -->
     <div class="comp-report-sections" id="comp-report-sections">
 
-      <!-- §1 Governance Basis -->
+      <!-- COMP HEADER BAND -->
+      <div class="comp-header-band" id="comp-header-band">
+        <div class="comp-header-eyebrow">Comprehensive Forensic Alignment Report</div>
+        <div class="comp-header-title" id="comp-header-status-title">—</div>
+        <div class="comp-header-sub" id="comp-header-status-sub"></div>
+      </div>
+
+      <!-- §1 Governance Alignment Basis -->
       <div class="comp-section" id="comp-governance-opening">
         <div class="comp-section-title">Governance Alignment Basis</div>
         <p>This report provides a structured evaluation of injury care sequencing alignment against recognized clinical governance principles reflected in state treatment guidelines, evidence-based care progression standards, utilization review documentation expectations, and medical necessity progression criteria.</p>
@@ -1432,50 +1553,66 @@
           <li>Utilization review documentation standards</li>
           <li>Medical necessity progression criteria</li>
         </ul>
-        <p>This evaluation operationalizes these governance principles through a structured sequencing alignment model.</p>
-        <p>For clarity and structural consistency, these governance principles are operationalized through the C.A.R.E. Clinical Sequencing Auditor™ model, incorporating the 7 Rights of Injury Management™ as measurable sequencing domains.</p>
+        <p>This evaluation operationalizes these governance principles through a structured sequencing alignment model. For clarity and structural consistency, these governance principles are operationalized through the C.A.R.E. Clinical Sequencing Auditor™ model, incorporating the 7 Rights of Injury Management™ as measurable sequencing domains.</p>
       </div>
 
       <!-- §2 Structural Alignment Determination -->
       <div class="comp-section" id="comp-determination">
         <div class="comp-section-title">Structural Alignment Determination</div>
-        <div class="comp-determination-grid" id="comp-determination-grid">
-          <!-- populated by renderComprehensiveSections() -->
-        </div>
+        <div id="comp-determination-grid"></div>
         <div id="comp-provider-override-block" style="display:none;">
           <div class="comp-provider-override">
-            <div class="comp-provider-override-title">Provider Authority Override Rule Applied</div>
+            <div class="comp-provider-override-title">⚡ Provider Authority Override Rule Applied</div>
             <p>Provider authority governs sequencing integrity. Without appropriate diagnostic and prescriptive authority directing treatment progression, structural misalignment exists regardless of alignment in secondary domains.</p>
           </div>
         </div>
       </div>
 
-      <!-- §3 Executive Clinical Interpretation -->
-      <div class="comp-section" id="comp-exec-interpretation">
-        <div class="comp-section-title">Executive Clinical Interpretation</div>
-        <div id="comp-exec-interp-body">
-          <!-- populated by renderComprehensiveSections() -->
-        </div>
-        <div class="comp-integrity-note">
-          This interpretation reflects structural alignment at the time of assessment based on input data provided. It does not constitute legal advice, clinical direction, or a substitute for independent medical or legal review.
-        </div>
-      </div>
-
-      <!-- §4 Primary Drivers -->
+      <!-- §3 Primary Drivers (RAG) -->
       <div class="comp-section" id="comp-drivers">
         <div class="comp-section-title">Primary Drivers of Alignment or Misalignment</div>
-        <ul class="comp-driver-list" id="comp-driver-list">
-          <!-- populated by renderComprehensiveSections() -->
-        </ul>
+        <p class="comp-section-intro">The following structural deficiencies were identified based on your responses. Color indicates both status and urgency.</p>
+        <div id="comp-driver-list"></div>
       </div>
 
-      <!-- §5 Recommended Record Actions -->
+      <!-- §4 Recommended Record Actions (RAG) -->
       <div class="comp-section" id="comp-actions">
         <div class="comp-section-title">Recommended Record Actions</div>
-        <p style="font-size:12.5px;color:var(--gray-mid);margin-bottom:14px;">The following are structured clinical documentation actions. These are not legal recommendations.</p>
-        <ul class="comp-action-list" id="comp-action-list">
-          <!-- populated by renderComprehensiveSections() -->
-        </ul>
+        <p class="comp-section-intro">The following are structured clinical documentation actions in priority order. These are not legal recommendations.</p>
+        <div id="comp-action-list"></div>
+      </div>
+
+      <!-- §5 Right-by-Right Clinical Analysis -->
+      <div class="comp-section" id="comp-right-analysis">
+        <div class="comp-section-title">Right-by-Right Clinical Analysis</div>
+        <p class="comp-section-intro">Each domain is evaluated against recognized sequencing governance standards. Aligned domains are shown for completeness.</p>
+        <div id="comp-rights-rows"></div>
+      </div>
+
+      <!-- §6 Closing Status + CTAs -->
+      <div class="comp-closing-section" id="comp-closing">
+        <div class="comp-closing-status-wrap">
+          <div class="comp-closing-eyebrow">Overall Structural Determination</div>
+          <div class="comp-closing-badge" id="comp-closing-badge">—</div>
+          <p class="comp-closing-meaning" id="comp-closing-meaning"></p>
+        </div>
+        <div class="comp-closing-disclaimer">
+          This report reflects structural alignment at the time of assessment based solely on input data provided. It does not constitute legal advice, clinical direction, or a substitute for independent medical or legal review.
+        </div>
+        <div class="comp-closing-ctas">
+          <div class="comp-cta-card comp-cta-primary">
+            <div class="comp-cta-icon">📋</div>
+            <div class="comp-cta-title">Request a Clinical Sequencing Strategy Briefing</div>
+            <p class="comp-cta-body">A member of our clinical leadership team will review your audit results and provide a structured briefing on corrective documentation pathways and clinical oversight options.</p>
+            <button class="comp-cta-btn comp-cta-btn-amber" onclick="document.getElementById('briefing-form-wrap').scrollIntoView({behavior:'smooth',block:'start'})">Request Strategy Briefing →</button>
+          </div>
+          <div class="comp-cta-card comp-cta-secondary">
+            <div class="comp-cta-icon">🏥</div>
+            <div class="comp-cta-title">Learn About Reconcile C.A.R.E.</div>
+            <p class="comp-cta-body">Reconcile C.A.R.E. provides structured RN clinical oversight that aligns providers, reinforces evidence-based standards, and ensures documentation supports medical necessity and case integrity.</p>
+            <button class="comp-cta-btn comp-cta-btn-ghost" onclick="window.open('https://reconcilecare.com','_blank')">Visit Reconcile C.A.R.E. →</button>
+          </div>
+        </div>
       </div>
 
     </div><!-- /comp-report-sections -->
@@ -1486,13 +1623,12 @@
       <h3 id="cta-headline">Institutional Clinical Oversight for Injury Litigation Firms</h3>
       <p id="cta-body">Reconcile C.A.R.E. provides structured RN clinical oversight that aligns providers, reinforces evidence-based standards, and ensures documentation supports both medical necessity and litigation strategy.</p>
       <div class="cta-buttons">
-        <button class="btn-amber" id="btn-briefing" type="button">Request a Clinical Sequencing Strategy Briefing</button>
-        <button class="btn-ghost" id="btn-learn-more" type="button">Learn About Reconcile C.A.R.E.</button>
+        <button class="btn-ghost" onclick="window.open('https://reconcilecare.com','_blank')">Learn About Reconcile C.A.R.E.</button>
       </div>
     </div>
 
     <!-- Briefing Request Form -->
-    <div class="briefing-form-wrap" id="briefing-form-wrap" style="display:none;">
+    <div class="briefing-form-wrap" id="briefing-form-wrap">
       <div class="briefing-form-header">
         <div class="briefing-eyebrow">Clinical Sequencing Strategy Briefing Request</div>
         <div class="briefing-title">Tell Us About Your Practice</div>
@@ -1535,14 +1671,13 @@
 
         <div class="briefing-field">
           <label class="briefing-acknowledge-check">
-            <input type="checkbox" id="briefing-checkbox">
+            <input type="checkbox" id="briefing-checkbox" onchange="toggleBriefingCheckbox()">
             <span>I understand this briefing is a strategic discussion and not legal advice.</span>
           </label>
         </div>
 
         <div class="briefing-submit-row">
-          <button class="btn-primary" id="briefing-submit-btn" type="button" disabled style="opacity:0.45; cursor:not-allowed;">Submit Briefing Request →</button>
-          <button class="briefing-cancel" id="briefing-cancel-btn" type="button">Cancel</button>
+          <button class="btn-primary" id="briefing-submit-btn" onclick="submitBriefing()" disabled style="opacity:0.45; cursor:not-allowed;">Submit Briefing Request →</button>
         </div>
 
       </div>
@@ -1559,7 +1694,7 @@
         <p>We appreciate your commitment to disciplined injury management.</p>
       </div>
       <p class="confirm-sub">In the meantime, download or print your Structural Alignment Summary above for reference.</p>
-      <button class="briefing-dismiss-btn" id="briefing-dismiss-btn" type="button">↑ Return to Summary</button>
+      <button class="briefing-dismiss-btn" onclick="dismissBriefingConfirm()">↑ Return to Summary</button>
     </div>
 
   </div><!-- /results -->
@@ -1625,13 +1760,8 @@ function submitLead() {
 
   userInfo = { fname, lname, firm, email };
 
-  const landing = document.getElementById('landingSection');
-  const audit = document.getElementById('auditSection');
-  if (landing) landing.style.display = 'none';
-  if (audit) {
-    audit.style.display = 'block';
-    audit.scrollIntoView({ behavior: 'smooth' });
-  }
+  document.getElementById('lead-section').style.display = 'none';
+  document.getElementById('before-you-begin').style.display = 'block';
   buildAccordion();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -1656,8 +1786,7 @@ function showFieldError(id) {
 }
 
 function startAudit() {
-  const audit = document.getElementById('auditSection');
-  if (audit) audit.style.display = 'none';
+  document.getElementById('before-you-begin').style.display = 'none';
   document.getElementById('instruction-banner').style.display = 'block';
   document.getElementById('checker-section').style.display = 'block';
   document.getElementById('progress-wrap').style.display = 'block';
@@ -2275,16 +2404,10 @@ function showResults() {
   //    In the results section, flag summaries appear inside breakdown rows (full only).
 
   // ── Detailed Question-Level Breakdown ─────────────────────────────────────
-  //    PREVIEW: hidden — breakdown-section is display:none
-  //    FULL: rendered fully
+  //    PREVIEW: hidden
+  //    FULL: hidden — replaced by Right-by-Right Clinical Analysis in comp-report-sections
   const breakdownSection = document.getElementById('breakdown-section');
-  if (accessTier === 'full') {
-    breakdownSection.style.display = 'block';
-    renderDetailedBreakdown(rightStatuses);
-    renderComprehensiveSections(rightStatuses, overallKey, overall);
-  } else {
-    breakdownSection.style.display = 'none';
-  }
+  if (breakdownSection) breakdownSection.style.display = 'none';
 
   // ── CTA (always shown, outcome-specific) ──────────────────────────────────
   document.getElementById('cta-headline').textContent = overall.ctaHeadline;
@@ -2300,6 +2423,25 @@ function showResults() {
   //    FULL only — body tier class drives CSS display
   document.body.classList.remove('tier-preview', 'tier-full');
   document.body.classList.add(accessTier === 'full' ? 'tier-full' : 'tier-preview');
+
+  // ── Report header — tier-aware title and label ────────────────────────────
+  const titleEl    = document.getElementById('report-title-text');
+  const labelEl    = document.getElementById('report-label-text');
+  const sublabelEl = document.getElementById('report-sublabel-text');
+  if (accessTier === 'full') {
+    if (titleEl)    titleEl.textContent    = 'C.A.R.E. Clinical Sequencing Auditor\u2122';
+    if (labelEl)    labelEl.textContent    = 'Comprehensive Forensic Alignment Report (Full)';
+    if (sublabelEl) sublabelEl.textContent = 'Structural Alignment Determination';
+  } else {
+    if (titleEl)    titleEl.textContent    = 'C.A.R.E. Clinical Sequencing Auditor\u2122';
+    if (labelEl)    labelEl.textContent    = 'Preliminary Preview Report (Free)';
+    if (sublabelEl) sublabelEl.textContent = 'Structural Alignment Summary';
+  }
+
+  // ── Comprehensive sections (full only) ────────────────────────────────────
+  if (accessTier === 'full') {
+    renderComprehensiveSections(rightStatuses, overallKey, overall);
+  }
 
   // ── Switch views ──────────────────────────────────────────────────────────
   document.getElementById('checker-section').style.display = 'none';
@@ -2362,113 +2504,255 @@ function renderDetailedBreakdown(rightStatuses) {
 
 // ─────────────────────────────────────────────────────────────────────────────
 // RENDER COMPREHENSIVE SECTIONS (FULL ONLY)
-// Populates: §2 Determination, §3 Executive Interpretation,
-//            §4 Primary Drivers, §5 Recommended Record Actions
+// Architecture: Header Band → Governance → Determination → Drivers (RAG) →
+//               Actions (RAG) → Right-by-Right Analysis → Closing + CTAs
+// Does NOT alter scoring logic, thresholds, or RIGHTS data.
 // ─────────────────────────────────────────────────────────────────────────────
 function renderComprehensiveSections(rightStatuses, overallKey, overall) {
-  const isR1Misaligned = (overallKey === 'misaligned-r1');
-  const isR1Partial    = (overallKey === 'partial-r1');
-  const isAligned      = (overallKey === 'aligned');
-  const isPartial      = (overallKey === 'partial');
-  const isMisaligned   = (overallKey === 'misaligned');
 
-  const grid = document.getElementById('comp-determination-grid');
-  if (grid) {
+  const isR1Misaligned = overallKey === 'misaligned-r1';
+  const isR1Partial    = overallKey === 'partial-r1';
+  const isAligned      = overallKey === 'aligned';
+
+  // ── HEADER BAND ────────────────────────────────────────────────────────────
+  const headerTitle = document.getElementById('comp-header-status-title');
+  const headerSub   = document.getElementById('comp-header-status-sub');
+  if (headerTitle) {
+    headerTitle.textContent = overall.icon + ' ' + overall.label;
+    headerTitle.style.color = overall.border;
+  }
+  if (headerSub) {
+    const subMap = {
+      aligned:        'The evaluated case structure demonstrates alignment across all 7 governance domains.',
+      partial:        'Structural elements are present with identifiable documentation gaps requiring correction.',
+      'partial-r1':   'Provider Authority is uncertain — governing domain requires priority clarification.',
+      misaligned:     'One or more structural domains are misaligned with recognized injury management standards.',
+      'misaligned-r1':'Provider Authority misalignment governs overall structural determination.'
+    };
+    headerSub.textContent = subMap[overallKey] || '';
+  }
+
+  // ── §2 STRUCTURAL ALIGNMENT DETERMINATION ─────────────────────────────────
+  const detGrid = document.getElementById('comp-determination-grid');
+  if (detGrid) {
+    const misalignedRights = rightStatuses.map((s,i) => s==='misaligned' ? RIGHTS[i].title : null).filter(Boolean);
+    const partialRights    = rightStatuses.map((s,i) => s==='partial'    ? RIGHTS[i].title : null).filter(Boolean);
+
     let primaryDriver = '';
     if (isR1Misaligned) primaryDriver = 'Provider Authority Deficiency — Right #1 (Governing Domain)';
     else if (isR1Partial) primaryDriver = 'Provider Authority Uncertainty — Right #1 (Governing Domain)';
-    else {
-      const misalignedRights = rightStatuses.map((s, i) => s === 'misaligned' ? `Right #${i+1} — ${RIGHTS[i].title}` : null).filter(Boolean);
-      const partialRights = rightStatuses.map((s, i) => s === 'partial' ? `Right #${i+1} — ${RIGHTS[i].title}` : null).filter(Boolean);
-      primaryDriver = misalignedRights[0] || partialRights[0] || 'No structural deficiencies identified across evaluated domains.';
-    }
-    const secondaryDrivers = [];
-    rightStatuses.forEach((s, i) => {
-      if ((s === 'misaligned' || s === 'partial') && (isR1Misaligned || isR1Partial ? i > 0 : true) && secondaryDrivers.length < 3)
-        secondaryDrivers.push(`Right #${i+1} — ${RIGHTS[i].title} (${s === 'misaligned' ? 'Misaligned' : 'Partially Aligned'})`);
+    else if (misalignedRights.length) primaryDriver = 'Right #' + (rightStatuses.indexOf('misaligned')+1) + ' — ' + misalignedRights[0];
+    else if (partialRights.length)    primaryDriver = 'Right #' + (rightStatuses.indexOf('partial')+1)    + ' — ' + partialRights[0];
+    else primaryDriver = 'No structural deficiencies identified.';
+
+    const secondaries = [];
+    rightStatuses.forEach((s,i) => {
+      if (secondaries.length >= 4) return;
+      const isPrimary = (!isR1Misaligned && !isR1Partial && (
+        (s==='misaligned' && misalignedRights[0]===RIGHTS[i].title) ||
+        (s==='partial'    && partialRights[0]===RIGHTS[i].title && !misalignedRights.length)
+      )) || ((isR1Misaligned||isR1Partial) && i===0);
+      if (!isPrimary && (s==='misaligned'||s==='partial')) {
+        const lbl = s==='misaligned' ? '🔴 Misaligned' : '🟡 Partially Aligned';
+        secondaries.push('Right #'+(i+1)+' — '+RIGHTS[i].title+' ('+lbl+')');
+      }
     });
-    if (secondaryDrivers.length && !isR1Misaligned && !isR1Partial) secondaryDrivers.shift();
-    let secondaryHTML = secondaryDrivers.length ? `<div class="comp-det-row" style="margin-top:10px;"><div class="comp-det-label">Secondary Drivers</div><div class="comp-det-value" style="font-size:13px;"><ul style="margin:0;padding-left:16px;line-height:1.9;">${secondaryDrivers.map(d => `<li>${d}</li>`).join('')}</ul></div></div>` : '';
-    grid.innerHTML = `
-      <div class="comp-det-row"><div class="comp-det-label">Overall Structural Status</div><div class="comp-det-value"><span style="font-weight:800;color:${overall.color};background:${overall.bg};border:1.5px solid ${overall.border};padding:3px 12px;border-radius:20px;font-size:13px;">${overall.icon} ${overall.label}</span></div></div>
-      <div class="comp-det-row"><div class="comp-det-label">Primary Governance Driver</div><div class="comp-det-value" style="font-weight:600;color:${overall.color};">${primaryDriver}</div></div>
-      ${secondaryHTML}
-      <div class="comp-det-row"><div class="comp-det-label">Rights Evaluated</div><div class="comp-det-value">7 of 7</div></div>
-      <div class="comp-det-row"><div class="comp-det-label">Governance Framework</div><div class="comp-det-value">7 Rights of Injury Management™ — C.A.R.E. Clinical Sequencing Auditor™</div></div>`;
+
+    const primaryColor = isAligned ? '#1a5c3a' : (isR1Misaligned||overallKey==='misaligned') ? '#7a1a1a' : '#7a4a00';
+
+    let secHTML = secondaries.length
+      ? '<ul class="comp-det-secondary-list">' + secondaries.map(s=>'<li>'+s+'</li>').join('') + '</ul>'
+      : '<span style="color:var(--gray-mid);font-size:12px;">None</span>';
+
+    detGrid.innerHTML = `
+      <table class="comp-det-table">
+        <tr>
+          <td>Overall Status</td>
+          <td><span style="font-weight:800;color:${overall.color};background:${overall.bg};border:1.5px solid ${overall.border};padding:3px 12px;border-radius:20px;font-size:13px;">${overall.icon} ${overall.label}</span></td>
+        </tr>
+        <tr>
+          <td>Primary Governance Driver</td>
+          <td style="color:${primaryColor};font-weight:700;">${primaryDriver}</td>
+        </tr>
+        <tr>
+          <td>Secondary Drivers</td>
+          <td>${secHTML}</td>
+        </tr>
+        <tr>
+          <td>Rights Evaluated</td>
+          <td>7 of 7</td>
+        </tr>
+        <tr>
+          <td>Framework</td>
+          <td>7 Rights of Injury Management™ — C.A.R.E. Clinical Sequencing Auditor™</td>
+        </tr>
+      </table>`;
   }
+
   const overrideBlock = document.getElementById('comp-provider-override-block');
   if (overrideBlock) overrideBlock.style.display = isR1Misaligned ? 'block' : 'none';
 
-  const execBody = document.getElementById('comp-exec-interp-body');
-  if (execBody) {
-    const rightInterpretations = {
-      0: { misaligned: 'Right #1 — Right Provider Authority is structurally misaligned. The primary managing provider does not hold independent diagnostic, prescriptive, and referral authority commensurate with the documented injury complexity.', partial: 'Right #1 — Right Provider Authority is partially confirmed. One or more provider authority criteria are uncertain or unconfirmed in the record.' },
-      1: { misaligned: 'Right #2 — Right Diagnosis is structurally misaligned. One or more injuries lack a specific, named clinical diagnosis supported by documented objective findings.', partial: 'Right #2 — Right Diagnosis is partially confirmed. Diagnostic specificity is uncertain or unconfirmed for one or more documented injuries.' },
-      2: { misaligned: 'Right #3 — Right Clinical Alignment is structurally misaligned. The treatment plan demonstrates objective inconsistency with applicable evidence-based guideline recommendations.', partial: 'Right #3 — Right Clinical Alignment is partially confirmed. Guideline identification or treatment consistency is uncertain for one or more domains.' },
-      3: { misaligned: 'Right #4 — Right Diagnostics is structurally misaligned. Diagnostic testing does not consistently demonstrate guideline-based clinical rationale, or test results are not explicitly integrated into subsequent treatment decisions.', partial: 'Right #4 — Right Diagnostics is partially confirmed. One or more diagnostic studies lack documented clinical rationale or integration.' },
-      4: { misaligned: 'Right #5 — Right Treatment is structurally misaligned. The treatment plan is not consistently diagnosis-specific, contains unexplained gaps, or fails to reflect appropriate guideline escalation.', partial: 'Right #5 — Right Treatment is partially confirmed. Treatment consistency, escalation, or diagnosis-specificity is uncertain.' },
-      5: { misaligned: 'Right #6 — Right Timing is structurally misaligned. The treatment timeline demonstrates clinically significant delays without documented explanation.', partial: 'Right #6 — Right Timing is partially confirmed. One or more timing criteria are uncertain or unconfirmed.' },
-      6: { misaligned: 'Right #7 — Right Documentation is structurally misaligned. One or more required documentation elements are absent or inadequate.', partial: 'Right #7 — Right Documentation is partially confirmed. One or more documentation elements are uncertain or incomplete.' }
-    };
-    let overallPara = '';
-    if (isAligned) overallPara = 'This case demonstrates structural alignment across all seven evaluated governance domains. Provider authority is appropriately established, diagnoses are specific and objectively supported, and documentation supports medical necessity at each level of care.';
-    else if (isR1Misaligned) overallPara = 'This case presents a governing structural deficiency in Provider Authority (Right #1). When the primary managing provider lacks appropriate scope of practice for the documented injury complexity, the evidentiary integrity of downstream domains is structurally compromised.';
-    else if (isR1Partial) overallPara = 'This case presents uncertainty in Provider Authority (Right #1). Until provider scope and authority are clarified, the structural reliability of downstream domain findings cannot be fully established.';
-    else if (isMisaligned) { const misCount = rightStatuses.filter(s => s === 'misaligned').length; const partCount = rightStatuses.filter(s => s === 'partial').length; overallPara = `This case demonstrates structural misalignment across ${misCount} evaluated domain${misCount !== 1 ? 's' : ''}${partCount > 0 ? ` and partial alignment in ${partCount} additional domain${partCount !== 1 ? 's' : ''}` : ''}. Corrective documentation action is indicated prior to any formal review or case resolution activity.`; }
-    else { const partCount = rightStatuses.filter(s => s === 'partial').length; overallPara = `This case demonstrates partial structural alignment with ${partCount} domain${partCount !== 1 ? 's' : ''} reflecting documentation gaps or unconfirmed criteria. Addressing these gaps before utilization review or case resolution will strengthen defensibility.`; }
-    let rightParas = '';
-    rightStatuses.forEach((st, i) => {
-      if (st === 'aligned') return;
-      const interp = rightInterpretations[i];
-      if (!interp) return;
-      const text = st === 'misaligned' ? interp.misaligned : interp.partial;
-      const color = st === 'misaligned' ? 'var(--danger)' : 'var(--amber)';
-      const bg = st === 'misaligned' ? '#fdf5f5' : '#fffbf0';
-      const border = st === 'misaligned' ? 'var(--danger)' : 'var(--amber)';
-      rightParas += `<div style="margin-bottom:14px;padding:14px 16px;background:${bg};border-left:3px solid ${border};border-radius:0 6px 6px 0;"><p class="comp-exec-paragraph" style="margin:0;color:var(--gray-dark);">${text}</p></div>`;
-    });
-    execBody.innerHTML = `<p class="comp-exec-paragraph">${overallPara}</p>${rightParas}`;
-  }
-
-  const driverList = document.getElementById('comp-driver-list');
-  if (driverList) {
+  // ── §3 PRIMARY DRIVERS (RAG CARDS) ────────────────────────────────────────
+  const driverWrap = document.getElementById('comp-driver-list');
+  if (driverWrap) {
     const driverMap = [
-      { ri: 0, qi: 3, val: 'no', cls: 'driver-misaligned', text: 'Primary treating provider lacks independent diagnostic, prescriptive, and referral authority.' },
-      { ri: 0, qi: 3, val: 'not-sure', cls: 'driver-partial', text: 'Provider authority scope is unconfirmed relative to the documented injury complexity.' },
-      { ri: 1, qi: 0, val: 'no', cls: 'driver-misaligned', text: 'Diagnoses are documented using global symptom descriptors rather than specific named clinical diagnoses.' },
-      { ri: 2, qi: 1, val: 'no', cls: 'driver-misaligned', text: 'Treatment plan is not objectively consistent with applicable evidence-based guideline recommendations.' },
-      { ri: 6, qi: 0, val: 'no', cls: 'driver-misaligned', text: 'Visit documentation does not contain individualized subjective complaints, objective findings, and functional limitations.' }
+      { ri:0, qi:3, val:'no',       rag:'rag-red',   badge:'Urgent',      label:'Provider Authority — Governing Deficiency',
+        text:'Primary treating provider lacks independent diagnostic, prescriptive, and referral authority. A chiropractor is serving as the sole managing provider for a complex injury presentation. This is a governing deficiency — it compromises all downstream documentation credibility.' },
+      { ri:0, qi:3, val:'not-sure', rag:'rag-amber',  badge:'Clarify',    label:'Provider Authority — Scope Unconfirmed',
+        text:'Provider scope of practice relative to the documented injury complexity is unconfirmed. Independent diagnostic and prescriptive authority has not been established in the record.' },
+      { ri:0, qi:0, val:'no',       rag:'rag-red',   badge:'Urgent',      label:'Specialist Identification — Absent',
+        text:'No injury-specific specialist has been identified or documented. Each documented injury requires a corresponding specialist whose scope matches the confirmed diagnosis.' },
+      { ri:0, qi:1, val:'no',       rag:'rag-red',   badge:'Urgent',      label:'Specialist Evaluation — Not Completed',
+        text:'A specialist referral was issued but the evaluation has not been completed or documented. A referral alone does not satisfy provider authority requirements.' },
+      { ri:1, qi:0, val:'no',       rag:'rag-red',   badge:'Urgent',      label:'Diagnostic Specificity — Absent',
+        text:'Injuries are documented using global symptom descriptors (pain, injury, trauma) rather than specific named clinical diagnoses supported by objective findings.' },
+      { ri:1, qi:1, val:'no',       rag:'rag-red',   badge:'Urgent',      label:'Diagnosis-Mechanism Alignment — Absent',
+        text:'Documented diagnoses are not supported by objective clinical findings consistent with the mechanism of injury.' },
+      { ri:1, qi:3, val:'no',       rag:'rag-amber',  badge:'Correct',    label:'Diagnostic Conflict — Unreconciled',
+        text:'Inconsistent or conflicting diagnoses are present across treating providers without documented reconciliation.' },
+      { ri:2, qi:1, val:'no',       rag:'rag-amber',  badge:'Correct',    label:'Guideline Alignment — Treatment Inconsistent',
+        text:'The treatment plan is not objectively consistent with applicable evidence-based guideline recommendations for type, frequency, duration, or sequencing.' },
+      { ri:2, qi:2, val:'no',       rag:'rag-amber',  badge:'Correct',    label:'Guideline Deviation — Undocumented',
+        text:'Treatment deviates from guideline recommendations without documented clinical justification in the record.' },
+      { ri:3, qi:1, val:'no',       rag:'rag-amber',  badge:'Correct',    label:'Diagnostic Rationale — Absent',
+        text:'Diagnostic studies were ordered without documented clinical rationale tied to guideline indications for the confirmed diagnosis.' },
+      { ri:3, qi:2, val:'no',       rag:'rag-amber',  badge:'Correct',    label:'Diagnostic Integration — Gap Identified',
+        text:'Test results are present in the record but not explicitly referenced in subsequent treatment notes or plan updates.' },
+      { ri:4, qi:0, val:'no',       rag:'rag-amber',  badge:'Correct',    label:'Treatment Plan — Not Diagnosis-Specific',
+        text:'A generic or non-diagnosis-specific treatment plan is documented rather than a plan tied to each confirmed diagnosis.' },
+      { ri:4, qi:2, val:'no',       rag:'rag-amber',  badge:'Correct',    label:'Treatment Continuity — Gaps Present',
+        text:'Unexplained gaps in care attendance or treatment completion are present in the record without documented clinical explanation.' },
+      { ri:4, qi:3, val:'no',       rag:'rag-amber',  badge:'Correct',    label:'Care Escalation — Not Documented',
+        text:'Care escalation has not occurred despite absence of measurable progress — inconsistent with guideline-expected progression criteria.' },
+      { ri:5, qi:0, val:'no',       rag:'rag-amber',  badge:'Correct',    label:'Treatment Initiation — Delayed',
+        text:'Initial treatment was not initiated within a clinically appropriate timeframe. The delay is undocumented and unexplained in the record.' },
+      { ri:5, qi:2, val:'no',       rag:'rag-amber',  badge:'Correct',    label:'Treatment Frequency — Guideline Inconsistent',
+        text:'Treatment frequency is inconsistent with applicable guideline recommendations — record reflects undertreatment or overtreatment relative to the standard.' },
+      { ri:6, qi:0, val:'no',       rag:'rag-red',   badge:'Urgent',      label:'Documentation Pattern — Copied-Forward',
+        text:'Visit documentation does not contain individualized findings. Copied-forward or templated notes are present — a systematic pattern that affects the entire treatment record.' },
+      { ri:6, qi:1, val:'no',       rag:'rag-red',   badge:'Urgent',      label:'Functional Limitations — Not Documented',
+        text:'Functional limitation documentation is absent. Visit notes record pain scores without describing specific deficits in activities of daily living.' },
+      { ri:6, qi:2, val:'no',       rag:'rag-amber',  badge:'Correct',    label:'Medical Necessity Language — Absent',
+        text:'Medical necessity is not documented in relation to the diagnosis and level of care rendered.' },
+      { ri:6, qi:3, val:'no',       rag:'rag-amber',  badge:'Correct',    label:'Causation Documentation — Absent',
+        text:'No treating physician narrative or causation letter linking the documented injury to the accident mechanism has been requested or obtained.' },
+      { ri:1, qi:0, val:'not-sure', rag:'rag-amber',  badge:'Clarify',    label:'Diagnostic Specificity — Uncertain',
+        text:'It is unconfirmed whether each documented injury carries a named clinical diagnosis supported by objective findings.' },
+      { ri:2, qi:0, val:'not-sure', rag:'rag-amber',  badge:'Clarify',    label:'Guideline Identification — Unconfirmed',
+        text:'An applicable evidence-based guideline has not been confirmed for one or more documented diagnoses.' },
+      { ri:5, qi:3, val:'not-sure', rag:'rag-amber',  badge:'Clarify',    label:'MMI Status — Not Addressed',
+        text:'Maximum Medical Improvement (MMI) has not been confirmed as monitored or documented relative to case progression.' },
+      { ri:6, qi:2, val:'not-sure', rag:'rag-amber',  badge:'Clarify',    label:'Medical Necessity — Uncertain',
+        text:'It is unconfirmed whether documentation supports the level of care rendered in relation to the applicable guideline.' },
     ];
     const drivers = [];
-    driverMap.forEach(({ ri, qi, val, cls, text }) => {
+    driverMap.forEach(d => {
       if (drivers.length >= 5) return;
-      const a = answers[ri] && answers[ri][qi];
-      if (a && a.value === val) drivers.push({ cls, text });
+      const a = answers[d.ri] && answers[d.ri][d.qi];
+      if (a && a.value === d.val) drivers.push(d);
     });
-    driverList.innerHTML = drivers.length === 0
-      ? `<li class="driver-aligned" style="border-left-color:#27ae60;background:#f2fbf6;">No structural deficiencies identified. All evaluated domains demonstrate alignment with recognized clinical governance standards.</li>`
-      : drivers.map(d => `<li class="${d.cls}">${d.text}</li>`).join('');
+    if (!drivers.length) {
+      driverWrap.innerHTML = `<div class="comp-driver-card rag-green"><div class="comp-driver-badge">Aligned</div><div class="comp-driver-content"><div class="comp-driver-label">No Structural Deficiencies Identified</div><div class="comp-driver-text">All evaluated domains demonstrate alignment with recognized clinical governance standards.</div></div></div>`;
+    } else {
+      driverWrap.innerHTML = drivers.map(d => `<div class="comp-driver-card ${d.rag}"><div class="comp-driver-badge">${d.badge}</div><div class="comp-driver-content"><div class="comp-driver-label">${d.label}</div><div class="comp-driver-text">${d.text}</div></div></div>`).join('');
+    }
   }
 
-  const actionList = document.getElementById('comp-action-list');
-  if (actionList) {
+  // ── §4 RECOMMENDED RECORD ACTIONS (PRIORITY CARDS) ────────────────────────
+  const actionWrap = document.getElementById('comp-action-list');
+  if (actionWrap) {
     const actionMap = [
-      { ri: 0, qi: 3, vals: ['no'], priority: 1, text: 'Establish or confirm a licensed physician (MD or DO) with independent diagnostic, prescriptive, and referral authority as the primary managing provider.' },
-      { ri: 0, qi: 3, vals: ['not-sure'], priority: 1, text: "Clarify and document the primary treating provider's scope of practice relative to the documented injury complexity." },
-      { ri: 1, qi: 0, vals: ['no', 'not-sure'], priority: 1, text: 'Obtain diagnostic clarification from treating providers to replace global symptom descriptors with specific named clinical diagnoses.' },
-      { ri: 6, qi: 0, vals: ['no', 'not-sure'], priority: 1, text: 'Address copied-forward or templated documentation through prospective individualized documentation.' },
-      { ri: 6, qi: 2, vals: ['no', 'not-sure'], priority: 2, text: 'Obtain treating provider documentation that explicitly states medical necessity for the level of care rendered at each encounter.' }
+      { ri:0, qi:3, vals:['no'],        priority:1, priorityLabel:'Critical — Immediate Action',
+        text:'Establish or confirm a licensed physician (MD or DO) with independent diagnostic, prescriptive, and referral authority as the primary managing provider. Obtain physician documentation establishing clinical oversight, updated diagnosis, and a physician-directed treatment plan consistent with the injury presentation.' },
+      { ri:0, qi:3, vals:['not-sure'],  priority:1, priorityLabel:'Critical — Immediate Clarification',
+        text:'Clarify and document the primary treating provider\'s scope of practice relative to the documented injury complexity. Confirm whether independent diagnostic, prescriptive, and referral authority is present and reflected in the record.' },
+      { ri:0, qi:0, vals:['no','not-sure'], priority:2, priorityLabel:'High Priority',
+        text:'Obtain and document injury-specific specialist referral. Each documented injury should have a corresponding specialist whose scope matches the diagnosis. Confirm the referral and evaluation are documented in the record.' },
+      { ri:0, qi:1, vals:['no'],        priority:2, priorityLabel:'High Priority',
+        text:'Confirm completion of specialist evaluation and obtain documentation of the specialist encounter. A referral alone does not satisfy provider authority requirements — the evaluation itself must be documented.' },
+      { ri:1, qi:0, vals:['no','not-sure'], priority:1, priorityLabel:'Critical — Immediate Action',
+        text:'Obtain diagnostic clarification to replace global symptom descriptors with specific named clinical diagnoses. Each injury should carry a diagnosis consistent with the mechanism of injury and supported by documented objective clinical findings.' },
+      { ri:1, qi:3, vals:['no','not-sure'], priority:2, priorityLabel:'High Priority',
+        text:'Reconcile conflicting or inconsistent diagnoses across treating providers. Obtain updated documentation from the primary treating physician establishing a consistent diagnosis narrative across the record.' },
+      { ri:2, qi:1, vals:['no','not-sure'], priority:2, priorityLabel:'High Priority',
+        text:'Align the treatment plan with applicable evidence-based guideline recommendations for each confirmed diagnosis. Document the specific guideline framework applied and ensure care type, frequency, duration, and sequencing reflect that framework.' },
+      { ri:2, qi:2, vals:['no'],        priority:2, priorityLabel:'High Priority',
+        text:'Obtain and document clinical justification from the treating provider for any treatment that deviates from guideline recommendations. Undocumented deviations create utilization review exposure.' },
+      { ri:3, qi:1, vals:['no','not-sure'], priority:3, priorityLabel:'Standard Correction',
+        text:'Obtain amended documentation establishing clinical rationale for each ordered diagnostic study, tied to the confirmed diagnosis and applicable guideline indications.' },
+      { ri:3, qi:2, vals:['no','not-sure'], priority:3, priorityLabel:'Standard Correction',
+        text:'Obtain updated treatment notes that explicitly reference diagnostic test results and document how findings directed subsequent treatment decisions.' },
+      { ri:4, qi:2, vals:['no','not-sure'], priority:2, priorityLabel:'High Priority',
+        text:'Address and document the basis for any gaps in treatment attendance. Obtain treating provider documentation that acknowledges the gap and addresses the clinical implications for ongoing treatment planning.' },
+      { ri:4, qi:3, vals:['no','not-sure'], priority:2, priorityLabel:'High Priority',
+        text:'Obtain treating provider documentation establishing the basis for the current level of care and whether escalation criteria have been considered. Document either escalation or rationale for continued conservative management.' },
+      { ri:5, qi:0, vals:['no','not-sure'], priority:3, priorityLabel:'Standard Correction',
+        text:'Obtain treating provider documentation that addresses the delay in initial treatment initiation. Documented contextual explanation within the record is necessary to prevent the gap from serving as grounds for utilization review challenge.' },
+      { ri:6, qi:0, vals:['no','not-sure'], priority:1, priorityLabel:'Critical — Prospective Correction',
+        text:'Address copied-forward or templated documentation through prospective individualized documentation. Obtain amended notes where clinically appropriate. Note: retroactive correction of documentation patterns has significant limitations — prospective correction is the primary available remediation pathway.' },
+      { ri:6, qi:1, vals:['no','not-sure'], priority:2, priorityLabel:'High Priority',
+        text:'Obtain treating provider documentation describing specific functional limitations — including activities of daily living, work capacity, and measurable functional deficits — at each visit. Pain scores alone do not satisfy functional limitation documentation standards.' },
+      { ri:6, qi:2, vals:['no','not-sure'], priority:2, priorityLabel:'High Priority',
+        text:'Obtain treating provider documentation that explicitly states medical necessity for the level of care rendered at each encounter, referencing the applicable diagnosis and evidence-based guideline standard.' },
+      { ri:6, qi:3, vals:['no','not-sure'], priority:2, priorityLabel:'High Priority',
+        text:'Request a treating physician narrative or causation letter linking each documented injury to the accident mechanism with specificity, referencing the mechanism of injury, the documented diagnosis, and the clinical basis for causation attribution.' },
     ];
     const seen = new Set();
     const actions = [];
-    actionMap.forEach(({ ri, qi, vals, priority, text }) => {
+    actionMap.forEach(({ ri, qi, vals, priority, priorityLabel, text }) => {
       const a = answers[ri] && answers[ri][qi];
-      if (a && vals.includes(a.value) && !seen.has(text)) { seen.add(text); actions.push({ priority, text }); }
+      if (a && vals.includes(a.value) && !seen.has(text)) { seen.add(text); actions.push({ priority, priorityLabel, text }); }
     });
-    actions.sort((a, b) => a.priority - b.priority);
-    actionList.innerHTML = actions.length === 0
-      ? `<li class="comp-action-item" style="border-left-color:#27ae60;background:#f2fbf6;">No corrective documentation actions identified. The structural record demonstrates alignment across all evaluated domains.</li>`
-      : actions.slice(0, 7).map((a, i) => `<li class="comp-action-item"><span class="comp-action-num">${i + 1}</span><span class="comp-action-text">${a.text}</span></li>`).join('');
+    actions.sort((a,b) => a.priority - b.priority);
+    if (!actions.length) {
+      actionWrap.innerHTML = `<div class="comp-action-card priority-3" style="border-left-color:#27ae60;background:#f2fbf6;"><div class="comp-action-num" style="background:#27ae60;">✓</div><div class="comp-action-content"><div class="comp-action-priority-label" style="color:#1a5c3a;">No Corrective Actions Required</div><div class="comp-action-text">The structural record demonstrates alignment with governance standards across all evaluated domains.</div></div></div>`;
+    } else {
+      actionWrap.innerHTML = actions.slice(0,7).map((a,i) => `<div class="comp-action-card priority-${a.priority}"><div class="comp-action-num">${i+1}</div><div class="comp-action-content"><div class="comp-action-priority-label">${a.priorityLabel}</div><div class="comp-action-text">${a.text}</div></div></div>`).join('');
+    }
+  }
+
+  // ── §5 RIGHT-BY-RIGHT CLINICAL ANALYSIS ───────────────────────────────────
+  const rightsWrap = document.getElementById('comp-rights-rows');
+  if (rightsWrap) {
+    const narratives = {
+      0: { misaligned: 'Provider Authority is structurally misaligned. The primary managing provider does not hold independent diagnostic, prescriptive, and referral authority commensurate with the documented injury complexity. This is the governing domain — misalignment here compromises the evidentiary foundation of all downstream clinical decisions.', partial: 'Provider Authority is partially confirmed. One or more authority criteria are uncertain in the record. Because this domain governs downstream sequencing integrity, unresolved uncertainty requires priority clarification before reliance on other domain findings is warranted.', aligned: 'Provider Authority criteria are confirmed. The managing provider holds appropriate scope relative to the documented injury complexity.' },
+      1: { misaligned: 'Right Diagnosis is structurally misaligned. One or more injuries lack a specific named clinical diagnosis supported by documented objective findings. Global descriptors are present without diagnostic specificity, creating vulnerability to medical necessity challenge at every subsequent level of care.', partial: 'Right Diagnosis is partially confirmed. Diagnostic specificity is uncertain for one or more injuries. Reliance on provisional or carried-forward diagnoses without specialist clarification introduces utilization review vulnerability.', aligned: 'Right Diagnosis criteria are confirmed. Each documented injury carries a specific diagnosis supported by objective findings and reconciled across treating providers.' },
+      2: { misaligned: 'Right Clinical Alignment is structurally misaligned. The treatment plan demonstrates objective inconsistency with applicable evidence-based guideline recommendations. Deviations are not accompanied by documented clinical rationale, exposing the record to payer scrutiny and utilization review challenge.', partial: 'Right Clinical Alignment is partially confirmed. Guideline identification or treatment consistency is uncertain. Where treatment deviates without documented justification, the record is exposed to retrospective scrutiny.', aligned: 'Right Clinical Alignment is confirmed. The treatment plan reflects evidence-based guideline consistency with documented justification for any identified variances.' },
+      3: { misaligned: 'Right Diagnostics is structurally misaligned. Diagnostic testing does not consistently demonstrate guideline-based clinical rationale, or test results are not integrated into subsequent treatment decisions. The absence of a traceable connection between findings, testing, results, and treatment direction creates a structural documentation gap.', partial: 'Right Diagnostics is partially confirmed. One or more studies lack documented clinical rationale, or results are not clearly referenced in treatment planning. Incomplete integration creates utilization review exposure.', aligned: 'Right Diagnostics criteria are confirmed. Testing is guideline-consistent, clinically justified, and demonstrably incorporated into the evolving treatment plan.' },
+      4: { misaligned: 'Right Treatment is structurally misaligned. The treatment plan is not consistently diagnosis-specific, contains unexplained gaps, fails to reflect appropriate escalation, or demonstrates inconsistent follow-through. Each condition independently creates medical necessity challenge exposure.', partial: 'Right Treatment is partially confirmed. Treatment consistency, escalation, or diagnosis-specificity is uncertain. Unexplained care gaps or failure to escalate when conservative management fails represent identifiable documentation vulnerabilities.', aligned: 'Right Treatment criteria are confirmed. The treatment plan is diagnosis-specific, guideline-aligned, consistently followed, and appropriately escalated when indicated.' },
+      5: { misaligned: 'Right Timing is structurally misaligned. The treatment timeline demonstrates clinically significant delays — in initial care initiation, specialist referral completion, or treatment frequency — without documented explanation. Timing gaps without documentation are independent grounds for utilization review challenge.', partial: 'Right Timing is partially confirmed. One or more timing criteria are uncertain. Unexplained delays carry utilization review exposure even when individual encounters are otherwise documented appropriately.', aligned: 'Right Timing criteria are confirmed. The treatment timeline demonstrates prompt initiation, timely referral completion, guideline-consistent frequency, and documented MMI monitoring.' },
+      6: { misaligned: 'Right Documentation is structurally misaligned. One or more required elements — individualized findings, functional limitations, medical necessity rationale, or causation documentation — are absent or inadequate. Documentation deficiencies affect the entire treatment record, not only individual encounters, as systematic patterns are evaluated holistically in Peer Review and utilization review.', partial: 'Right Documentation is partially confirmed. One or more documentation elements are uncertain or incomplete. Incomplete functional limitation documentation, absent medical necessity language, or missing causation narratives create structural vulnerability across the record.', aligned: 'Right Documentation criteria are confirmed. Each visit note contains individualized findings, functional limitation descriptions, medical necessity rationale, and appropriate causation documentation where required.' }
+    };
+    const urgencyMap = { misaligned: 'Immediate Action', partial: 'Correction Needed', aligned: 'No Action Required' };
+    rightsWrap.innerHTML = '';
+    RIGHTS.forEach((right, ri) => {
+      const st  = rightStatuses[ri];
+      const cls = 'status-' + st;
+      const nar = narratives[ri][st] || '';
+      const urgency = urgencyMap[st];
+      const statusLabel = st === 'aligned' ? '✓ Aligned' : st === 'partial' ? '◑ Partially Aligned' : '✗ Misaligned';
+      let flagHTML = '';
+      right.questions.forEach((q, qi) => {
+        if (!q.flag) return;
+        const a = answers[ri][qi];
+        const triggers = Array.isArray(q.flag.triggerOn) ? q.flag.triggerOn : [q.flag.triggerOn];
+        if (a && triggers.includes(a.value)) {
+          flagHTML += `<div class="comp-right-flag"><div class="comp-right-flag-title">${q.flag.title}</div><div class="comp-right-flag-body">${q.flag.body}</div></div>`;
+        }
+      });
+      rightsWrap.innerHTML += `<div class="comp-right-block ${cls}"><div class="comp-right-header"><div class="comp-right-header-left"><div class="comp-right-rag-dot"></div><div><div class="comp-right-number">Right #${ri+1}</div><div class="comp-right-title">${right.title}</div></div></div><div style="display:flex;align-items:center;gap:6px;flex-shrink:0;"><span class="comp-right-status-badge">${statusLabel}</span><span class="comp-right-urgency">${urgency}</span></div></div><div class="comp-right-body"><div class="comp-right-definition"><span class="comp-right-definition-icon">ℹ</span><span>${right.desc}</span></div><div class="comp-right-narrative ${st==='aligned' ? 'aligned-narrative' : ''}">${nar}</div>${flagHTML}</div></div>`;
+    });
+  }
+
+  // ── §6 CLOSING STATUS + CTAs ───────────────────────────────────────────────
+  const closingBadge   = document.getElementById('comp-closing-badge');
+  const closingMeaning = document.getElementById('comp-closing-meaning');
+  if (closingBadge) {
+    closingBadge.textContent = overall.icon + ' ' + overall.label;
+    closingBadge.style.color = overall.border;
+  }
+  if (closingMeaning) {
+    closingMeaning.textContent = overall.interpretation || 'Provider Authority misalignment is the governing structural finding for this assessment. Corrective structural review is recommended before any formal case review or settlement activity.';
   }
 }
 
@@ -2476,10 +2760,10 @@ function renderComprehensiveSections(rightStatuses, overallKey, overall) {
 // UNLOCK FULL ACCESS
 // ─────────────────────────────────────────────────────────────────────────────
 // SUPABASE EDGE FUNCTION ENDPOINTS
-// Uses create-checkout-session and verify-session. No secrets in frontend.
+// Replace <PROJECT_REF> with your actual Supabase project reference.
+// Found in: Supabase Dashboard → Project Settings → General → Reference ID
 // ─────────────────────────────────────────────────────────────────────────────
-const SUPABASE_FUNCTION_BASE = 'https://zmjxyspizdqhrtdcgkwk.supabase.co/functions/v1';
-const SUPABASE_ANON_KEY      = ''; // Set project anon key if Edge Functions require auth
+const SUPABASE_FUNCTION_BASE = 'https://zmjxyspizdqhrtdcgkwk.supabase.co/functions/v1'; // updated
 
 // Return URL: where Stripe redirects after checkout (this same page).
 // Stripe appends ?session_id={CHECKOUT_SESSION_ID} on success,
@@ -2548,42 +2832,29 @@ async function initiateStripeCheckout() {
   try {
     if (btn) {
       btn.disabled = true;
-      btn.innerHTML = '⏳ Redirecting to checkout…';
+      btn.innerHTML = '⏳ Preparing secure checkout…';
     }
 
     // Save answers and userInfo before leaving the page
     saveAuditState();
 
     const auditRef = getOrCreateAuditRef();
-    // success_url/cancel_url so Stripe (or Edge Function) can redirect back to this app
-    const successUrl = RETURN_URL + '?session_id={CHECKOUT_SESSION_ID}';
-    const cancelUrl = RETURN_URL + '?canceled=1';
 
-    const headers = {
-      'Content-Type': 'application/json',
-      ...(SUPABASE_ANON_KEY && { apikey: SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY })
-    };
     const response = await fetch(`${SUPABASE_FUNCTION_BASE}/create-checkout-session`, {
       method: 'POST',
-      headers,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        audit_ref:   auditRef,
-        return_url:  RETURN_URL,
-        success_url: successUrl,
-        cancel_url:  cancelUrl
+        audit_ref:  auditRef,
+        return_url: RETURN_URL
       })
     });
 
     if (!response.ok) {
       const err = await response.json().catch(() => ({}));
-      throw new Error(err.error || err.message || 'Server error — please try again.');
+      throw new Error(err.error || 'Server error — please try again.');
     }
 
-    const data = await response.json().catch(() => ({}));
-    const url = data.url ?? data.session?.url;
-    if (!url || typeof url !== 'string') {
-      throw new Error('Checkout session did not return a redirect URL. Please try again.');
-    }
+    const { url } = await response.json();
     window.location.href = url;
 
   } catch (err) {
@@ -2591,7 +2862,7 @@ async function initiateStripeCheckout() {
       btn.disabled = false;
       btn.innerHTML = originalHTML;
     }
-    showPaymentMessage('error', err.message || 'Could not start checkout. Please try again.');
+    showPaymentMessage('info', 'Payment is not yet enabled in this preview environment.');
   }
 }
 
@@ -2702,7 +2973,7 @@ function hideVerificationLoader() {
   if (loader) loader.style.display = 'none';
 }
 
-// type: 'error' | 'canceled'
+// type: 'error' | 'canceled' | 'info'
 function showPaymentMessage(type, message) {
   let banner = document.getElementById('payment-msg-banner');
   if (!banner) {
@@ -2717,14 +2988,19 @@ function showPaymentMessage(type, message) {
     }
   }
 
-  const isError = type === 'error';
-  banner.style.background = isError ? '#fdf0f0' : '#fffbf0';
-  banner.style.border      = isError ? '2px solid #c0392b' : '2px solid #f0a030';
+  const isError  = type === 'error';
+  const isInfo   = type === 'info';
+  banner.style.background = isError ? '#fdf0f0' : isInfo ? '#f0f4fa' : '#fffbf0';
+  banner.style.border     = isError ? '2px solid #c0392b' : isInfo ? '2px solid #1e4a8c' : '2px solid #f0a030';
+  const iconChar  = isError ? '⚠' : isInfo ? 'ℹ' : 'ℹ';
+  const headColor = isError ? '#7a1a1a' : isInfo ? '#0d2240' : '#7a4a00';
+  const bodyColor = isError ? '#5a1a1a' : isInfo ? '#163566' : '#5a3a00';
+  const headText  = isError ? 'Payment Issue' : isInfo ? 'Preview Mode' : 'Checkout Canceled';
   banner.innerHTML = `
-    <span style="font-size:20px;flex-shrink:0;margin-top:1px;">${isError ? '⚠' : 'ℹ'}</span>
+    <span style="font-size:20px;flex-shrink:0;margin-top:1px;">${iconChar}</span>
     <div>
-      <div style="font-weight:700;color:${isError ? '#7a1a1a' : '#7a4a00'};font-size:13.5px;margin-bottom:3px;">${isError ? 'Payment Issue' : 'Checkout Canceled'}</div>
-      <div style="font-size:13px;color:${isError ? '#5a1a1a' : '#5a3a00'};line-height:1.65;">${message}</div>
+      <div style="font-weight:700;color:${headColor};font-size:13.5px;margin-bottom:3px;">${headText}</div>
+      <div style="font-size:13px;color:${bodyColor};line-height:1.65;">${message}</div>
     </div>`;
   banner.style.display = 'flex';
   setTimeout(() => banner.scrollIntoView({ behavior: 'smooth', block: 'center' }), 200);
@@ -2794,11 +3070,10 @@ function resetTool() {
   });
   document.getElementById('results-section').style.display = 'none';
   document.getElementById('checker-section').style.display = 'none';
+  document.getElementById('submit-wrap').style.display = 'none';
   document.getElementById('instruction-banner').style.display = 'none';
-  const audit = document.getElementById('auditSection');
-  if (audit) audit.style.display = 'none';
-  const landing = document.getElementById('landingSection');
-  if (landing) landing.style.display = 'block';
+  document.getElementById('before-you-begin').style.display = 'none';
+  document.getElementById('lead-section').style.display = 'block';
   document.getElementById('progress-wrap').style.display = 'none';
   document.getElementById('float-ref-btn').style.display = 'none';
   const rp = document.getElementById('ref-panel');
