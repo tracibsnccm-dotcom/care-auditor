@@ -2376,10 +2376,16 @@ async function handleStripeReturn() {
     showVerificationLoader();
 
     try {
-      const response = await fetch(
-        `${VERIFY_SESSION_BASE}/verify-session?session_id=${encodeURIComponent(sessionId)}`,
-        { headers: SUPABASE_ANON_KEY ? { apikey: SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY } : {} }
-      );
+      const auditRef = getOrCreateAuditRef();
+      const verifyHeaders = {
+        'Content-Type': 'application/json',
+        ...(SUPABASE_ANON_KEY && { apikey: SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY })
+      };
+      const response = await fetch(`${VERIFY_SESSION_BASE}/verify-session`, {
+        method: 'POST',
+        headers: verifyHeaders,
+        body: JSON.stringify({ audit_ref: auditRef })
+      });
 
       // Always clean URL before acting on result
       window.history.replaceState({}, '', RETURN_URL);
