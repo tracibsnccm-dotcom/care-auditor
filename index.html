@@ -3206,7 +3206,6 @@ async function initiateStripeCheckout() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        audit_ref:  auditRef,
         audit_ref:   auditRef,
         success_url: RETURN_URL + '?session_id={CHECKOUT_SESSION_ID}',
         cancel_url:  RETURN_URL + '?canceled=1'
@@ -3270,7 +3269,7 @@ async function handleStripeReturn() {
         `${SUPABASE_FUNCTION_BASE}/verify-session`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ session_id: sessionId })
+          body: JSON.stringify({ session_id: sessionId, audit_ref: getOrCreateAuditRef() })
         }
       );
 
