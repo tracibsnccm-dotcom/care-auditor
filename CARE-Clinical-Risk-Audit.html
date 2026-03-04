@@ -2311,7 +2311,7 @@ async function initiateStripeCheckout() {
       headers,
       body: JSON.stringify({
         audit_ref:   auditRef,
-        return_url:  RETURN_URL,
+        success_url: RETURN_URL,
         success_url: successUrl,
         cancel_url:  cancelUrl
       })
