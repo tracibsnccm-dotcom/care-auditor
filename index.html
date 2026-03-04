@@ -3207,8 +3207,8 @@ async function initiateStripeCheckout() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         audit_ref:  auditRef,
-        success_url: RETURN_URL + '?session_id={CHECKOUT_SESSION_ID}',
-        cancel_url:  RETURN_URL + '?canceled=1'
+        audit_ref:  auditRef,
+        return_url: RETURN_URL
       })
     });
 
@@ -3266,11 +3266,7 @@ async function handleStripeReturn() {
 
     try {
       const response = await fetch(
-        `${SUPABASE_FUNCTION_BASE}/verify-session`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ session_id: sessionId, audit_ref: getOrCreateAuditRef() })
-        }
+        `${SUPABASE_FUNCTION_BASE}/verify-session?session_id=${encodeURIComponent(sessionId)}`
       );
 
       // Always clean URL before acting on result
