@@ -1538,8 +1538,8 @@
     </div>
 
     <!-- Summary Page Title -->
-    <div class="summary-page-title">7 Rights Structural Alignment Summary</div>
-    <div class="summary-page-micro">Assessment reflects structural conditions at time of review.</div>
+    <div class="summary-page-title" id="summary-page-title">7 Rights Structural Alignment Summary</div>
+    <div class="summary-page-micro" id="summary-page-micro">Assessment reflects structural conditions at time of review.</div>
 
     <!-- Overall Status Hero -->
     <div class="overall-status-card" id="overall-status-card">
@@ -1586,7 +1586,7 @@
     </div>
 
     <!-- Status Legend -->
-    <div class="status-legend-card">
+    <div class="status-legend-card" id="status-legend-card">
       <div class="status-legend-title">Status Key</div>
       <div class="status-legend-items">
         <div class="status-legend-item"><span class="status-dot aligned">✓</span> <strong>Aligned</strong> — all criteria confirmed in the record</div>
@@ -3190,11 +3190,12 @@ function unlockFullAccess() {
     showResults();
   }
 
-  // Directly hide ALL preliminary elements regardless of showResults logic
   const hideIds = [
     'report-header', 'overall-status-card', 'interruption-notice',
     'r1-advisory', 'interpretation-card', 'right-by-right-overview',
-    'preview-gate-banner', 'breakdown-section', 'lead-section'
+    'preview-gate-banner', 'breakdown-section', 'lead-section',
+    'right-status-rows', 'breakdown-rows', 'action-bar',
+    'status-legend-card', 'summary-page-title', 'summary-page-micro'
   ];
   hideIds.forEach(id => {
     const el = document.getElementById(id);
@@ -3203,7 +3204,9 @@ function unlockFullAccess() {
   document.querySelectorAll(
     '.status-overview-card, .status-legend-card, .integrity-statement, ' +
     '.summary-page-title, .summary-page-micro, .summary-page, ' +
-    '.cta-card, .results-breakdown, .preview-gate-banner, .interpretation-card'
+    '.cta-card, .results-breakdown, .preview-gate-banner, .interpretation-card, ' +
+    '.report-header, .overall-status-card, .interruption-notice, ' +
+    '.r1-advisory, .status-overview-card, .briefing-form-wrap'
   ).forEach(el => el.style.display = 'none');
 
   setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
