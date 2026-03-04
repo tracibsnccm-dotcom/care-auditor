@@ -1222,6 +1222,95 @@
   .comp-cta-btn-ghost:hover { border-color: white; background: rgba(255,255,255,0.08); }
 
   /* Integrity note */
+  /* Section divider */
+  .comp-section-divider {
+    height: 2px;
+    background: linear-gradient(90deg, var(--navy) 0%, var(--amber) 50%, transparent 100%);
+    margin: 4px 0;
+    border-radius: 2px;
+    opacity: 0.25;
+  }
+
+  /* Header timestamp */
+  .comp-header-timestamp {
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    margin-top: 8px;
+    letter-spacing: 0.05em;
+  }
+
+  /* Executive summary box */
+  .comp-exec-box {
+    background: #f7f9fc;
+    border: 1.5px solid #e2e6ea;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 14px;
+  }
+  .comp-exec-box-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--gray-dark);
+    padding: 6px 0;
+    border-bottom: 1px solid #edf0f3;
+    line-height: 1.6;
+  }
+  .comp-exec-box-row:last-child { border-bottom: none; }
+  .comp-exec-box-label {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--gray-mid);
+    min-width: 160px; flex-shrink: 0; padding-top: 2px;
+  }
+  .comp-exec-box-value { font-weight: 600; color: var(--navy); }
+  .comp-exec-risks { margin-top: 14px; }
+  .comp-exec-risk-item {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 12.5px; color: var(--gray-dark); line-height: 1.65;
+    padding: 5px 0; border-bottom: 1px solid #f0f2f5;
+  }
+  .comp-exec-risk-item:last-child { border-bottom: none; }
+  .comp-exec-risk-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--danger); flex-shrink: 0; margin-top: 6px;
+  }
+  .comp-exec-risk-dot.amber { background: var(--amber); }
+
+  /* Clinical Exposure Summary */
+  .comp-exposure-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 12px 16px; margin-bottom: 8px;
+    background: #fdf8f8; border-left: 4px solid #c0392b;
+    border-radius: 0 7px 7px 0;
+  }
+  .comp-exposure-item.amber { background: #fffbf0; border-left-color: #e67e22; }
+  .comp-exposure-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+  .comp-exposure-text { font-size: 13px; color: var(--gray-dark); line-height: 1.65; }
+  .comp-exposure-text strong { color: var(--navy); }
+
+  /* Clinical Risk Indicator */
+  .comp-risk-indicator {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 3px 10px; border-radius: 3px;
+    margin-left: 8px;
+  }
+  .comp-risk-high    { background: #fdd8d4; color: #7a1a1a; }
+  .comp-risk-moderate { background: #fde8c0; color: #7a4a00; }
+  .comp-risk-limited  { background: #edfaf4; color: #1a5c3a; }
+
+  /* Report footer */
+  .comp-report-footer {
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    line-height: 1.8;
+  }
+
   .comp-integrity-note {
     font-size: 11.5px; color: var(--gray-mid); line-height: 1.65;
     padding: 12px 16px; background: #f7f9fc; border-radius: 6px;
@@ -1531,25 +1620,21 @@
     ═══════════════════════════════════════════════════════ -->
     <div class="comp-report-sections" id="comp-report-sections">
 
-      <!-- COMP HEADER BAND -->
+      <!-- REPORT HEADER BAND -->
       <div class="comp-header-band" id="comp-header-band">
-        <div class="comp-header-eyebrow">Comprehensive Forensic Alignment Report</div>
+        <div class="comp-header-eyebrow">Forensic Clinical Sequencing Alignment Report</div>
         <div class="comp-header-title" id="comp-header-status-title">—</div>
         <div class="comp-header-sub" id="comp-header-status-sub"></div>
+        <div class="comp-header-timestamp" id="comp-header-timestamp"></div>
       </div>
 
-      <!-- §1 Governance Alignment Basis -->
-      <div class="comp-section" id="comp-governance-opening">
-        <div class="comp-section-title">Governance Alignment Basis</div>
-        <p>This report provides a structured evaluation of injury care sequencing alignment against recognized clinical governance principles reflected in state treatment guidelines, evidence-based care progression standards, utilization review documentation expectations, and medical necessity progression criteria.</p>
-        <ul class="comp-governance-list">
-          <li>State-level workers' compensation treatment guidelines</li>
-          <li>National evidence-based treatment frameworks (ODG, MCG, InterQual)</li>
-          <li>Utilization review documentation standards</li>
-          <li>Medical necessity progression criteria</li>
-        </ul>
-        <p>This evaluation operationalizes these governance principles through a structured sequencing alignment model. For clarity and structural consistency, these governance principles are operationalized through the C.A.R.E. Clinical Sequencing Auditor™ model, incorporating the 7 Rights of Injury Management™ as measurable sequencing domains.</p>
+      <!-- §1 Executive Summary -->
+      <div class="comp-section" id="comp-executive-summary">
+        <div class="comp-section-title">Executive Summary</div>
+        <div id="comp-exec-summary-body"></div>
       </div>
+
+      <div class="comp-section-divider"></div>
 
       <!-- §2 Structural Alignment Determination -->
       <div class="comp-section" id="comp-determination">
@@ -1563,28 +1648,51 @@
         </div>
       </div>
 
-      <!-- §3 Primary Drivers (RAG) -->
+      <div class="comp-section-divider"></div>
+
+      <!-- §3 Clinical Exposure Summary -->
+      <div class="comp-section" id="comp-exposure-summary">
+        <div class="comp-section-title">Clinical Exposure Summary</div>
+        <p class="comp-section-intro">Primary litigation vulnerabilities identified based on structural evaluation.</p>
+        <div id="comp-exposure-list"></div>
+      </div>
+
+      <div class="comp-section-divider"></div>
+
+      <!-- §4 Primary Structural Deficiencies -->
       <div class="comp-section" id="comp-drivers">
-        <div class="comp-section-title">Primary Drivers of Alignment or Misalignment</div>
+        <div class="comp-section-title">Primary Structural Deficiencies Identified</div>
         <p class="comp-section-intro">The following structural deficiencies were identified based on your responses. Color indicates both status and urgency.</p>
         <div id="comp-driver-list"></div>
       </div>
 
-      <!-- §4 Recommended Record Actions (RAG) -->
-      <div class="comp-section" id="comp-actions">
-        <div class="comp-section-title">Recommended Record Actions</div>
-        <p class="comp-section-intro">The following are structured clinical documentation actions in priority order. These are not legal recommendations.</p>
-        <div id="comp-action-list"></div>
-      </div>
+      <div class="comp-section-divider"></div>
 
-      <!-- §5 Right-by-Right Clinical Analysis -->
+      <!-- §5 Right-by-Right Clinical Analysis (with corrective actions embedded) -->
       <div class="comp-section" id="comp-right-analysis">
         <div class="comp-section-title">Right-by-Right Clinical Analysis</div>
-        <p class="comp-section-intro">Each domain is evaluated against recognized sequencing governance standards. Aligned domains are shown for completeness.</p>
+        <p class="comp-section-intro">Each domain is evaluated against recognized sequencing governance standards. Corrective actions are embedded within each misaligned or partially aligned domain.</p>
         <div id="comp-rights-rows"></div>
       </div>
 
-      <!-- §6 Closing Status + CTAs -->
+      <div class="comp-section-divider"></div>
+
+      <!-- §6 Governance Alignment Basis (methodology — moved to bottom) -->
+      <div class="comp-section" id="comp-governance-opening">
+        <div class="comp-section-title">Governance Alignment Basis</div>
+        <p>This report provides a structured evaluation of injury care sequencing alignment against recognized clinical governance principles reflected in state treatment guidelines, evidence-based care progression standards, utilization review documentation expectations, and medical necessity progression criteria.</p>
+        <ul class="comp-governance-list">
+          <li>State-level workers' compensation treatment guidelines</li>
+          <li>National evidence-based treatment frameworks (ODG, MCG, InterQual)</li>
+          <li>Utilization review documentation standards</li>
+          <li>Medical necessity progression criteria</li>
+        </ul>
+        <p>These governance principles are operationalized through the C.A.R.E. Clinical Sequencing Auditor™ model, incorporating the 7 Rights of Injury Management™ as measurable sequencing domains.</p>
+      </div>
+
+      <div class="comp-section-divider"></div>
+
+      <!-- §7 Closing Status + CTAs -->
       <div class="comp-closing-section" id="comp-closing">
         <div class="comp-closing-status-wrap">
           <div class="comp-closing-eyebrow">Overall Structural Determination</div>
@@ -1607,6 +1715,11 @@
             <p class="comp-cta-body">Reconcile C.A.R.E. provides structured RN clinical oversight that aligns providers, reinforces evidence-based standards, and ensures documentation supports medical necessity and case integrity.</p>
             <button class="comp-cta-btn comp-cta-btn-ghost" onclick="window.open('https://reconcilecare.com','_blank')">Visit Reconcile C.A.R.E. →</button>
           </div>
+        </div>
+        <!-- Report Footer -->
+        <div class="comp-report-footer">
+          Clinical Sequencing Profile™ generated by C.A.R.E. Clinical Sequencing Auditor™ &nbsp;|&nbsp; Framework: 7 Rights of Injury Management™<br>
+          Assessment reflects structural alignment based on information entered and does not constitute legal or clinical direction. &nbsp;|&nbsp; © 2026 Reconcile Care Management Services
         </div>
       </div>
 
@@ -2438,6 +2551,41 @@ function showResults() {
     renderComprehensiveSections(rightStatuses, overallKey, overall);
   }
 
+  // ── Hide/show preliminary summary based on tier ───────────────────────────
+  const prelimSections = [
+    'report-header', 'overall-status-card', 'interruption-notice',
+    'r1-advisory', 'interpretation-card'
+  ];
+  const statusOverviewCard = document.querySelector('.status-overview-card');
+  const statusLegendCard   = document.querySelector('.status-legend-card');
+  const integrityStatement = document.querySelector('.integrity-statement');
+  const summaryTitle       = document.querySelector('.summary-page-title');
+  const summaryMicro       = document.querySelector('.summary-page-micro');
+
+  if (accessTier === 'full') {
+    // Hide all preliminary summary elements in full tier
+    prelimSections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
+    if (statusOverviewCard) statusOverviewCard.style.display = 'none';
+    if (statusLegendCard)   statusLegendCard.style.display   = 'none';
+    if (integrityStatement) integrityStatement.style.display = 'none';
+    if (summaryTitle)       summaryTitle.style.display       = 'none';
+    if (summaryMicro)       summaryMicro.style.display       = 'none';
+  } else {
+    // Show preliminary summary elements in preview tier
+    prelimSections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = '';
+    });
+    if (statusOverviewCard) statusOverviewCard.style.display = '';
+    if (statusLegendCard)   statusLegendCard.style.display   = '';
+    if (integrityStatement) integrityStatement.style.display = '';
+    if (summaryTitle)       summaryTitle.style.display       = '';
+    if (summaryMicro)       summaryMicro.style.display       = '';
+  }
+
   // ── Switch views ──────────────────────────────────────────────────────────
   document.getElementById('checker-section').style.display = 'none';
   document.getElementById('submit-wrap').style.display = 'none';
@@ -2512,6 +2660,7 @@ function renderComprehensiveSections(rightStatuses, overallKey, overall) {
   // ── HEADER BAND ────────────────────────────────────────────────────────────
   const headerTitle = document.getElementById('comp-header-status-title');
   const headerSub   = document.getElementById('comp-header-status-sub');
+  const headerTs    = document.getElementById('comp-header-timestamp');
   if (headerTitle) {
     headerTitle.textContent = overall.icon + ' ' + overall.label;
     headerTitle.style.color = overall.border;
@@ -2525,6 +2674,55 @@ function renderComprehensiveSections(rightStatuses, overallKey, overall) {
       'misaligned-r1':'Provider Authority misalignment governs overall structural determination.'
     };
     headerSub.textContent = subMap[overallKey] || '';
+  }
+  if (headerTs) {
+    const now = new Date();
+    headerTs.textContent = 'Assessment Generated: ' + now.toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' }) + ' at ' + now.toLocaleTimeString('en-US', { hour:'2-digit', minute:'2-digit' });
+  }
+
+  // ── §1 EXECUTIVE SUMMARY ──────────────────────────────────────────────────
+  const execBody = document.getElementById('comp-exec-summary-body');
+  if (execBody) {
+    const misalignedRightsEx = rightStatuses.map((s,i) => s==='misaligned' ? 'Right #'+(i+1)+' — '+RIGHTS[i].title : null).filter(Boolean);
+    const partialRightsEx    = rightStatuses.map((s,i) => s==='partial'    ? 'Right #'+(i+1)+' — '+RIGHTS[i].title : null).filter(Boolean);
+    const allIssues = [...misalignedRightsEx, ...partialRightsEx];
+
+    const primaryIssue = isR1Misaligned ? 'Provider Authority Deficiency — Right #1'
+      : isR1Partial ? 'Provider Authority Uncertainty — Right #1'
+      : misalignedRightsEx.length ? misalignedRightsEx[0]
+      : partialRightsEx.length ? partialRightsEx[0]
+      : 'No structural deficiencies identified';
+
+    const riskItemsHTML = allIssues.length
+      ? allIssues.map((r,i) => `<div class="comp-exec-risk-item"><div class="comp-exec-risk-dot ${i < misalignedRightsEx.length ? '' : 'amber'}"></div><span>${r}</span></div>`).join('')
+      : `<div class="comp-exec-risk-item"><div class="comp-exec-risk-dot" style="background:#27ae60;"></div><span>No structural deficiencies identified across all 7 evaluated domains.</span></div>`;
+
+    const attorneyLine = userInfo.fname ? `${userInfo.fname} ${userInfo.lname} — ${userInfo.firm}` : 'Not provided';
+
+    execBody.innerHTML = `
+      <p style="font-size:13.5px;color:var(--gray-dark);line-height:1.8;margin-bottom:16px;">
+        This clinical sequencing review evaluated the structural alignment of the injury care record against recognized clinical governance standards, including state treatment guidelines, evidence-based care frameworks, and utilization review documentation expectations.
+      </p>
+      <div class="comp-exec-box">
+        <div class="comp-exec-box-row">
+          <span class="comp-exec-box-label">Submitted By</span>
+          <span class="comp-exec-box-value">${attorneyLine}</span>
+        </div>
+        <div class="comp-exec-box-row">
+          <span class="comp-exec-box-label">Overall Determination</span>
+          <span class="comp-exec-box-value" style="color:${overall.color};">${overall.icon} ${overall.label}</span>
+        </div>
+        <div class="comp-exec-box-row">
+          <span class="comp-exec-box-label">Primary Governance Issue</span>
+          <span class="comp-exec-box-value">${primaryIssue}</span>
+        </div>
+        <div class="comp-exec-box-row">
+          <span class="comp-exec-box-label">Rights Evaluated</span>
+          <span class="comp-exec-box-value">7 of 7</span>
+        </div>
+      </div>
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--amber);margin-bottom:8px;margin-top:16px;">Key Structural Risks Identified</div>
+      <div class="comp-exec-risks">${riskItemsHTML}</div>`;
   }
 
   // ── §2 STRUCTURAL ALIGNMENT DETERMINATION ─────────────────────────────────
@@ -2554,91 +2752,84 @@ function renderComprehensiveSections(rightStatuses, overallKey, overall) {
     });
 
     const primaryColor = isAligned ? '#1a5c3a' : (isR1Misaligned||overallKey==='misaligned') ? '#7a1a1a' : '#7a4a00';
-
     let secHTML = secondaries.length
       ? '<ul class="comp-det-secondary-list">' + secondaries.map(s=>'<li>'+s+'</li>').join('') + '</ul>'
       : '<span style="color:var(--gray-mid);font-size:12px;">None</span>';
 
     detGrid.innerHTML = `
       <table class="comp-det-table">
-        <tr>
-          <td>Overall Status</td>
-          <td><span style="font-weight:800;color:${overall.color};background:${overall.bg};border:1.5px solid ${overall.border};padding:3px 12px;border-radius:20px;font-size:13px;">${overall.icon} ${overall.label}</span></td>
-        </tr>
-        <tr>
-          <td>Primary Governance Driver</td>
-          <td style="color:${primaryColor};font-weight:700;">${primaryDriver}</td>
-        </tr>
-        <tr>
-          <td>Secondary Drivers</td>
-          <td>${secHTML}</td>
-        </tr>
-        <tr>
-          <td>Rights Evaluated</td>
-          <td>7 of 7</td>
-        </tr>
-        <tr>
-          <td>Framework</td>
-          <td>7 Rights of Injury Management™ — C.A.R.E. Clinical Sequencing Auditor™</td>
-        </tr>
+        <tr><td>Overall Status</td><td><span style="font-weight:800;color:${overall.color};background:${overall.bg};border:1.5px solid ${overall.border};padding:3px 12px;border-radius:20px;font-size:13px;">${overall.icon} ${overall.label}</span></td></tr>
+        <tr><td>Primary Governance Driver</td><td style="color:${primaryColor};font-weight:700;">${primaryDriver}</td></tr>
+        <tr><td>Secondary Drivers</td><td>${secHTML}</td></tr>
+        <tr><td>Rights Evaluated</td><td>7 of 7</td></tr>
+        <tr><td>Framework</td><td>7 Rights of Injury Management™ — C.A.R.E. Clinical Sequencing Auditor™</td></tr>
       </table>`;
   }
 
   const overrideBlock = document.getElementById('comp-provider-override-block');
   if (overrideBlock) overrideBlock.style.display = isR1Misaligned ? 'block' : 'none';
 
-  // ── §3 PRIMARY DRIVERS (RAG CARDS) ────────────────────────────────────────
+  // ── §3 CLINICAL EXPOSURE SUMMARY ──────────────────────────────────────────
+  const exposureWrap = document.getElementById('comp-exposure-list');
+  if (exposureWrap) {
+    const exposureMap = [
+      { ri:0, qi:3, vals:['no'],        amber:false, label:'Lack of physician-directed care', detail:'Primary treating provider lacks independent diagnostic and prescriptive authority. Chiropractor serving as sole managing provider for a complex injury presentation.' },
+      { ri:0, qi:0, vals:['no'],        amber:false, label:'Absence of injury-specific specialist evaluation', detail:'No specialist has been identified or seen for the documented injuries. Specialist evaluation is required for each confirmed diagnosis.' },
+      { ri:1, qi:0, vals:['no'],        amber:false, label:'Absence of specific diagnostic coding', detail:'Injuries are documented with global symptom descriptors rather than named clinical diagnoses supported by objective findings.' },
+      { ri:2, qi:1, vals:['no'],        amber:true,  label:'Guideline deviation without documentation', detail:'Treatment deviates from applicable evidence-based guideline recommendations without documented clinical justification.' },
+      { ri:3, qi:2, vals:['no'],        amber:true,  label:'Diagnostic results not integrated into treatment plan', detail:'Test results present in the record are not referenced in subsequent treatment decisions.' },
+      { ri:4, qi:2, vals:['no'],        amber:true,  label:'Unexplained treatment gaps', detail:'Gaps in care attendance or treatment completion are present without documented clinical explanation.' },
+      { ri:5, qi:0, vals:['no'],        amber:false, label:'Delayed treatment initiation', detail:'Care was not initiated within a clinically appropriate timeframe following injury, without documented explanation.' },
+      { ri:6, qi:0, vals:['no'],        amber:false, label:'Copied-forward documentation pattern', detail:'Visit notes do not contain individualized findings — a systematic pattern that affects the entire treatment record.' },
+      { ri:6, qi:3, vals:['no','not-sure'], amber:true, label:'Missing causation documentation', detail:'No treating physician narrative or causation letter has been obtained linking the documented injury to the accident mechanism.' },
+      { ri:0, qi:3, vals:['not-sure'],  amber:true,  label:'Provider scope unconfirmed', detail:'Independent diagnostic and prescriptive authority of the primary treating provider has not been confirmed in the record.' },
+      { ri:1, qi:0, vals:['not-sure'],  amber:true,  label:'Diagnostic specificity uncertain', detail:'It is unconfirmed whether each documented injury carries a named clinical diagnosis supported by objective findings.' },
+    ];
+
+    const items = exposureMap.filter(e => {
+      const a = answers[e.ri] && answers[e.ri][e.qi];
+      return a && e.vals.includes(a.value);
+    });
+
+    if (!items.length) {
+      exposureWrap.innerHTML = `<div class="comp-exposure-item" style="background:#f2fbf6;border-left-color:#27ae60;"><span class="comp-exposure-icon">✓</span><span class="comp-exposure-text"><strong>No primary litigation vulnerabilities identified.</strong> The structural record demonstrates alignment across evaluated domains.</span></div>`;
+    } else {
+      exposureWrap.innerHTML = items.map(e => `
+        <div class="comp-exposure-item ${e.amber ? 'amber' : ''}">
+          <span class="comp-exposure-icon">${e.amber ? '⚠' : '🔴'}</span>
+          <span class="comp-exposure-text"><strong>${e.label}</strong> — ${e.detail}</span>
+        </div>`).join('');
+    }
+  }
+
+  // ── §4 PRIMARY STRUCTURAL DEFICIENCIES (RAG CARDS) ────────────────────────
   const driverWrap = document.getElementById('comp-driver-list');
   if (driverWrap) {
     const driverMap = [
-      { ri:0, qi:3, val:'no',       rag:'rag-red',   badge:'Urgent',      label:'Provider Authority — Governing Deficiency',
-        text:'Primary treating provider lacks independent diagnostic, prescriptive, and referral authority. A chiropractor is serving as the sole managing provider for a complex injury presentation. This is a governing deficiency — it compromises all downstream documentation credibility.' },
-      { ri:0, qi:3, val:'not-sure', rag:'rag-amber',  badge:'Clarify',    label:'Provider Authority — Scope Unconfirmed',
-        text:'Provider scope of practice relative to the documented injury complexity is unconfirmed. Independent diagnostic and prescriptive authority has not been established in the record.' },
-      { ri:0, qi:0, val:'no',       rag:'rag-red',   badge:'Urgent',      label:'Specialist Identification — Absent',
-        text:'No injury-specific specialist has been identified or documented. Each documented injury requires a corresponding specialist whose scope matches the confirmed diagnosis.' },
-      { ri:0, qi:1, val:'no',       rag:'rag-red',   badge:'Urgent',      label:'Specialist Evaluation — Not Completed',
-        text:'A specialist referral was issued but the evaluation has not been completed or documented. A referral alone does not satisfy provider authority requirements.' },
-      { ri:1, qi:0, val:'no',       rag:'rag-red',   badge:'Urgent',      label:'Diagnostic Specificity — Absent',
-        text:'Injuries are documented using global symptom descriptors (pain, injury, trauma) rather than specific named clinical diagnoses supported by objective findings.' },
-      { ri:1, qi:1, val:'no',       rag:'rag-red',   badge:'Urgent',      label:'Diagnosis-Mechanism Alignment — Absent',
-        text:'Documented diagnoses are not supported by objective clinical findings consistent with the mechanism of injury.' },
-      { ri:1, qi:3, val:'no',       rag:'rag-amber',  badge:'Correct',    label:'Diagnostic Conflict — Unreconciled',
-        text:'Inconsistent or conflicting diagnoses are present across treating providers without documented reconciliation.' },
-      { ri:2, qi:1, val:'no',       rag:'rag-amber',  badge:'Correct',    label:'Guideline Alignment — Treatment Inconsistent',
-        text:'The treatment plan is not objectively consistent with applicable evidence-based guideline recommendations for type, frequency, duration, or sequencing.' },
-      { ri:2, qi:2, val:'no',       rag:'rag-amber',  badge:'Correct',    label:'Guideline Deviation — Undocumented',
-        text:'Treatment deviates from guideline recommendations without documented clinical justification in the record.' },
-      { ri:3, qi:1, val:'no',       rag:'rag-amber',  badge:'Correct',    label:'Diagnostic Rationale — Absent',
-        text:'Diagnostic studies were ordered without documented clinical rationale tied to guideline indications for the confirmed diagnosis.' },
-      { ri:3, qi:2, val:'no',       rag:'rag-amber',  badge:'Correct',    label:'Diagnostic Integration — Gap Identified',
-        text:'Test results are present in the record but not explicitly referenced in subsequent treatment notes or plan updates.' },
-      { ri:4, qi:0, val:'no',       rag:'rag-amber',  badge:'Correct',    label:'Treatment Plan — Not Diagnosis-Specific',
-        text:'A generic or non-diagnosis-specific treatment plan is documented rather than a plan tied to each confirmed diagnosis.' },
-      { ri:4, qi:2, val:'no',       rag:'rag-amber',  badge:'Correct',    label:'Treatment Continuity — Gaps Present',
-        text:'Unexplained gaps in care attendance or treatment completion are present in the record without documented clinical explanation.' },
-      { ri:4, qi:3, val:'no',       rag:'rag-amber',  badge:'Correct',    label:'Care Escalation — Not Documented',
-        text:'Care escalation has not occurred despite absence of measurable progress — inconsistent with guideline-expected progression criteria.' },
-      { ri:5, qi:0, val:'no',       rag:'rag-amber',  badge:'Correct',    label:'Treatment Initiation — Delayed',
-        text:'Initial treatment was not initiated within a clinically appropriate timeframe. The delay is undocumented and unexplained in the record.' },
-      { ri:5, qi:2, val:'no',       rag:'rag-amber',  badge:'Correct',    label:'Treatment Frequency — Guideline Inconsistent',
-        text:'Treatment frequency is inconsistent with applicable guideline recommendations — record reflects undertreatment or overtreatment relative to the standard.' },
-      { ri:6, qi:0, val:'no',       rag:'rag-red',   badge:'Urgent',      label:'Documentation Pattern — Copied-Forward',
-        text:'Visit documentation does not contain individualized findings. Copied-forward or templated notes are present — a systematic pattern that affects the entire treatment record.' },
-      { ri:6, qi:1, val:'no',       rag:'rag-red',   badge:'Urgent',      label:'Functional Limitations — Not Documented',
-        text:'Functional limitation documentation is absent. Visit notes record pain scores without describing specific deficits in activities of daily living.' },
-      { ri:6, qi:2, val:'no',       rag:'rag-amber',  badge:'Correct',    label:'Medical Necessity Language — Absent',
-        text:'Medical necessity is not documented in relation to the diagnosis and level of care rendered.' },
-      { ri:6, qi:3, val:'no',       rag:'rag-amber',  badge:'Correct',    label:'Causation Documentation — Absent',
-        text:'No treating physician narrative or causation letter linking the documented injury to the accident mechanism has been requested or obtained.' },
-      { ri:1, qi:0, val:'not-sure', rag:'rag-amber',  badge:'Clarify',    label:'Diagnostic Specificity — Uncertain',
-        text:'It is unconfirmed whether each documented injury carries a named clinical diagnosis supported by objective findings.' },
-      { ri:2, qi:0, val:'not-sure', rag:'rag-amber',  badge:'Clarify',    label:'Guideline Identification — Unconfirmed',
-        text:'An applicable evidence-based guideline has not been confirmed for one or more documented diagnoses.' },
-      { ri:5, qi:3, val:'not-sure', rag:'rag-amber',  badge:'Clarify',    label:'MMI Status — Not Addressed',
-        text:'Maximum Medical Improvement (MMI) has not been confirmed as monitored or documented relative to case progression.' },
-      { ri:6, qi:2, val:'not-sure', rag:'rag-amber',  badge:'Clarify',    label:'Medical Necessity — Uncertain',
-        text:'It is unconfirmed whether documentation supports the level of care rendered in relation to the applicable guideline.' },
+      { ri:0, qi:3, val:'no',       rag:'rag-red',   badge:'Urgent',   label:'Provider Authority — Governing Deficiency', text:'Primary treating provider lacks independent diagnostic, prescriptive, and referral authority. A chiropractor is serving as the sole managing provider for a complex injury presentation. This is a governing deficiency — it compromises all downstream documentation credibility.' },
+      { ri:0, qi:3, val:'not-sure', rag:'rag-amber',  badge:'Clarify', label:'Provider Authority — Scope Unconfirmed', text:'Provider scope of practice relative to the documented injury complexity is unconfirmed. Independent diagnostic and prescriptive authority has not been established in the record.' },
+      { ri:0, qi:0, val:'no',       rag:'rag-red',   badge:'Urgent',   label:'Specialist Identification — Absent', text:'No injury-specific specialist has been identified or documented. Each documented injury requires a corresponding specialist whose scope matches the confirmed diagnosis.' },
+      { ri:0, qi:1, val:'no',       rag:'rag-red',   badge:'Urgent',   label:'Specialist Evaluation — Not Completed', text:'A specialist referral was issued but the evaluation has not been completed or documented. A referral alone does not satisfy provider authority requirements.' },
+      { ri:1, qi:0, val:'no',       rag:'rag-red',   badge:'Urgent',   label:'Diagnostic Specificity — Absent', text:'Injuries are documented using global symptom descriptors (pain, injury, trauma) rather than specific named clinical diagnoses supported by objective findings.' },
+      { ri:1, qi:1, val:'no',       rag:'rag-red',   badge:'Urgent',   label:'Diagnosis-Mechanism Alignment — Absent', text:'Documented diagnoses are not supported by objective clinical findings consistent with the mechanism of injury.' },
+      { ri:1, qi:3, val:'no',       rag:'rag-amber',  badge:'Correct', label:'Diagnostic Conflict — Unreconciled', text:'Inconsistent or conflicting diagnoses are present across treating providers without documented reconciliation.' },
+      { ri:2, qi:1, val:'no',       rag:'rag-amber',  badge:'Correct', label:'Guideline Alignment — Treatment Inconsistent', text:'The treatment plan is not objectively consistent with applicable evidence-based guideline recommendations for type, frequency, duration, or sequencing.' },
+      { ri:2, qi:2, val:'no',       rag:'rag-amber',  badge:'Correct', label:'Guideline Deviation — Undocumented', text:'Treatment deviates from guideline recommendations without documented clinical justification in the record.' },
+      { ri:3, qi:1, val:'no',       rag:'rag-amber',  badge:'Correct', label:'Diagnostic Rationale — Absent', text:'Diagnostic studies were ordered without documented clinical rationale tied to guideline indications for the confirmed diagnosis.' },
+      { ri:3, qi:2, val:'no',       rag:'rag-amber',  badge:'Correct', label:'Diagnostic Integration — Gap Identified', text:'Test results are present in the record but not explicitly referenced in subsequent treatment notes or plan updates.' },
+      { ri:4, qi:0, val:'no',       rag:'rag-amber',  badge:'Correct', label:'Treatment Plan — Not Diagnosis-Specific', text:'A generic or non-diagnosis-specific treatment plan is documented rather than a plan tied to each confirmed diagnosis.' },
+      { ri:4, qi:2, val:'no',       rag:'rag-amber',  badge:'Correct', label:'Treatment Continuity — Gaps Present', text:'Unexplained gaps in care attendance or treatment completion are present in the record without documented clinical explanation.' },
+      { ri:4, qi:3, val:'no',       rag:'rag-amber',  badge:'Correct', label:'Care Escalation — Not Documented', text:'Care escalation has not occurred despite absence of measurable progress — inconsistent with guideline-expected progression criteria.' },
+      { ri:5, qi:0, val:'no',       rag:'rag-amber',  badge:'Correct', label:'Treatment Initiation — Delayed', text:'Initial treatment was not initiated within a clinically appropriate timeframe. The delay is undocumented and unexplained in the record.' },
+      { ri:5, qi:2, val:'no',       rag:'rag-amber',  badge:'Correct', label:'Treatment Frequency — Guideline Inconsistent', text:'Treatment frequency is inconsistent with applicable guideline recommendations — record reflects undertreatment or overtreatment relative to the standard.' },
+      { ri:6, qi:0, val:'no',       rag:'rag-red',   badge:'Urgent',   label:'Documentation Pattern — Copied-Forward', text:'Visit documentation does not contain individualized findings. Copied-forward or templated notes are present — a systematic pattern that affects the entire treatment record.' },
+      { ri:6, qi:1, val:'no',       rag:'rag-red',   badge:'Urgent',   label:'Functional Limitations — Not Documented', text:'Functional limitation documentation is absent. Visit notes record pain scores without describing specific deficits in activities of daily living.' },
+      { ri:6, qi:2, val:'no',       rag:'rag-amber',  badge:'Correct', label:'Medical Necessity Language — Absent', text:'Medical necessity is not documented in relation to the diagnosis and level of care rendered.' },
+      { ri:6, qi:3, val:'no',       rag:'rag-amber',  badge:'Correct', label:'Causation Documentation — Absent', text:'No treating physician narrative or causation letter linking the documented injury to the accident mechanism has been requested or obtained.' },
+      { ri:1, qi:0, val:'not-sure', rag:'rag-amber',  badge:'Clarify', label:'Diagnostic Specificity — Uncertain', text:'It is unconfirmed whether each documented injury carries a named clinical diagnosis supported by objective findings.' },
+      { ri:2, qi:0, val:'not-sure', rag:'rag-amber',  badge:'Clarify', label:'Guideline Identification — Unconfirmed', text:'An applicable evidence-based guideline has not been confirmed for one or more documented diagnoses.' },
+      { ri:5, qi:3, val:'not-sure', rag:'rag-amber',  badge:'Clarify', label:'MMI Status — Not Addressed', text:'Maximum Medical Improvement (MMI) has not been confirmed as monitored or documented relative to case progression.' },
+      { ri:6, qi:2, val:'not-sure', rag:'rag-amber',  badge:'Clarify', label:'Medical Necessity — Uncertain', text:'It is unconfirmed whether documentation supports the level of care rendered in relation to the applicable guideline.' },
     ];
 
     const drivers = [];
@@ -2649,12 +2840,7 @@ function renderComprehensiveSections(rightStatuses, overallKey, overall) {
     });
 
     if (!drivers.length) {
-      driverWrap.innerHTML = `<div class="comp-driver-card rag-green">
-        <div class="comp-driver-badge">Aligned</div>
-        <div class="comp-driver-content">
-          <div class="comp-driver-label">No Structural Deficiencies Identified</div>
-          <div class="comp-driver-text">All evaluated domains demonstrate alignment with recognized clinical governance standards.</div>
-        </div></div>`;
+      driverWrap.innerHTML = `<div class="comp-driver-card rag-green"><div class="comp-driver-badge">Aligned</div><div class="comp-driver-content"><div class="comp-driver-label">No Structural Deficiencies Identified</div><div class="comp-driver-text">All evaluated domains demonstrate alignment with recognized clinical governance standards.</div></div></div>`;
     } else {
       driverWrap.innerHTML = drivers.map(d => `
         <div class="comp-driver-card ${d.rag}">
@@ -2780,6 +2966,57 @@ function renderComprehensiveSections(rightStatuses, overallKey, overall) {
 
     const urgencyMap = { misaligned: 'Immediate Action', partial: 'Correction Needed', aligned: 'No Action Required' };
 
+    // Clinical Risk Indicator per right
+    const riskIndicatorMap = [
+      { level: 'High',     cls: 'comp-risk-high' },     // Right #1 Provider Authority
+      { level: 'High',     cls: 'comp-risk-high' },     // Right #2 Diagnosis
+      { level: 'Moderate', cls: 'comp-risk-moderate' }, // Right #3 Clinical Alignment
+      { level: 'Moderate', cls: 'comp-risk-moderate' }, // Right #4 Diagnostics
+      { level: 'Moderate', cls: 'comp-risk-moderate' }, // Right #5 Treatment
+      { level: 'Moderate', cls: 'comp-risk-moderate' }, // Right #6 Timing
+      { level: 'High',     cls: 'comp-risk-high' },     // Right #7 Documentation
+    ];
+
+    // Build action lookup by right index
+    const actionMap = [
+      { ri:0, qi:3, vals:['no'],        priority:1, priorityLabel:'Critical — Immediate Action',
+        text:'Establish or confirm a licensed physician (MD or DO) with independent diagnostic, prescriptive, and referral authority as the primary managing provider. Obtain physician documentation establishing clinical oversight, updated diagnosis, and a physician-directed treatment plan consistent with the injury presentation.' },
+      { ri:0, qi:3, vals:['not-sure'],  priority:1, priorityLabel:'Critical — Immediate Clarification',
+        text:'Clarify and document the primary treating provider\'s scope of practice relative to the documented injury complexity. Confirm whether independent diagnostic, prescriptive, and referral authority is present and reflected in the record.' },
+      { ri:0, qi:0, vals:['no','not-sure'], priority:2, priorityLabel:'High Priority',
+        text:'Obtain and document injury-specific specialist referral. Each documented injury should have a corresponding specialist whose scope matches the diagnosis. Confirm the referral and evaluation are documented in the record.' },
+      { ri:0, qi:1, vals:['no'],        priority:2, priorityLabel:'High Priority',
+        text:'Confirm completion of specialist evaluation and obtain documentation of the specialist encounter. A referral alone does not satisfy provider authority requirements — the evaluation itself must be documented.' },
+      { ri:1, qi:0, vals:['no','not-sure'], priority:1, priorityLabel:'Critical — Immediate Action',
+        text:'Obtain diagnostic clarification to replace global symptom descriptors with specific named clinical diagnoses. Each injury should carry a diagnosis consistent with the mechanism of injury and supported by documented objective clinical findings.' },
+      { ri:1, qi:3, vals:['no','not-sure'], priority:2, priorityLabel:'High Priority',
+        text:'Reconcile conflicting or inconsistent diagnoses across treating providers. Obtain updated documentation from the primary treating physician establishing a consistent diagnosis narrative across the record.' },
+      { ri:2, qi:1, vals:['no','not-sure'], priority:2, priorityLabel:'High Priority',
+        text:'Align the treatment plan with applicable evidence-based guideline recommendations for each confirmed diagnosis. Document the specific guideline framework applied and ensure care type, frequency, duration, and sequencing reflect that framework.' },
+      { ri:2, qi:2, vals:['no'],        priority:2, priorityLabel:'High Priority',
+        text:'Obtain and document clinical justification from the treating provider for any treatment that deviates from guideline recommendations. Undocumented deviations create utilization review exposure.' },
+      { ri:3, qi:1, vals:['no','not-sure'], priority:3, priorityLabel:'Standard Correction',
+        text:'Obtain amended documentation establishing clinical rationale for each ordered diagnostic study, tied to the confirmed diagnosis and applicable guideline indications.' },
+      { ri:3, qi:2, vals:['no','not-sure'], priority:3, priorityLabel:'Standard Correction',
+        text:'Obtain updated treatment notes that explicitly reference diagnostic test results and document how findings directed subsequent treatment decisions.' },
+      { ri:4, qi:2, vals:['no','not-sure'], priority:2, priorityLabel:'High Priority',
+        text:'Address and document the basis for any gaps in treatment attendance. Obtain treating provider documentation that acknowledges the gap and addresses the clinical implications for ongoing treatment planning.' },
+      { ri:4, qi:3, vals:['no','not-sure'], priority:2, priorityLabel:'High Priority',
+        text:'Obtain treating provider documentation establishing the basis for the current level of care and whether escalation criteria have been considered. Document either escalation or rationale for continued conservative management.' },
+      { ri:5, qi:0, vals:['no','not-sure'], priority:3, priorityLabel:'Standard Correction',
+        text:'Obtain treating provider documentation that addresses the delay in initial treatment initiation. Documented contextual explanation within the record is necessary to prevent the gap from serving as grounds for utilization review challenge.' },
+      { ri:6, qi:0, vals:['no','not-sure'], priority:1, priorityLabel:'Critical — Prospective Correction',
+        text:'Address copied-forward or templated documentation through prospective individualized documentation. Obtain amended notes where clinically appropriate. Note: retroactive correction of documentation patterns has significant limitations — prospective correction is the primary available remediation pathway.' },
+      { ri:6, qi:1, vals:['no','not-sure'], priority:2, priorityLabel:'High Priority',
+        text:'Obtain treating provider documentation describing specific functional limitations — including activities of daily living, work capacity, and measurable functional deficits — at each visit. Pain scores alone do not satisfy functional limitation documentation standards.' },
+      { ri:6, qi:2, vals:['no','not-sure'], priority:2, priorityLabel:'High Priority',
+        text:'Obtain treating provider documentation that explicitly states medical necessity for the level of care rendered at each encounter, referencing the applicable diagnosis and evidence-based guideline standard.' },
+      { ri:6, qi:3, vals:['no','not-sure'], priority:2, priorityLabel:'High Priority',
+        text:'Request a treating physician narrative or causation letter linking each documented injury to the accident mechanism with specificity, referencing the mechanism of injury, the documented diagnosis, and the clinical basis for causation attribution.' },
+    ];
+
+    const priorityColor = { 1: '#c0392b', 2: '#e67e22', 3: '#2980b9' };
+
     rightsWrap.innerHTML = '';
     RIGHTS.forEach((right, ri) => {
       const st  = rightStatuses[ri];
@@ -2802,6 +3039,35 @@ function renderComprehensiveSections(rightStatuses, overallKey, overall) {
         }
       });
 
+      // Build embedded recommended actions for this right
+      const rightActions = actionMap.filter(a => {
+        const ans = answers[a.ri] && answers[a.ri][a.qi];
+        return a.ri === ri && ans && a.vals.includes(ans.value);
+      });
+      const seen = new Set();
+      let actionsHTML = '';
+      if (st !== 'aligned' && rightActions.length) {
+        actionsHTML = `<div style="margin-top:14px;border-top:1px solid #e2e6ea;padding-top:14px;">
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);margin-bottom:10px;">Recommended Record Actions</div>`;
+        rightActions.forEach((a, idx) => {
+          if (seen.has(a.text)) return;
+          seen.add(a.text);
+          const color = priorityColor[a.priority] || '#2980b9';
+          actionsHTML += `<div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;padding:12px 14px;background:#f7f9fc;border-radius:7px;border-left:4px solid ${color};">
+            <div style="flex-shrink:0;width:24px;height:24px;border-radius:50%;background:${color};color:white;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;">${idx+1}</div>
+            <div>
+              <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:${color};margin-bottom:4px;">${a.priorityLabel}</div>
+              <div style="font-size:12.5px;line-height:1.75;color:var(--gray-dark);">${a.text}</div>
+            </div>
+          </div>`;
+        });
+        actionsHTML += `</div>`;
+      }
+
+      const riskInd = riskIndicatorMap[ri];
+      const riskLevel = st === 'aligned' ? 'Limited' : riskInd.level;
+      const riskCls   = st === 'aligned' ? 'comp-risk-limited' : riskInd.cls;
+
       rightsWrap.innerHTML += `
         <div class="comp-right-block ${cls}">
           <div class="comp-right-header">
@@ -2815,6 +3081,7 @@ function renderComprehensiveSections(rightStatuses, overallKey, overall) {
             <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">
               <span class="comp-right-status-badge">${statusLabel}</span>
               <span class="comp-right-urgency">${urgency}</span>
+              <span class="comp-risk-indicator ${riskCls}">Risk: ${riskLevel}</span>
             </div>
           </div>
           <div class="comp-right-body">
@@ -2824,6 +3091,7 @@ function renderComprehensiveSections(rightStatuses, overallKey, overall) {
             </div>
             <div class="comp-right-narrative ${st==='aligned' ? 'aligned-narrative' : ''}">${nar}</div>
             ${flagHTML}
+            ${actionsHTML}
           </div>
         </div>`;
     });
@@ -2929,9 +3197,8 @@ async function initiateStripeCheckout() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        audit_ref:   auditRef,
-        success_url: RETURN_URL + '?session_id={CHECKOUT_SESSION_ID}',
-        cancel_url:  RETURN_URL + '?canceled=1'
+        audit_ref:  auditRef,
+        return_url: RETURN_URL
       })
     });
 
@@ -2989,11 +3256,7 @@ async function handleStripeReturn() {
 
     try {
       const response = await fetch(
-        `${SUPABASE_FUNCTION_BASE}/verify-session`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ session_id: sessionId, audit_ref: getOrCreateAuditRef() })
-        }
+        `${SUPABASE_FUNCTION_BASE}/verify-session?session_id=${encodeURIComponent(sessionId)}`
       );
 
       // Always clean URL before acting on result
