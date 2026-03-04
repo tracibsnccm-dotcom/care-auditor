@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- cache-bust: 1772667013 -->
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -2683,6 +2683,7 @@ function renderComprehensiveSections(rightStatuses, overallKey, overall) {
         <span class="comp-header-attorney-value">${dateStr}</span>
       </div>`;
   }
+  const isR1Misaligned = overallKey === 'misaligned-r1';
   const isR1Partial    = overallKey === 'partial-r1';
   const isAligned      = overallKey === 'aligned';
 
