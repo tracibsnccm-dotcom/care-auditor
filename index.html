@@ -2562,20 +2562,14 @@ function showResults() {
   const summaryMicro       = document.querySelector('.summary-page-micro');
   const summaryPage        = document.querySelector('.summary-page');
   const ctaCard            = document.querySelector('.cta-card');
-  const briefingWrap       = document.getElementById('briefing-form-wrap');
 
   if (accessTier === 'full') {
     prelimSections.forEach(id => {
       const el = document.getElementById(id);
       if (el) el.style.display = 'none';
     });
-    if (statusOverviewCard) statusOverviewCard.style.display = 'none';
-    if (statusLegendCard)   statusLegendCard.style.display   = 'none';
-    if (integrityStatement) integrityStatement.style.display = 'none';
-    if (summaryTitle)       summaryTitle.style.display       = 'none';
-    if (summaryMicro)       summaryMicro.style.display       = 'none';
-    if (summaryPage)        summaryPage.style.display        = 'none';
-    if (ctaCard)            ctaCard.style.display            = 'none';
+    // Hide all elements with these classes
+    document.querySelectorAll('.status-overview-card, .status-legend-card, .integrity-statement, .summary-page-title, .summary-page-micro, .summary-page, .cta-card, .results-breakdown, .preview-gate-banner, .interpretation-card').forEach(el => el.style.display = 'none');
   } else {
     // Show preliminary summary elements in preview tier
     prelimSections.forEach(id => {
@@ -2665,9 +2659,14 @@ function renderComprehensiveSections(rightStatuses, overallKey, overall) {
   if (attorneyHeader) {
     const now = new Date();
     const dateStr = now.toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
-    const name = [userInfo.fname, userInfo.lname].filter(Boolean).join(' ') || '—';
-    const firm  = userInfo.firm  || '—';
-    const email = userInfo.email || '—';
+    // Try userInfo first, then sessionStorage fallback
+    let ui = userInfo;
+    if (!ui.fname) {
+      try { ui = JSON.parse(sessionStorage.getItem('care_audit_userinfo') || '{}'); } catch(e) {}
+    }
+    const name  = [ui.fname, ui.lname].filter(Boolean).join(' ') || '—';
+    const firm  = ui.firm  || '—';
+    const email = ui.email || '—';
     attorneyHeader.innerHTML = `
       <div class="comp-header-attorney-item">
         <span class="comp-header-attorney-label">Attorney</span>
