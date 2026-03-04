@@ -2662,21 +2662,24 @@ function renderComprehensiveSections(rightStatuses, overallKey, overall) {
 
   // ── ATTORNEY HEADER ───────────────────────────────────────────────────────
   const attorneyHeader = document.getElementById('comp-header-attorney');
-  if (attorneyHeader && userInfo.fname) {
+  if (attorneyHeader) {
     const now = new Date();
     const dateStr = now.toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+    const name = [userInfo.fname, userInfo.lname].filter(Boolean).join(' ') || '—';
+    const firm  = userInfo.firm  || '—';
+    const email = userInfo.email || '—';
     attorneyHeader.innerHTML = `
       <div class="comp-header-attorney-item">
         <span class="comp-header-attorney-label">Attorney</span>
-        <span class="comp-header-attorney-value">${userInfo.fname} ${userInfo.lname}</span>
+        <span class="comp-header-attorney-value">${name}</span>
       </div>
       <div class="comp-header-attorney-item">
         <span class="comp-header-attorney-label">Firm</span>
-        <span class="comp-header-attorney-value">${userInfo.firm}</span>
+        <span class="comp-header-attorney-value">${firm}</span>
       </div>
       <div class="comp-header-attorney-item">
         <span class="comp-header-attorney-label">Email</span>
-        <span class="comp-header-attorney-value">${userInfo.email}</span>
+        <span class="comp-header-attorney-value">${email}</span>
       </div>
       <div class="comp-header-attorney-item">
         <span class="comp-header-attorney-label">Assessment Date</span>
