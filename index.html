@@ -2552,16 +2552,19 @@ function showResults() {
   // ── Hide/show preliminary summary based on tier ───────────────────────────
   const prelimSections = [
     'report-header', 'overall-status-card', 'interruption-notice',
-    'r1-advisory', 'interpretation-card'
+    'r1-advisory', 'interpretation-card', 'right-by-right-overview',
+    'preview-gate-banner', 'breakdown-section'
   ];
   const statusOverviewCard = document.querySelector('.status-overview-card');
   const statusLegendCard   = document.querySelector('.status-legend-card');
   const integrityStatement = document.querySelector('.integrity-statement');
   const summaryTitle       = document.querySelector('.summary-page-title');
   const summaryMicro       = document.querySelector('.summary-page-micro');
+  const summaryPage        = document.querySelector('.summary-page');
+  const ctaCard            = document.querySelector('.cta-card');
+  const briefingWrap       = document.getElementById('briefing-form-wrap');
 
   if (accessTier === 'full') {
-    // Hide all preliminary summary elements in full tier
     prelimSections.forEach(id => {
       const el = document.getElementById(id);
       if (el) el.style.display = 'none';
@@ -2571,6 +2574,8 @@ function showResults() {
     if (integrityStatement) integrityStatement.style.display = 'none';
     if (summaryTitle)       summaryTitle.style.display       = 'none';
     if (summaryMicro)       summaryMicro.style.display       = 'none';
+    if (summaryPage)        summaryPage.style.display        = 'none';
+    if (ctaCard)            ctaCard.style.display            = 'none';
   } else {
     // Show preliminary summary elements in preview tier
     prelimSections.forEach(id => {
