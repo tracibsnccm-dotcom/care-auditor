@@ -3247,35 +3247,35 @@ async function handleStripeReturn() {
 
     showVerificationLoader();
 
-    try {
-      const response = await fetch(
-        `${SUPABASE_FUNCTION_BASE}/verify-session`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ audit_ref: params.get('audit_ref') || getOrCreateAuditRef() })
-        }
-      );
+    const auditRefToVerify = params.get('audit_ref') || getOrCreateAuditRef();
 
-      window.history.replaceState({}, '', RETURN_URL);
-
-      if (!response.ok) throw new Error('Verification service unavailable.');
-
-      const result = await response.json();
-      hideVerificationLoader();
-
-      if (result.verified === true) {
-        unlockFullAccess();
-      } else {
-        showPaymentMessage('error',
-          'Payment could not be verified. If you were charged, please contact support@reconcilecare.com with your Stripe receipt.'
+    // Retry up to 8 times with 1.5s delay to allow webhook to fire
+    let verified = false;
+    for (let attempt = 0; attempt < 8; attempt++) {
+      if (attempt > 0) await new Promise(r => setTimeout(r, 1500));
+      try {
+        const vRes = await fetch(
+          `${SUPABASE_FUNCTION_BASE}/verify-session`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ audit_ref: auditRefToVerify })
+          }
         );
-      }
+        if (vRes.ok) {
+          const vData = await vRes.json();
+          if (vData.verified === true) { verified = true; break; }
+        }
+      } catch (e) { /* retry */ }
+    }
 
-    } catch (err) {
-      hideVerificationLoader();
-      window.history.replaceState({}, '', RETURN_URL);
+    window.history.replaceState({}, '', RETURN_URL);
+    hideVerificationLoader();
+
+    if (verified) {
+      unlockFullAccess();
+    } else {
       showPaymentMessage('error',
-        'Payment could not be verified. Please contact support@reconcilecare.com if you were charged.'
+        'Payment could not be verified. If you were charged, please contact support@reconcilecare.com with your Stripe receipt.'
       );
     }
     return;
