@@ -2990,7 +2990,11 @@ async function handleStripeReturn() {
 
     try {
       const response = await fetch(
-        `${SUPABASE_FUNCTION_BASE}/verify-session?session_id=${encodeURIComponent(sessionId)}`
+        `${SUPABASE_FUNCTION_BASE}/verify-session`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ session_id: sessionId, audit_ref: getOrCreateAuditRef() })
+        }
       );
 
       // Always clean URL before acting on result
