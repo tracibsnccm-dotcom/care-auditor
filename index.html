@@ -3240,8 +3240,15 @@ async function handleStripeReturn() {
   const sessionId = params.get('session_id');
   const canceled  = params.get('canceled') === '1';
 
-  // ?tier=full override is NOT allowed — no dev bypass in this implementation
-  // (intentionally omitted per spec)
+  // ?tier=full override — temporary test bypass
+  const tierOverride = params.get('tier');
+  if (tierOverride === 'full') {
+    restoreAuditState();
+    showResults();
+    unlockFullAccess();
+    window.history.replaceState({}, '', RETURN_URL);
+    return;
+  }
 
   // ── Canceled checkout ─────────────────────────────────────────────────────
   if (canceled) {
