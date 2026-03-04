@@ -1222,7 +1222,16 @@
   .comp-cta-btn-ghost:hover { border-color: white; background: rgba(255,255,255,0.08); }
 
   /* Integrity note */
-  /* Section divider */
+  /* Attorney info in header */
+  .comp-header-attorney {
+    display: flex; flex-wrap: wrap; gap: 18px;
+    margin-top: 16px; padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    font-size: 12px; color: rgba(255,255,255,0.65);
+  }
+  .comp-header-attorney-item { display: flex; flex-direction: column; gap: 2px; }
+  .comp-header-attorney-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); }
+  .comp-header-attorney-value { font-weight: 600; color: rgba(255,255,255,0.85); }
   .comp-section-divider {
     height: 2px;
     background: linear-gradient(90deg, var(--navy) 0%, var(--amber) 50%, transparent 100%);
@@ -1342,8 +1351,8 @@
     <div class="header-divider"></div>
     <div class="header-body">
       <p class="header-p">Most injury cases lose leverage long before mediation — not because liability is weak, but because clinical alignment was never structured.</p>
-      <p class="header-p">The C.A.R.E. Clinical Sequencing Auditor™ identifies structural clinical gaps in provider alignment, diagnostic clarity, guideline adherence, timing, and documentation defensibility that can weaken settlement leverage and deposition defensibility.</p>
-      <p class="header-p">This is not a theoretical checklist. It reflects recurring clinical vulnerabilities observed in complex injury cases — particularly those later scrutinized during deposition, independent medical review, and settlement negotiation.</p>
+      <p class="header-p">The C.A.R.E. Clinical Sequencing Auditor™ identifies structural clinical gaps in provider alignment, diagnostic clarity, guideline adherence, timing, and documentation defensibility.</p>
+      <p class="header-p">This is not a theoretical checklist. It reflects recurring clinical vulnerabilities observed in complex injury cases — particularly those later scrutinized during independent medical review, payer review, and utilization review.</p>
     </div>
   </div>
 </header>
@@ -1370,7 +1379,7 @@
   <div class="card" id="lead-section">
     <div class="card-body">
       <div class="lead-title">Run a Clinical Sequencing Audit on Your Case</div>
-      <p class="lead-sub">In less than 5 minutes, identify whether your case contains structural clinical vulnerabilities that could reduce settlement leverage or create exposure during deposition.</p>
+      <p class="lead-sub">In less than 5 minutes, identify whether your case contains structural clinical vulnerabilities in provider alignment, documentation, and evidence-based care progression.</p>
       <p class="lead-sub" style="margin-top:6px;">Your <strong>Clinical Sequencing Profile™</strong> will be generated instantly.</p>
       <div class="lead-grid">
         <div class="field-group">
@@ -1425,7 +1434,7 @@
         <div class="byb-block">
           <div class="byb-block-title">How to Answer</div>
           <p class="byb-p">When uncertain, select the more conservative response.</p>
-          <p class="byb-p">If treatment is early or ongoing, use this as a strategic roadmap to prevent weaknesses before they are exposed in litigation.</p>
+          <p class="byb-p">If treatment is early or ongoing, use this as a structural roadmap to identify and address clinical documentation gaps proactively.</p>
         </div>
 
         <div class="byb-block">
@@ -1463,8 +1472,8 @@
   <!-- Instruction Banner -->
   <div class="instruction-banner" id="instruction-banner">
     <p>Answer each question based <strong style="color:white;">strictly on what is documented in the medical record</strong> — not assumptions.</p>
-    <p style="margin-top:10px;">This audit evaluates clinical alignment, evidence-based compliance, and documentation defensibility — the same categories frequently examined during deposition and independent medical review.</p>
-    <p class="if-line">If treatment is early or ongoing, use this as a strategic roadmap to prevent weaknesses before they are exposed in litigation.</p>
+    <p style="margin-top:10px;">This audit evaluates clinical alignment, evidence-based compliance, and documentation defensibility — the same categories frequently examined during independent medical review and utilization review.</p>
+    <p class="if-line">If treatment is early or ongoing, use this as a structural roadmap to identify and address clinical documentation gaps proactively.</p>
   </div>
 
   <!-- Floating Reference Button -->
@@ -1560,7 +1569,7 @@
       </div>
       <div class="r1-advisory-body">
         <p><strong>Right #1 — Right Provider Authority is Partially Aligned.</strong></p>
-        <p>One or more Provider Authority criteria are uncertain or unconfirmed. Provider Authority is foundational to injury management structure. Gaps at this level may weaken downstream documentation credibility and referral sequencing integrity. Clarification of provider scope and authority should be clarified prior to deposition or IME review.</p>
+        <p>One or more Provider Authority criteria are uncertain or unconfirmed. Provider Authority is foundational to injury management structure. Gaps at this level may weaken downstream documentation credibility and referral sequencing integrity. Clarification of provider scope and authority is recommended prior to IME review or external clinical evaluation.</p>
       </div>
     </div>
 
@@ -1626,26 +1635,15 @@
         <div class="comp-header-title" id="comp-header-status-title">—</div>
         <div class="comp-header-sub" id="comp-header-status-sub"></div>
         <div class="comp-header-timestamp" id="comp-header-timestamp"></div>
+        <div class="comp-header-attorney" id="comp-header-attorney"></div>
       </div>
 
       <!-- §1 Executive Summary -->
       <div class="comp-section" id="comp-executive-summary">
         <div class="comp-section-title">Executive Summary</div>
         <div id="comp-exec-summary-body"></div>
-      </div>
-
-      <div class="comp-section-divider"></div>
-
-      <!-- §2 Structural Alignment Determination -->
-      <div class="comp-section" id="comp-determination">
-        <div class="comp-section-title">Structural Alignment Determination</div>
-        <div id="comp-determination-grid"></div>
-        <div id="comp-provider-override-block" style="display:none;">
-          <div class="comp-provider-override">
-            <div class="comp-provider-override-title">⚡ Provider Authority Override Rule Applied</div>
-            <p>Provider authority governs sequencing integrity. Without appropriate diagnostic and prescriptive authority directing treatment progression, structural misalignment exists regardless of alignment in secondary domains.</p>
-          </div>
-        </div>
+        <!-- Override/Advisory box lives here — rendered dynamically -->
+        <div id="comp-exec-override-block"></div>
       </div>
 
       <div class="comp-section-divider"></div>
@@ -1653,7 +1651,7 @@
       <!-- §3 Clinical Exposure Summary -->
       <div class="comp-section" id="comp-exposure-summary">
         <div class="comp-section-title">Clinical Exposure Summary</div>
-        <p class="comp-section-intro">Primary litigation vulnerabilities identified based on structural evaluation.</p>
+        <p class="comp-section-intro">Primary clinical documentation gaps identified based on structural evaluation.</p>
         <div id="comp-exposure-list"></div>
       </div>
 
@@ -1729,7 +1727,7 @@
     <div class="cta-card">
       <div class="cta-eyebrow">Next Step</div>
       <h3 id="cta-headline">Institutional Clinical Oversight for Injury Litigation Firms</h3>
-      <p id="cta-body">Reconcile C.A.R.E. provides structured RN clinical oversight that aligns providers, reinforces evidence-based standards, and ensures documentation supports both medical necessity and litigation strategy.</p>
+      <p id="cta-body">Reconcile C.A.R.E. provides structured RN clinical oversight that aligns providers, reinforces evidence-based standards, and ensures documentation supports medical necessity and care integrity.</p>
       <div class="cta-buttons">
         <button class="btn-ghost" onclick="window.open('https://reconcilecare.com','_blank')">Learn About Reconcile C.A.R.E.</button>
       </div>
@@ -1798,7 +1796,7 @@
       <div class="confirm-body">
         <p>Thank you for submitting your Clinical Sequencing Strategy Briefing request.</p>
         <p>A member of our clinical leadership team will review your audit results and practice context and will contact you within one business day to coordinate your structured briefing.</p>
-        <p>This discussion is designed to evaluate structural alignment, identify exposure patterns, and determine whether institutional clinical infrastructure would strengthen your case oversight model.</p>
+        <p>This discussion is designed to evaluate structural alignment, identify documentation gaps, and determine whether institutional clinical infrastructure would strengthen your case oversight model.</p>
         <p>We appreciate your commitment to disciplined injury management.</p>
       </div>
       <p class="confirm-sub">In the meantime, download or print your Structural Alignment Summary above for reference.</p>
@@ -2130,7 +2128,7 @@ const RIGHTS = [
       "Emergency Department, Urgent Care, or initial stabilization visits do not satisfy ongoing Right #1 requirements.",
       "Initiating or maintaining primary oversight of complex injury exclusively with a chiropractor does not satisfy Right #1 when injury presentation requires diagnostic clarification, medication management, imaging coordination, or specialty referral."
     ],
-    structuralStandard: "Right #1 is satisfied only when the provider actively managing the injury has scope and authority consistent with the documented injury complexity and capable of supporting litigation-level documentation scrutiny.",
+    structuralStandard: "Right #1 is satisfied only when the provider actively managing the injury has scope and authority consistent with the documented injury complexity and capable of supporting documentation standards under independent clinical review.",
     examples: [
       { label: "Does Not Satisfy", text: "A client is seen in the emergency room on the date of injury and discharged with a referral to follow up with a primary care physician. The client instead begins treatment with a chiropractor who becomes the sole managing provider for six months. The injury presentation includes cervical radiculopathy, reported cognitive changes, and persistent upper extremity numbness. The chiropractor cannot independently order advanced imaging, prescribe medication, or refer to neurology. Right #1 is not satisfied — the provider's scope does not match the injury complexity." },
       { label: "Satisfies", text: "Following an emergency room visit, a client establishes care with an MD in occupational medicine who documents injury-specific findings, orders an MRI, prescribes a short-term medication protocol, and refers the client to an orthopedic spine specialist. The managing provider has full diagnostic, prescriptive, and referral authority consistent with the documented injury. Right #1 is satisfied." }
@@ -2144,7 +2142,7 @@ const RIGHTS = [
         flag: {
           triggerOn: ["no", "not-sure"],
           title: "⚠ Clinical Alert: Provider Authority Gap",
-          body: "Chiropractors do not hold prescriptive authority and cannot independently diagnose conditions, order advanced imaging, or make specialist referrals. When a chiropractor serves as the primary or sole treating provider for a complex injury, it creates critical gaps in diagnosis, medication management, and medical necessity documentation — all of which are frequently challenged during deposition and IME review."
+          body: "Chiropractors do not hold prescriptive authority and cannot independently diagnose conditions, order advanced imaging, or make specialist referrals. When a chiropractor serves as the primary or sole treating provider for a complex injury, it creates clinical gaps in diagnosis, medication management, and medical necessity documentation — all of which are subject to scrutiny during independent medical review and payer review."
         }
       }
     ]
@@ -2337,7 +2335,7 @@ const STATUS_CONFIG = {
     bg: '#edfaf4',
     border: '#2ecc71',
     icon: '✓',
-    interpretation: 'The case structure reflects appropriate provider authority, diagnostic specificity, guideline alignment, and continuity of care. Structural defensibility is established across all evaluated domains. Cases with this profile carry reduced payer scrutiny risk and present a predictable documentation foundation for deposition, IME review, and settlement evaluation.',
+    interpretation: 'The case structure reflects appropriate provider authority, diagnostic specificity, guideline alignment, and continuity of care. Structural alignment is established across all evaluated domains. Cases with this profile carry reduced payer scrutiny risk and present a predictable documentation foundation for IME review and utilization review.',
     ctaHeadline: 'Maintaining Structural Alignment Through Resolution',
     ctaBody: 'Maintaining structural alignment through resolution requires consistent oversight — not just a strong starting position. Reconcile C.A.R.E. provides structured RN clinical oversight that monitors provider alignment, documentation continuity, and guideline adherence from evaluation through settlement.'
   },
@@ -2347,9 +2345,9 @@ const STATUS_CONFIG = {
     bg: '#fff8e6',
     border: '#f0a030',
     icon: '◑',
-    interpretation: 'The case demonstrates foundational structural elements with identifiable documentation gaps remaining. These gaps represent an early correction window — addressing them before deposition, IME, or settlement review strengthens structural defensibility and reduces the risk of incremental leverage erosion. Reinforcement of uncertain or unconfirmed criteria is recommended.',
+    interpretation: 'The case demonstrates foundational structural elements with identifiable documentation gaps remaining. These gaps represent an early correction window — addressing them before IME or utilization review strengthens structural alignment and reduces the risk of incremental documentation erosion. Reinforcement of uncertain or unconfirmed criteria is recommended.',
     ctaHeadline: 'Correct Structural Gaps Before Scrutiny Intensifies',
-    ctaBody: 'Identified gaps in this profile represent an early correction window. Reconcile C.A.R.E. provides structured RN clinical oversight that targets documentation reinforcement, provider alignment, and guideline consistency — before deposition, IME, or settlement evaluation.'
+    ctaBody: 'Identified gaps in this profile represent an early correction window. Reconcile C.A.R.E. provides structured RN clinical oversight that targets documentation reinforcement, provider alignment, and guideline consistency — before IME or utilization review.'
   },
   misaligned: {
     label: 'Structurally Misaligned',
@@ -2359,7 +2357,7 @@ const STATUS_CONFIG = {
     icon: '✗',
     interpretation: 'One or more structural domains are misaligned with recognized injury management standards. Cases with this profile carry elevated IME vulnerability and increased risk of negotiation leverage erosion. Identified gaps in provider authority, documentation specificity, or care continuity may be challenged during Peer Review, independent medical examination, or utilization review. Corrective structural review is recommended prior to any formal case review or settlement positioning.',
     ctaHeadline: 'Structural Realignment Required Before Litigation Exposure',
-    ctaBody: 'Institutional clinical oversight can restore alignment and strengthen defensibility. Reconcile C.A.R.E. provides structured RN clinical oversight that aligns providers, reinforces evidence-based standards, and ensures documentation supports both medical necessity and litigation strategy.'
+    ctaBody: 'Institutional clinical oversight can restore alignment and strengthen defensibility. Reconcile C.A.R.E. provides structured RN clinical oversight that aligns providers, reinforces evidence-based standards, and ensures documentation supports medical necessity and care integrity.'
   },
   'partial-r1': {
     label: 'Partially Aligned',
@@ -2369,7 +2367,7 @@ const STATUS_CONFIG = {
     icon: '◑',
     interpretation: 'Provider Authority criteria are partially unconfirmed. Because Right #1 is foundational to all downstream structural alignment, uncertainty at this level warrants priority clarification. The remaining Rights have been evaluated and may reflect independent gaps; however, provider scope clarification should precede reliance on any downstream alignment status.',
     ctaHeadline: 'Correct Structural Gaps Before Scrutiny Intensifies',
-    ctaBody: 'Identified gaps in this profile represent an early correction window. Reconcile C.A.R.E. provides structured RN clinical oversight that targets documentation reinforcement, provider alignment, and guideline consistency — before deposition, IME, or settlement evaluation.'
+    ctaBody: 'Identified gaps in this profile represent an early correction window. Reconcile C.A.R.E. provides structured RN clinical oversight that targets documentation reinforcement, provider alignment, and guideline consistency — before IME or utilization review.'
   },
   'misaligned-r1': {
     label: 'Structurally Misaligned',
@@ -2379,7 +2377,7 @@ const STATUS_CONFIG = {
     icon: '✗',
     interpretation: null, // Right #1 trigger uses Interruption Notice instead
     ctaHeadline: 'Structural Realignment Required Before Litigation Exposure',
-    ctaBody: 'Institutional clinical oversight can restore alignment and strengthen defensibility. Reconcile C.A.R.E. provides structured RN clinical oversight that aligns providers, reinforces evidence-based standards, and ensures documentation supports both medical necessity and litigation strategy.'
+    ctaBody: 'Institutional clinical oversight can restore alignment and strengthen defensibility. Reconcile C.A.R.E. provides structured RN clinical oversight that aligns providers, reinforces evidence-based standards, and ensures documentation supports medical necessity and care integrity.'
   }
 };
 
@@ -2441,7 +2439,7 @@ function showResults() {
   if (overallKey === 'misaligned' || overallKey === 'misaligned-r1') {
     subText += ' Structural misalignment at this level may increase payer scrutiny and IME challenge exposure.';
   } else if (overallKey === 'partial' || overallKey === 'partial-r1') {
-    subText += ' Targeted correction may strengthen defensibility prior to deposition or mediation.';
+    subText += ' Targeted correction supports documentation alignment prior to IME or utilization review.';
   }
   sub.textContent = subText;
 
@@ -2653,7 +2651,33 @@ function renderDetailedBreakdown(rightStatuses) {
 // ─────────────────────────────────────────────────────────────────────────────
 function renderComprehensiveSections(rightStatuses, overallKey, overall) {
 
-  const isR1Misaligned = overallKey === 'misaligned-r1';
+  // ── HIDE LEAD FORM ────────────────────────────────────────────────────────
+  const leadSection = document.getElementById('lead-section');
+  if (leadSection) leadSection.style.display = 'none';
+
+  // ── ATTORNEY HEADER ───────────────────────────────────────────────────────
+  const attorneyHeader = document.getElementById('comp-header-attorney');
+  if (attorneyHeader && userInfo.fname) {
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+    attorneyHeader.innerHTML = `
+      <div class="comp-header-attorney-item">
+        <span class="comp-header-attorney-label">Attorney</span>
+        <span class="comp-header-attorney-value">${userInfo.fname} ${userInfo.lname}</span>
+      </div>
+      <div class="comp-header-attorney-item">
+        <span class="comp-header-attorney-label">Firm</span>
+        <span class="comp-header-attorney-value">${userInfo.firm}</span>
+      </div>
+      <div class="comp-header-attorney-item">
+        <span class="comp-header-attorney-label">Email</span>
+        <span class="comp-header-attorney-value">${userInfo.email}</span>
+      </div>
+      <div class="comp-header-attorney-item">
+        <span class="comp-header-attorney-label">Assessment Date</span>
+        <span class="comp-header-attorney-value">${dateStr}</span>
+      </div>`;
+  }
   const isR1Partial    = overallKey === 'partial-r1';
   const isAligned      = overallKey === 'aligned';
 
@@ -2725,50 +2749,35 @@ function renderComprehensiveSections(rightStatuses, overallKey, overall) {
       <div class="comp-exec-risks">${riskItemsHTML}</div>`;
   }
 
-  // ── §2 STRUCTURAL ALIGNMENT DETERMINATION ─────────────────────────────────
-  const detGrid = document.getElementById('comp-determination-grid');
-  if (detGrid) {
-    const misalignedRights = rightStatuses.map((s,i) => s==='misaligned' ? RIGHTS[i].title : null).filter(Boolean);
-    const partialRights    = rightStatuses.map((s,i) => s==='partial'    ? RIGHTS[i].title : null).filter(Boolean);
-
-    let primaryDriver = '';
-    if (isR1Misaligned) primaryDriver = 'Provider Authority Deficiency — Right #1 (Governing Domain)';
-    else if (isR1Partial) primaryDriver = 'Provider Authority Uncertainty — Right #1 (Governing Domain)';
-    else if (misalignedRights.length) primaryDriver = 'Right #' + (rightStatuses.indexOf('misaligned')+1) + ' — ' + misalignedRights[0];
-    else if (partialRights.length)    primaryDriver = 'Right #' + (rightStatuses.indexOf('partial')+1)    + ' — ' + partialRights[0];
-    else primaryDriver = 'No structural deficiencies identified.';
-
-    const secondaries = [];
-    rightStatuses.forEach((s,i) => {
-      if (secondaries.length >= 4) return;
-      const isPrimary = (!isR1Misaligned && !isR1Partial && (
-        (s==='misaligned' && misalignedRights[0]===RIGHTS[i].title) ||
-        (s==='partial'    && partialRights[0]===RIGHTS[i].title && !misalignedRights.length)
-      )) || ((isR1Misaligned||isR1Partial) && i===0);
-      if (!isPrimary && (s==='misaligned'||s==='partial')) {
-        const lbl = s==='misaligned' ? '🔴 Misaligned' : '🟡 Partially Aligned';
-        secondaries.push('Right #'+(i+1)+' — '+RIGHTS[i].title+' ('+lbl+')');
+    // Dynamic override/advisory box — based on governing domain finding
+    const overrideBlock = document.getElementById('comp-exec-override-block');
+    if (overrideBlock) {
+      if (isR1Misaligned) {
+        overrideBlock.innerHTML = `
+          <div class="comp-provider-override" style="margin-top:16px;">
+            <div class="comp-provider-override-title">⚡ Provider Authority Override Rule Applied</div>
+            <p>Provider authority governs sequencing integrity. Without appropriate diagnostic and prescriptive authority directing treatment progression, structural misalignment exists regardless of alignment in secondary domains. Corrective action on Right #1 is required before reliance on other structural findings.</p>
+          </div>`;
+      } else if (isR1Partial) {
+        overrideBlock.innerHTML = `
+          <div class="comp-provider-override" style="margin-top:16px;border-color:var(--amber);">
+            <div class="comp-provider-override-title" style="color:var(--amber);">⚠ Provider Authority Advisory</div>
+            <p>One or more Provider Authority criteria are uncertain or unconfirmed. Provider Authority is foundational to injury management structure. Gaps at this level may weaken downstream documentation credibility and referral sequencing integrity. Clarification of provider scope and authority is recommended prior to IME review or external clinical evaluation.</p>
+          </div>`;
+      } else if (overallKey === 'misaligned') {
+        // Find the primary misaligned right
+        const primaryIdx = rightStatuses.indexOf('misaligned');
+        if (primaryIdx >= 0) {
+          overrideBlock.innerHTML = `
+            <div class="comp-provider-override" style="margin-top:16px;">
+              <div class="comp-provider-override-title">⚡ Governing Structural Finding — Right #${primaryIdx+1}: ${RIGHTS[primaryIdx].title}</div>
+              <p>This domain represents the primary structural finding for this assessment. Corrective review of Right #${primaryIdx+1} is recommended before reliance on other structural findings.</p>
+            </div>`;
+        }
+      } else {
+        overrideBlock.innerHTML = '';
       }
-    });
-
-    const primaryColor = isAligned ? '#1a5c3a' : (isR1Misaligned||overallKey==='misaligned') ? '#7a1a1a' : '#7a4a00';
-    let secHTML = secondaries.length
-      ? '<ul class="comp-det-secondary-list">' + secondaries.map(s=>'<li>'+s+'</li>').join('') + '</ul>'
-      : '<span style="color:var(--gray-mid);font-size:12px;">None</span>';
-
-    detGrid.innerHTML = `
-      <table class="comp-det-table">
-        <tr><td>Overall Status</td><td><span style="font-weight:800;color:${overall.color};background:${overall.bg};border:1.5px solid ${overall.border};padding:3px 12px;border-radius:20px;font-size:13px;">${overall.icon} ${overall.label}</span></td></tr>
-        <tr><td>Primary Governance Driver</td><td style="color:${primaryColor};font-weight:700;">${primaryDriver}</td></tr>
-        <tr><td>Secondary Drivers</td><td>${secHTML}</td></tr>
-        <tr><td>Rights Evaluated</td><td>7 of 7</td></tr>
-        <tr><td>Framework</td><td>7 Rights of Injury Management™ — C.A.R.E. Clinical Sequencing Auditor™</td></tr>
-      </table>`;
-  }
-
-  const overrideBlock = document.getElementById('comp-provider-override-block');
-  if (overrideBlock) overrideBlock.style.display = isR1Misaligned ? 'block' : 'none';
-
+    }
   // ── §3 CLINICAL EXPOSURE SUMMARY ──────────────────────────────────────────
   const exposureWrap = document.getElementById('comp-exposure-list');
   if (exposureWrap) {
@@ -2792,7 +2801,7 @@ function renderComprehensiveSections(rightStatuses, overallKey, overall) {
     });
 
     if (!items.length) {
-      exposureWrap.innerHTML = `<div class="comp-exposure-item" style="background:#f2fbf6;border-left-color:#27ae60;"><span class="comp-exposure-icon">✓</span><span class="comp-exposure-text"><strong>No primary litigation vulnerabilities identified.</strong> The structural record demonstrates alignment across evaluated domains.</span></div>`;
+      exposureWrap.innerHTML = `<div class="comp-exposure-item" style="background:#f2fbf6;border-left-color:#27ae60;"><span class="comp-exposure-icon">✓</span><span class="comp-exposure-text"><strong>No primary clinical documentation gaps identified.</strong> The structural record demonstrates alignment across evaluated domains.</span></div>`;
     } else {
       exposureWrap.innerHTML = items.map(e => `
         <div class="comp-exposure-item ${e.amber ? 'amber' : ''}">
@@ -2808,7 +2817,7 @@ function renderComprehensiveSections(rightStatuses, overallKey, overall) {
     const driverMap = [
       { ri:0, qi:3, val:'no',       rag:'rag-red',   badge:'Urgent',   label:'Provider Authority — Governing Deficiency', text:'Primary treating provider lacks independent diagnostic, prescriptive, and referral authority. A chiropractor is serving as the sole managing provider for a complex injury presentation. This is a governing deficiency — it compromises all downstream documentation credibility.' },
       { ri:0, qi:3, val:'not-sure', rag:'rag-amber',  badge:'Clarify', label:'Provider Authority — Scope Unconfirmed', text:'Provider scope of practice relative to the documented injury complexity is unconfirmed. Independent diagnostic and prescriptive authority has not been established in the record.' },
-      { ri:0, qi:0, val:'no',       rag:'rag-red',   badge:'Urgent',   label:'Specialist Identification — Absent', text:'No injury-specific specialist has been identified or documented. Each documented injury requires a corresponding specialist whose scope matches the confirmed diagnosis.' },
+      { ri:0, qi:0, val:'no',       rag:'rag-red',   badge:'Urgent',   label:'Specialist Identification — Absent', text:'No injury-specific specialist has been identified or documented. It is recommended that each documented injury should have a corresponding specialist to treat or manage this condition.' },
       { ri:0, qi:1, val:'no',       rag:'rag-red',   badge:'Urgent',   label:'Specialist Evaluation — Not Completed', text:'A specialist referral was issued but the evaluation has not been completed or documented. A referral alone does not satisfy provider authority requirements.' },
       { ri:1, qi:0, val:'no',       rag:'rag-red',   badge:'Urgent',   label:'Diagnostic Specificity — Absent', text:'Injuries are documented using global symptom descriptors (pain, injury, trauma) rather than specific named clinical diagnoses supported by objective findings.' },
       { ri:1, qi:1, val:'no',       rag:'rag-red',   badge:'Urgent',   label:'Diagnosis-Mechanism Alignment — Absent', text:'Documented diagnoses are not supported by objective clinical findings consistent with the mechanism of injury.' },
@@ -2862,7 +2871,7 @@ function renderComprehensiveSections(rightStatuses, overallKey, overall) {
       { ri:0, qi:3, vals:['not-sure'],  priority:1, priorityLabel:'Critical — Immediate Clarification',
         text:'Clarify and document the primary treating provider\'s scope of practice relative to the documented injury complexity. Confirm whether independent diagnostic, prescriptive, and referral authority is present and reflected in the record.' },
       { ri:0, qi:0, vals:['no','not-sure'], priority:2, priorityLabel:'High Priority',
-        text:'Obtain and document injury-specific specialist referral. Each documented injury should have a corresponding specialist whose scope matches the diagnosis. Confirm the referral and evaluation are documented in the record.' },
+        text:'Obtain and document injury-specific specialist referral. It is recommended that each documented injury should have a corresponding specialist to treat or manage this condition. Confirm the referral and evaluation are documented in the record.' },
       { ri:0, qi:1, vals:['no'],        priority:2, priorityLabel:'High Priority',
         text:'Confirm completion of specialist evaluation and obtain documentation of the specialist encounter. A referral alone does not satisfy provider authority requirements — the evaluation itself must be documented.' },
       { ri:1, qi:0, vals:['no','not-sure'], priority:1, priorityLabel:'Critical — Immediate Action',
@@ -2984,7 +2993,7 @@ function renderComprehensiveSections(rightStatuses, overallKey, overall) {
       { ri:0, qi:3, vals:['not-sure'],  priority:1, priorityLabel:'Critical — Immediate Clarification',
         text:'Clarify and document the primary treating provider\'s scope of practice relative to the documented injury complexity. Confirm whether independent diagnostic, prescriptive, and referral authority is present and reflected in the record.' },
       { ri:0, qi:0, vals:['no','not-sure'], priority:2, priorityLabel:'High Priority',
-        text:'Obtain and document injury-specific specialist referral. Each documented injury should have a corresponding specialist whose scope matches the diagnosis. Confirm the referral and evaluation are documented in the record.' },
+        text:'Obtain and document injury-specific specialist referral. It is recommended that each documented injury should have a corresponding specialist to treat or manage this condition. Confirm the referral and evaluation are documented in the record.' },
       { ri:0, qi:1, vals:['no'],        priority:2, priorityLabel:'High Priority',
         text:'Confirm completion of specialist evaluation and obtain documentation of the specialist encounter. A referral alone does not satisfy provider authority requirements — the evaluation itself must be documented.' },
       { ri:1, qi:0, vals:['no','not-sure'], priority:1, priorityLabel:'Critical — Immediate Action',
