@@ -3181,7 +3181,6 @@ function unlockFullAccess() {
   document.body.classList.remove('tier-preview');
   document.body.classList.add('tier-full');
 
-  // Force re-score if needed
   if (!_lastResults && Object.keys(answers).length > 0) {
     computeResults();
   }
@@ -3190,26 +3189,28 @@ function unlockFullAccess() {
     showResults();
   }
 
-  const hideIds = [
-    'report-header', 'overall-status-card', 'interruption-notice',
-    'r1-advisory', 'interpretation-card', 'right-by-right-overview',
-    'preview-gate-banner', 'breakdown-section', 'lead-section',
-    'right-status-rows', 'breakdown-rows', 'action-bar',
-    'status-legend-card', 'summary-page-title', 'summary-page-micro'
-  ];
-  hideIds.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.style.display = 'none';
-  });
-  document.querySelectorAll(
-    '.status-overview-card, .status-legend-card, .integrity-statement, ' +
-    '.summary-page-title, .summary-page-micro, .summary-page, ' +
-    '.cta-card, .results-breakdown, .preview-gate-banner, .interpretation-card, ' +
-    '.report-header, .overall-status-card, .interruption-notice, ' +
-    '.r1-advisory, .status-overview-card, .briefing-form-wrap'
-  ).forEach(el => el.style.display = 'none');
-
-  setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+  // Run AFTER showResults so it overrides anything showResults re-shows
+  setTimeout(() => {
+    const hideIds = [
+      'report-header', 'overall-status-card', 'interruption-notice',
+      'r1-advisory', 'interpretation-card', 'right-by-right-overview',
+      'preview-gate-banner', 'breakdown-section', 'lead-section',
+      'right-status-rows', 'breakdown-rows', 'action-bar',
+      'status-legend-card', 'summary-page-title', 'summary-page-micro'
+    ];
+    hideIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
+    document.querySelectorAll(
+      '.status-overview-card, .status-legend-card, .integrity-statement, ' +
+      '.summary-page-title, .summary-page-micro, .summary-page, ' +
+      '.cta-card, .results-breakdown, .preview-gate-banner, .interpretation-card, ' +
+      '.report-header, .overall-status-card, .interruption-notice, ' +
+      '.r1-advisory, .status-overview-card, .briefing-form-wrap'
+    ).forEach(el => el.style.display = 'none');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 50);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
