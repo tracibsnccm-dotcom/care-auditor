@@ -3148,9 +3148,6 @@ function getOrCreateAuditRef() {
 
 // ─────────────────────────────────────────────────────────────────────────────
 // AUDIT STATE PERSISTENCE
-// Answers and userInfo must survive the Stripe redirect (user leaves the page
-// and returns). We save to sessionStorage before redirecting and restore on
-// return so results can re-render before verification completes.
 // ─────────────────────────────────────────────────────────────────────────────
 function saveAuditState() {
   sessionStorage.setItem('care_audit_answers',  JSON.stringify(answers));
@@ -3170,8 +3167,6 @@ function restoreAuditState() {
 
 // ─────────────────────────────────────────────────────────────────────────────
 // UNLOCK FULL ACCESS
-// Called after server-side payment verification succeeds.
-// Sets accessTier to "full" and re-renders results without re-scoring.
 // ─────────────────────────────────────────────────────────────────────────────
 function unlockFullAccess() {
   accessTier = 'full';
@@ -3183,9 +3178,6 @@ function unlockFullAccess() {
 
 // ─────────────────────────────────────────────────────────────────────────────
 // INITIATE STRIPE CHECKOUT
-// POSTs to the Supabase Edge Function `create-checkout-session`.
-// The Edge Function creates a Stripe Checkout session and returns { url }.
-// We save audit state first, then redirect to the Stripe-hosted checkout page.
 // ─────────────────────────────────────────────────────────────────────────────
 async function initiateStripeCheckout() {
   const btn = document.querySelector('.btn-unlock');
@@ -3197,7 +3189,6 @@ async function initiateStripeCheckout() {
       btn.innerHTML = '⏳ Preparing secure checkout…';
     }
 
-    // Save answers and userInfo before leaving the page
     saveAuditState();
 
     const auditRef = getOrCreateAuditRef();
@@ -3206,9 +3197,8 @@ async function initiateStripeCheckout() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        audit_ref:   auditRef,
-        success_url: RETURN_URL + '?session_id={CHECKOUT_SESSION_ID}',
-        cancel_url:  RETURN_URL + '?canceled=1'
+        audit_ref:  auditRef,
+        return_url: RETURN_URL
       })
     });
 
@@ -3225,62 +3215,42 @@ async function initiateStripeCheckout() {
       btn.disabled = false;
       btn.innerHTML = originalHTML;
     }
-    showPaymentMessage('warning', 'Payment could not be processed. Please try again or contact support@reconcilecare.com.');
+    showPaymentMessage('info', 'Payment is not yet enabled in this preview environment.');
   }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // ON-PAGE-LOAD: HANDLE STRIPE RETURN
-// Stripe redirects back to RETURN_URL with one of:
-//   ?session_id={CHECKOUT_SESSION_ID}   — payment completed (verify server-side)
-//   ?canceled=1                          — user clicked Back on Stripe checkout
 // ─────────────────────────────────────────────────────────────────────────────
 async function handleStripeReturn() {
   const params    = new URLSearchParams(window.location.search);
   const sessionId = params.get('session_id');
   const canceled  = params.get('canceled') === '1';
 
-  // ?tier=full override — temporary test bypass
-  const tierOverride = params.get('tier');
-  if (tierOverride === 'full') {
-    restoreAuditState();
-    showResults();
-    unlockFullAccess();
-    window.history.replaceState({}, '', RETURN_URL);
-    return;
-  }
-
   // ── Canceled checkout ─────────────────────────────────────────────────────
   if (canceled) {
     window.history.replaceState({}, '', RETURN_URL);
-    // Restore state and show preview with non-blocking cancellation notice
     restoreAuditState();
-    showResults(); // renders in preview mode
+    showResults();
     showPaymentMessage('canceled', 'Checkout was not completed. Your preview results are shown below. Click "Unlock Full Sequencing Alignment Report" when you\'re ready to continue.');
     return;
   }
 
   // ── Successful Stripe return ───────────────────────────────────────────────
   if (sessionId) {
-    // Restore audit state so results can render while we verify
     const hasSavedState = sessionStorage.getItem('care_audit_saved') === 'true';
     if (hasSavedState) {
       restoreAuditState();
-      showResults(); // renders in preview first
+      showResults();
     }
 
     showVerificationLoader();
 
     try {
       const response = await fetch(
-        `${SUPABASE_FUNCTION_BASE}/verify-session`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ session_id: sessionId, audit_ref: getOrCreateAuditRef() })
-        }
+        `${SUPABASE_FUNCTION_BASE}/verify-session?session_id=${encodeURIComponent(sessionId)}`
       );
 
-      // Always clean URL before acting on result
       window.history.replaceState({}, '', RETURN_URL);
 
       if (!response.ok) throw new Error('Verification service unavailable.');
@@ -3289,10 +3259,8 @@ async function handleStripeReturn() {
       hideVerificationLoader();
 
       if (result.verified === true) {
-        // ✅ Payment verified — unlock full report
         unlockFullAccess();
       } else {
-        // ❌ Verification failed — stay in preview, show error
         showPaymentMessage('error',
           'Payment could not be verified. If you were charged, please contact support@reconcilecare.com with your Stripe receipt.'
         );
