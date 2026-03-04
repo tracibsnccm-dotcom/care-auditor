@@ -3252,7 +3252,7 @@ async function handleStripeReturn() {
         `${SUPABASE_FUNCTION_BASE}/verify-session`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ session_id: sessionId, audit_ref: params.get('audit_ref') || getOrCreateAuditRef() })
+          body: JSON.stringify({ audit_ref: params.get('audit_ref') || getOrCreateAuditRef() })
         }
       );
 
