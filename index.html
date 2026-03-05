@@ -2469,39 +2469,20 @@ function showResults() {
   });
 
   // ── Structural Interpretation ─────────────────────────────────────────────
-  //    Preview: shows condensed version (2 sentences max) — TRUNCATED
-  //    Full:    shows complete interpretation paragraph
+  //    Prelim: not shown (section removed from prelim report).
+  //    Full:   shows complete interpretation paragraph (or hidden if interruption)
   const interpCard = document.getElementById('interpretation-card');
   const interp = document.getElementById('interpretation-body');
-  if (right1Triggered) {
-    // Interruption Notice replaces interpretation in both tiers
+  if (accessTier === 'preview') {
+    interpCard.style.display = 'none';
+  } else if (right1Triggered) {
     interpCard.style.display = 'none';
   } else {
     interpCard.style.display = 'block';
-    if (accessTier === 'preview') {
-      // PREVIEW: truncated structural interpretation (first ~2 sentences)
-      const fullText = overall.interpretation;
-      const sentences = fullText.match(/[^.!?]+[.!?]+/g) || [fullText];
-      const previewText = sentences.slice(0, 2).join(' ').trim();
-      interp.textContent = previewText;
-      interp.style.color = overall.color;
-      // Add truncation notice if not already present
-      let truncNote = interpCard.querySelector('.preview-truncation-note');
-      if (!truncNote) {
-        truncNote = document.createElement('p');
-        truncNote.className = 'preview-truncation-note';
-        truncNote.style.cssText = 'font-size:12px;color:var(--amber);font-weight:600;font-style:italic;margin-top:10px;';
-        truncNote.textContent = '🔒 Full structural interpretation and clinical doctrine available in the complete report.';
-        interpCard.appendChild(truncNote);
-      }
-      truncNote.style.display = 'block';
-    } else {
-      // FULL: complete interpretation
-      interp.textContent = overall.interpretation;
-      interp.style.color = overall.color;
-      const truncNote = interpCard.querySelector('.preview-truncation-note');
-      if (truncNote) truncNote.style.display = 'none';
-    }
+    interp.textContent = overall.interpretation;
+    interp.style.color = overall.color;
+    const truncNote = interpCard.querySelector('.preview-truncation-note');
+    if (truncNote) truncNote.style.display = 'none';
   }
 
   // ── Clinical Flags in Right-by-Right ─────────────────────────────────────
@@ -2551,8 +2532,8 @@ function showResults() {
   // ── Hide/show preliminary summary based on tier ───────────────────────────
   const prelimSections = [
     'report-header', 'overall-status-card', 'interruption-notice',
-    'r1-advisory', 'interpretation-card', 'right-by-right-overview',
-    'preview-gate-banner', 'breakdown-section'
+    'r1-advisory', 'right-by-right-overview',
+    'preview-gate-banner'
   ];
   const statusOverviewCard = document.querySelector('.status-overview-card');
   const statusLegendCard   = document.querySelector('.status-legend-card');
