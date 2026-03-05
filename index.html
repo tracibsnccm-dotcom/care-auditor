@@ -1635,7 +1635,6 @@
         <div class="comp-header-title" id="comp-header-status-title">—</div>
         <div class="comp-header-sub" id="comp-header-status-sub"></div>
         <div class="comp-header-timestamp" id="comp-header-timestamp"></div>
-        <div class="comp-header-attorney" id="comp-header-attorney"></div>
       </div>
 
       <!-- §1 Executive Summary -->
@@ -2655,36 +2654,7 @@ function renderComprehensiveSections(rightStatuses, overallKey, overall) {
   if (leadSection) leadSection.style.display = 'none';
 
   // ── ATTORNEY HEADER ───────────────────────────────────────────────────────
-  const attorneyHeader = document.getElementById('comp-header-attorney');
-  if (attorneyHeader) {
-    const now = new Date();
-    const dateStr = now.toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
-    // Try userInfo first, then sessionStorage fallback
-    let ui = userInfo;
-    if (!ui.fname) {
-      try { ui = JSON.parse(sessionStorage.getItem('care_audit_userinfo') || '{}'); } catch(e) {}
-    }
-    const name  = [ui.fname, ui.lname].filter(Boolean).join(' ') || '—';
-    const firm  = ui.firm  || '—';
-    const email = ui.email || '—';
-    attorneyHeader.innerHTML = `
-      <div class="comp-header-attorney-item">
-        <span class="comp-header-attorney-label">Attorney</span>
-        <span class="comp-header-attorney-value">${name}</span>
-      </div>
-      <div class="comp-header-attorney-item">
-        <span class="comp-header-attorney-label">Firm</span>
-        <span class="comp-header-attorney-value">${firm}</span>
-      </div>
-      <div class="comp-header-attorney-item">
-        <span class="comp-header-attorney-label">Email</span>
-        <span class="comp-header-attorney-value">${email}</span>
-      </div>
-      <div class="comp-header-attorney-item">
-        <span class="comp-header-attorney-label">Assessment Date</span>
-        <span class="comp-header-attorney-value">${dateStr}</span>
-      </div>`;
-  }
+
   const isR1Misaligned = overallKey === 'misaligned-r1';
   const isR1Partial    = overallKey === 'partial-r1';
   const isAligned      = overallKey === 'aligned';
@@ -3192,7 +3162,7 @@ function unlockFullAccess() {
   // Run AFTER showResults so it overrides anything showResults re-shows
   setTimeout(() => {
     const hideIds = [
-      'report-header', 'overall-status-card', 'interruption-notice',
+      'overall-status-card', 'interruption-notice',
       'r1-advisory', 'interpretation-card', 'right-by-right-overview',
       'preview-gate-banner', 'breakdown-section', 'lead-section',
       'right-status-rows', 'breakdown-rows', 'action-bar',
