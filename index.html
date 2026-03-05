@@ -1629,6 +1629,24 @@
     ═══════════════════════════════════════════════════════ -->
     <div class="comp-report-sections" id="comp-report-sections">
 
+      <!-- Report Header (same block as prelim: C.A.R.E. title, attorney/firm/email/date, RCMS branding) -->
+      <div class="report-header comp-report-header" id="comp-report-header">
+        <div class="report-header-left">
+          <div class="report-title">C.A.R.E. Clinical Sequencing Auditor™</div>
+          <div class="report-label">Clinical Sequencing Profile™</div>
+          <div class="report-framework-line">A Structural Evaluation Under the 7 Rights of Injury Management™ Framework</div>
+          <div class="report-meta" id="comp-report-meta"></div>
+        </div>
+        <div class="report-header-right">
+          <div class="report-logo">
+            <strong>Reconcile Care Management Services</strong>
+            Reconcile C.A.R.E. Platform™<br>
+            Clinical Assessment and Resource Evaluation<br>
+            <span id="comp-report-date"></span>
+          </div>
+        </div>
+      </div>
+
       <!-- REPORT HEADER BAND -->
       <div class="comp-header-band" id="comp-header-band">
         <div class="comp-header-eyebrow">Forensic Clinical Sequencing Alignment Report</div>
@@ -2634,6 +2652,20 @@ function renderComprehensiveSections(rightStatuses, overallKey, overall) {
   // ── HIDE LEAD FORM ────────────────────────────────────────────────────────
   const leadSection = document.getElementById('lead-section');
   if (leadSection) leadSection.style.display = 'none';
+
+  // ── REPORT HEADER (same metadata as prelim: attorney, firm, email, assessment date) ──
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const compDateEl = document.getElementById('comp-report-date');
+  if (compDateEl) compDateEl.textContent = dateStr;
+  const compMetaEl = document.getElementById('comp-report-meta');
+  if (compMetaEl && userInfo.fname) {
+    compMetaEl.innerHTML = `
+      <div class="report-meta-row"><strong>Attorney:</strong> ${userInfo.fname} ${userInfo.lname}</div>
+      <div class="report-meta-row"><strong>Firm:</strong> ${userInfo.firm}</div>
+      <div class="report-meta-row print-hide-email"><strong>Email:</strong> ${userInfo.email}</div>
+      <div class="report-meta-row"><strong>Assessment Date:</strong> ${dateStr}</div>`;
+  }
 
   // ── ATTORNEY HEADER ───────────────────────────────────────────────────────
 
